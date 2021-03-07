@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="CreatePostTableViewCell" customModule="Travel_Social" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="432" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="432" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ukp-AW-Jnm">
+                        <rect key="frame" x="80" y="25" width="342" height="30"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Create Articles">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="createPost:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="X6F-QY-uDF"/>
+                        </connections>
+                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HO5-Ih-zbU">
+                        <rect key="frame" x="10" y="10" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="HO5-Ih-zbU" secondAttribute="height" multiplier="1:1" id="Eji-nx-Qdd"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="0.20406710391013039" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Ukp-AW-Jnm" secondAttribute="trailing" constant="10" id="99V-T9-Ab7"/>
+                    <constraint firstItem="HO5-Ih-zbU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="9Pg-m2-7oQ"/>
+                    <constraint firstItem="Ukp-AW-Jnm" firstAttribute="leading" secondItem="HO5-Ih-zbU" secondAttribute="trailing" constant="10" id="MNL-qM-U0x"/>
+                    <constraint firstItem="HO5-Ih-zbU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aun-qp-Cfl"/>
+                    <constraint firstItem="Ukp-AW-Jnm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bTZ-f4-vZ0"/>
+                    <constraint firstItem="Ukp-AW-Jnm" firstAttribute="height" secondItem="HO5-Ih-zbU" secondAttribute="height" multiplier="1:2" id="qwq-Eh-xUC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <constraints>
+                <constraint firstItem="HO5-Ih-zbU" firstAttribute="height" secondItem="KGk-i7-Jjw" secondAttribute="height" multiplier="3:4" id="6MP-OI-yrs"/>
+            </constraints>
+            <connections>
+                <outlet property="avatarImageView" destination="HO5-Ih-zbU" id="oda-l4-hev"/>
+                <outlet property="postButton" destination="Ukp-AW-Jnm" id="Pmt-mM-4fv"/>
+            </connections>
+            <point key="canvasLocation" x="205.79710144927537" y="85.714285714285708"/>
+        </tableViewCell>
+    </objects>
+</document>
