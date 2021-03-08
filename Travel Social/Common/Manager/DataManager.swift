@@ -94,7 +94,7 @@ class DataManager {
     }
     
     
-    func getUserFromId(id: String) {
+    func getUserFromId(id: String, complete:@escaping () -> Void) {
         db.collection("users").whereField("id", isEqualTo: id)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -122,6 +122,7 @@ class DataManager {
                             }
                         }
                     }
+                    complete()
                 }
         }
     }

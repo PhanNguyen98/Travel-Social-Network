@@ -133,7 +133,8 @@ class EditProfileViewController: UIViewController {
         DataImageManager.shared.uploadsImage(image: backgroundImageView.image!, place: "avatar", nameImage: fileNameBackground ?? "")
         DataImageManager.shared.uploadsImage(image: avatarImageView.image!, place: "avatar", nameImage: fileNameAvatar ?? "")
         DataManager.shared.setDataUser()
-        DataManager.shared.getUserFromId(id: DataManager.shared.user.id!)
+        DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
+        }
         self.navigationController?.popViewController(animated: true)
     }
     

@@ -96,13 +96,14 @@ class LoginViewController: UIViewController {
                 self.logInButton.isEnabled = true
                 self.showError(message: error!.localizedDescription)
             } else {
-                SVProgressHUD.dismiss()
                 self.logInButton.isEnabled = true
                 self.emailTextField.text = ""
                 self.passwordTextField.text = ""
-                DataManager.shared.getUserFromId(id: (result!.user.uid))
-                let customBarViewController = CustomBarViewController()
-                self.navigationController?.pushViewController(customBarViewController, animated: false)
+                DataManager.shared.getUserFromId(id: (result!.user.uid)) {
+                    SVProgressHUD.dismiss()
+                    let customBarViewController = CustomBarViewController()
+                    self.navigationController?.pushViewController(customBarViewController, animated: false)
+                }
             }
         }
     }

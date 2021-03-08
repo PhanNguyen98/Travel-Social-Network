@@ -18,12 +18,28 @@ class NotifyViewController: UIViewController {
         super.viewDidLoad()
         setTableView()
         setData()
+        setNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func setTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "NotifyTableViewCell", bundle: nil), forCellReuseIdentifier: "NotifyTableViewCell")
+    }
+    
+    func setNavigationBar() {
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(popViewController))
+        self.navigationItem.leftBarButtonItem = backButton
     }
     
     func setData() {
@@ -62,7 +78,11 @@ class NotifyViewController: UIViewController {
             }
             completed()
         }
-    } 
+    }
+    
+    @objc func popViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
 
 }
 

@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setUpTableView()
         self.tabBarController?.delegate = self
+        setData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,17 +30,41 @@ class HomeViewController: UIViewController {
     func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
         tableView.register(UINib(nibName: "CreatePostTableViewCell", bundle: nil), forCellReuseIdentifier: "CreatePostTableViewCell")
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "PostTableViewCell")
+    }
+    
+    func setData() {
+        var data = DataManager.shared.user.listIdFriends ?? []
+        data.append(DataManager.shared.user.id!)
+        DataManager.shared.getPostFromListId(listId: data) { result in
+            if self.dataSources.count != result.count {
+                self.dataSources = result
+                self.tableView.reloadData()
+            }
+        }
     }
     
 }
 
 extension HomeViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 1:
+            let createPostViewController = CreatePostViewController()
+            self.navigationController?.pushViewController(createPostViewController, animated: true)
+        default:
+            break
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
+            return 130
+        case 1:
             return 80
         default:
             return 425
@@ -55,9 +80,10 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
+        switch section {
+        case 0, 1:
             return 0
-        } else {
+        default:
             return 10
         }
     }
@@ -69,10 +95,15 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell", for: indexPath) as? TitleTableViewCell else { return TitleTableViewCell()
+            }
+            cell.cellDelegate = self
+            cell.selectionStyle = .none
+            return cell
+        case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreatePostTableViewCell", for: indexPath) as? CreatePostTableViewCell else {
                 return CreatePostTableViewCell()
             }
-            cell.cellDelegate = self
             cell.selectionStyle = .none
             cell.setData(item: DataManager.shared.user)
             return cell
@@ -116,14 +147,6 @@ extension HomeViewController: PostTableViewCellDelegate {
     
 }
 
-extension HomeViewController: CreatePostTableViewCellDelegate {
-    
-    func pushViewController(viewController: UIViewController) {
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-}
-
 extension HomeViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -131,12 +154,14 @@ extension HomeViewController: UITabBarControllerDelegate {
             var data = DataManager.shared.user.listIdFriends ?? []
             data.append(DataManager.shared.user.id!)
             DataManager.shared.getPostFromListId(listId: data) { result in
-                self.dataSources = result
-                self.tableView.reloadData()
+                if self.dataSources.count != result.count {
+                    self.dataSources = result
+                    self.tableView.reloadData()
+                }
             }
         }
         
-        if tabBarController.selectedIndex == 4 {
+        if tabBarController.selectedIndex == 2 {
             let userViewController = viewController as? UserViewController
             DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
                 userViewController?.dataSources = result
@@ -150,11 +175,19 @@ extension HomeViewController: UITabBarControllerDelegate {
 }
 
 extension HomeViewController: CommentViewControllerDelegate {
-    
     func reloadCountComment() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
+}
+
+extension HomeViewController: TitleTableViewCellDelegate {
+    func pushViewController(viewController: UIViewController) {
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
+    func presentViewController(viewController: UIViewController) {
+        self.present(viewController, animated: true, completion: nil)
+    }
 }
