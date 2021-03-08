@@ -153,17 +153,24 @@ extension PostTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
-        return CGSize(width: width - 20, height: (width - 20)*9/16 - 20)
+        if listNameImage.count == 1 {
+            return CGSize(width: width, height: width*9/16)
+        }
+        return CGSize(width: width - 40, height: (width - 20)*9/16 - 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        if listNameImage.count == 1 {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        } else {
+            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
