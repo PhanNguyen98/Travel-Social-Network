@@ -16,6 +16,7 @@ class CreatePostViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var selectImageButton: UIButton!
+    @IBOutlet weak var placeTextField: UITextField!
     
     var resultImagePicker = [PHAsset]()
     var dataPost = Post()
@@ -110,6 +111,7 @@ class CreatePostViewController: UIViewController {
             dataPost.date = getCurrentDate()
             dataPost.listImage = resultImage
             dataPost.content = contentTextView.text
+            dataPost.place = placeTextField.text
             DataManager.shared.getCountPost() { result in
                 self.dataPost.id = String(result + 1)
                 DataManager.shared.setDataPost(data: self.dataPost)

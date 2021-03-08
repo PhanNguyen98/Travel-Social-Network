@@ -94,9 +94,9 @@ extension FriendViewController: UITableViewDataSource {
 
 extension FriendViewController: PostTableViewCellDelegate {
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, listImage: [String]) {
         let detailImageViewController = DetailImageViewController()
-        detailImageViewController.nameImage = nameImage
+        detailImageViewController.dataSources = listImage
         self.navigationController?.pushViewController(detailImageViewController, animated: true)
     }
     

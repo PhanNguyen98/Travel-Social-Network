@@ -20,11 +20,16 @@ class TitleTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        searchBar.delegate = self
+        setSearchBar()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func setSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "Search User"
     }
     
     @IBAction func showNotification(_ sender: Any) {
