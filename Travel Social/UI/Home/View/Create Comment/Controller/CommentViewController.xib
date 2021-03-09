@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentViewController" customModule="Travel_Social" customModuleProvider="target">
             <connections>
                 <outlet property="commentTextField" destination="aiy-Tt-x0W" id="NV4-aP-Zvx"/>
+                <outlet property="contentView" destination="YnP-Ny-bS2" id="BBA-e8-3i8"/>
                 <outlet property="tableView" destination="OTi-T6-cXr" id="tXB-ef-xcQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OTi-T6-cXr">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="768"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YnP-Ny-bS2">
                     <rect key="frame" x="0.0" y="812" width="414" height="50"/>
@@ -57,13 +58,13 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="YnP-Ny-bS2" firstAttribute="top" secondItem="OTi-T6-cXr" secondAttribute="bottom" id="8MF-BZ-22D"/>
                 <constraint firstItem="YnP-Ny-bS2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="KZM-4a-g05"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OTi-T6-cXr" secondAttribute="trailing" id="LjG-9B-3rs"/>
-                <constraint firstItem="OTi-T6-cXr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="MAs-Sw-urr"/>
-                <constraint firstItem="OTi-T6-cXr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NCb-qQ-8zm"/>
+                <constraint firstItem="OTi-T6-cXr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="W4f-zL-f8i"/>
+                <constraint firstItem="OTi-T6-cXr" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ZzE-ID-fCp"/>
                 <constraint firstItem="YnP-Ny-bS2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hbx-QP-0NI"/>
                 <constraint firstItem="YnP-Ny-bS2" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="jxL-3f-2YZ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="OTi-T6-cXr" secondAttribute="bottom" id="vYY-LC-4SW"/>
+                <constraint firstItem="OTi-T6-cXr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ncb-ct-Bzf"/>
             </constraints>
             <point key="canvasLocation" x="100.00000000000001" y="82.366071428571431"/>
         </view>

@@ -12,7 +12,7 @@ import FirebaseFirestore
 class DataManager {
     static let shared = DataManager()
     private let db = Firestore.firestore()
-    var user = User(id: "", nameImage: "user.png", name: nil, birthday: nil, place: nil, listIdFriends: nil, nameBackgroundImage: "background.jpg")
+    var user = User(id: "", nameImage: "user.png", name: nil, birthday: nil, place: nil, listIdFriends: nil, nameBackgroundImage: "background.jpg", job: nil)
     
     private init(){
     }
@@ -25,7 +25,8 @@ class DataManager {
             "birthday": user.birthday ?? "",
             "place": user.place ?? "",
             "listIdFriends": user.listIdFriends ?? [],
-            "background": user.nameBackgroundImage ?? "background.jpg"
+            "background": user.nameBackgroundImage ?? "background.jpg",
+            "job": user.job ?? ""
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -48,7 +49,8 @@ class DataManager {
             "listImage": data.listImage ?? [""],
             "content": data.content ?? "",
             "date": data.date ?? "",
-            "listIdHeart": data.listIdHeart ?? []
+            "listIdHeart": data.listIdHeart ?? [],
+            "place": data.place ?? ""
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -73,8 +75,8 @@ class DataManager {
         }
     }
     
-    func setDataComment(data: Comment) {
-        db.collection("comments").document().setData([
+    func setDataComment(data: Comment, id: Int) {
+        db.collection("comments").document(String(id)).setData([
             "idPost": data.idPost ?? "",
             "idUser": data.idUser ?? "",
             "content": data.content ?? ""
@@ -101,22 +103,24 @@ class DataManager {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
-                        for (key, values) in document.data() {
+                        for (key, value) in document.data() {
                             switch key {
                             case "birthday":
-                                self.user.birthday = values as? String
+                                self.user.birthday = value as? String
                             case "place":
-                                self.user.place = values as? String
+                                self.user.place = value as? String
                             case "id":
-                                self.user.id = values as? String
+                                self.user.id = value as? String
                             case "listIdFriends":
-                                self.user.listIdFriends = values as? [String]
+                                self.user.listIdFriends = value as? [String]
                             case "name":
-                                self.user.name = values as? String
+                                self.user.name = value as? String
                             case "avatar":
-                                self.user.nameImage = values as? String
+                                self.user.nameImage = value as? String
                             case "background":
-                            self.user.nameBackgroundImage = values as? String
+                                self.user.nameBackgroundImage = value as? String
+                            case "job":
+                                self.user.job = value as? String
                             default:
                                 break
                             }
@@ -135,14 +139,14 @@ class DataManager {
             } else {
                 for document in querySnapshot!.documents {
                     let comment = Comment()
-                    for (key, values) in document.data() {
+                    for (key, value) in document.data() {
                         switch key {
                         case "idPost":
-                            comment.idPost = values as? String
+                            comment.idPost = value as? String
                         case "idUser":
-                            comment.idUser = values as? String
+                            comment.idUser = value as? String
                         case "content":
-                            comment.content = values as? String
+                            comment.content = value as? String
                         default:
                             break
                         }
@@ -162,22 +166,24 @@ class DataManager {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
-                        for (key, values) in document.data() {
+                        for (key, value) in document.data() {
                             switch key {
                             case "birthday":
-                                result.birthday = values as? String
+                                result.birthday = value as? String
                             case "place":
-                                result.place = values as? String
+                                result.place = value as? String
                             case "id":
-                                result.id = values as? String
+                                result.id = value as? String
                             case "listIdFriends":
-                                result.listIdFriends = values as? [String]
+                                result.listIdFriends = value as? [String]
                             case "name":
-                                result.name = values as? String
+                                result.name = value as? String
                             case "avatar":
-                                result.nameImage = values as? String
+                                result.nameImage = value as? String
                             case "background":
-                                result.nameBackgroundImage = values as? String
+                                result.nameBackgroundImage = value as? String
+                            case "job":
+                                result.job = value as? String
                             default:
                                 break
                             }
@@ -197,22 +203,24 @@ class DataManager {
                 } else {
                     for document in querySnapshot!.documents {
                         var result = User()
-                        for (key, values) in document.data() {
+                        for (key, value) in document.data() {
                             switch key {
                             case "birthday":
-                                result.birthday = values as? String
+                                result.birthday = value as? String
                             case "place":
-                                result.place = values as? String
+                                result.place = value as? String
                             case "id":
-                                result.id = values as? String
+                                result.id = value as? String
                             case "listIdFriends":
-                                result.listIdFriends = values as? [String]
+                                result.listIdFriends = value as? [String]
                             case "name":
-                                result.name = values as? String
+                                result.name = value as? String
                             case "avatar":
-                                result.nameImage = values as? String
+                                result.nameImage = value as? String
                             case "background":
-                                result.nameBackgroundImage = values as? String
+                                result.nameBackgroundImage = value as? String
+                            case "job":
+                                result.job = value as? String
                             default:
                                 break
                             }
@@ -233,20 +241,22 @@ class DataManager {
                 } else {
                     for document in querySnapshot!.documents {
                         let data = Post()
-                        for (key, values) in document.data() {
+                        for (key, value) in document.data() {
                             switch key {
                             case "id":
-                                data.id = values as? String
+                                data.id = value as? String
                             case "idUser":
-                                data.idUser = values as? String
+                                data.idUser = value as? String
                             case "listImage":
-                                data.listImage = values as? [String]
+                                data.listImage = value as? [String]
                             case "content":
-                                data.content = values as? String
+                                data.content = value as? String
                             case "date":
-                                data.date = values as? String
+                                data.date = value as? String
                             case "listIdHeart":
-                                data.listIdHeart = values as? [String]
+                                data.listIdHeart = value as? [String]
+                            case "place":
+                                data.place = value as? String
                             default:
                                 break
                             }
@@ -258,8 +268,8 @@ class DataManager {
         }
     }
     
-    func getCountPost(completionHandler: @escaping (_ result: Int) -> ()) {
-        db.collection("posts").getDocuments() { (querySnapshot, err) in
+    func getCountObject(nameCollection: String, completionHandler: @escaping (_ result: Int) -> ()) {
+        db.collection(nameCollection).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)");
             }
@@ -287,22 +297,24 @@ class DataManager {
                 } else {
                     for document in querySnapshot!.documents {
                         var user = User()
-                        for (key, values) in document.data() {
+                        for (key, value) in document.data() {
                             switch key {
                             case "birthday":
-                                user.birthday = values as? String
+                                user.birthday = value as? String
                             case "place":
-                                user.place = values as? String
+                                user.place = value as? String
                             case "id":
-                                user.id = values as? String
+                                user.id = value as? String
                             case "listIdFriends":
-                                user.listIdFriends = values as? [String]
+                                user.listIdFriends = value as? [String]
                             case "name":
-                                user.name = values as? String
+                                user.name = value as? String
                             case "avatar":
-                                user.nameImage = values as? String
+                                user.nameImage = value as? String
                             case "background":
-                                user.nameBackgroundImage = values as? String
+                                user.nameBackgroundImage = value as? String
+                            case "job":
+                                user.job = value as? String
                             default:
                                 break
                             }
@@ -322,20 +334,22 @@ class DataManager {
                 } else {
                     for document in querySnapshot!.documents {
                         let post = Post()
-                        for (key, values) in document.data() {
+                        for (key, value) in document.data() {
                             switch key {
                             case "id":
-                                post.id = values as? String
+                                post.id = value as? String
                             case "idUser":
-                                post.idUser = values as? String
+                                post.idUser = value as? String
                             case "listImage":
-                                post.listImage = values as? [String]
+                                post.listImage = value as? [String]
                             case "content":
-                                post.content = values as? String
+                                post.content = value as? String
                             case "date":
-                                post.date = values as? String
+                                post.date = value as? String
                             case "listIdHeart":
-                                post.listIdHeart = values as? [String]
+                                post.listIdHeart = value as? [String]
+                            case "place":
+                                post.place = value as? String
                             default:
                                 break
                             }
@@ -356,22 +370,24 @@ class DataManager {
                     for document in querySnapshot!.documents {
                         print(document)
                         var user = User()
-                        for (key, values) in document.data() {
+                        for (key, value) in document.data() {
                             switch key {
                             case "birthday":
-                                user.birthday = values as? String
+                                user.birthday = value as? String
                             case "place":
-                                user.place = values as? String
+                                user.place = value as? String
                             case "id":
-                                user.id = values as? String
+                                user.id = value as? String
                             case "listIdFriends":
-                                user.listIdFriends = values as? [String]
+                                user.listIdFriends = value as? [String]
                             case "name":
-                                user.name = values as? String
+                                user.name = value as? String
                             case "avatar":
-                                user.nameImage = values as? String
+                                user.nameImage = value as? String
                             case "background":
-                                user.nameBackgroundImage = values as? String
+                                user.nameBackgroundImage = value as? String
+                            case "job":
+                                user.job = value as? String
                             default:
                                 break
                             }

@@ -75,14 +75,7 @@ extension UserViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 580
-        case 1:
-            return 380
-        default:
-            return 80
-        }
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -140,12 +133,12 @@ extension UserViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "InfoUserTableViewCell", for: indexPath) as? InfoUserTableViewCell else { return InfoUserTableViewCell() }
             cell.cellDelegate = self
             cell.selectionStyle = .none
-            cell.setData(item: dataUser)
+            cell.setData(item: dataUser, countPost: dataPost.count)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else { return PostTableViewCell() }
-            cell.dataPost = dataPost[indexPath.row]
-            cell.setdata(data: dataPost[indexPath.row])
+            cell.dataPost = dataPost[dataPost.count - indexPath.row - 1]
+            cell.setdata(data: dataPost[dataPost.count - indexPath.row - 1])
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell", for: indexPath) as? UserTableViewCell else { return UserTableViewCell() }

@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kX-Fr-tyb">
-                        <rect key="frame" x="30" y="50" width="416" height="0.0"/>
+                        <rect key="frame" x="30" y="50" width="416" height="32"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -45,6 +45,7 @@
                     <constraint firstItem="HHi-wI-EO5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="KXl-DU-wYo"/>
                     <constraint firstItem="7kX-Fr-tyb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="M8d-NN-EPN"/>
                     <constraint firstItem="HHi-wI-EO5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="UvQ-HZ-t6d"/>
+                    <constraint firstAttribute="bottom" secondItem="7kX-Fr-tyb" secondAttribute="bottom" constant="15" id="hie-FX-w2Y"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

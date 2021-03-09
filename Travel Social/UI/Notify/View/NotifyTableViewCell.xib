@@ -17,23 +17,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="njU-E1-Wd2">
-                        <rect key="frame" x="10" y="6" width="40" height="40"/>
+                        <rect key="frame" x="10" y="10" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="cqu-rG-03k"/>
                             <constraint firstAttribute="width" constant="40" id="xvH-OY-9la"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="content" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksq-bF-kzn">
-                        <rect key="frame" x="60" y="10" width="298" height="19.5"/>
+                        <rect key="frame" x="60" y="15" width="298" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ksq-bF-kzn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="FPJ-zJ-49d"/>
+                    <constraint firstItem="ksq-bF-kzn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="FPJ-zJ-49d"/>
                     <constraint firstItem="ksq-bF-kzn" firstAttribute="leading" secondItem="njU-E1-Wd2" secondAttribute="trailing" constant="10" id="Iix-QO-dSc"/>
-                    <constraint firstItem="njU-E1-Wd2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Rdl-Sg-yUU"/>
+                    <constraint firstItem="njU-E1-Wd2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="SXs-gi-oH9"/>
                     <constraint firstAttribute="trailing" secondItem="ksq-bF-kzn" secondAttribute="trailing" constant="10" id="lvE-7J-g5j"/>
                     <constraint firstItem="njU-E1-Wd2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="oJ8-c6-mUp"/>
                 </constraints>

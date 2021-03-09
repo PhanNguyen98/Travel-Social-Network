@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
@@ -24,7 +25,6 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        tableView.reloadData()
     }
     
     func setUpTableView() {
@@ -66,16 +66,8 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 130
-        case 1:
-            return 80
-        default:
-            return 380
-        }
+        return UITableView.automaticDimension
     }
-    
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -117,8 +109,8 @@ extension HomeViewController: UITableViewDataSource {
                 return PostTableViewCell()
             }
             cell.cellDelegate = self
-            cell.dataPost = dataSources[dataSources.count - indexPath.section]
-            cell.setdata(data: dataSources[dataSources.count - indexPath.section])
+            cell.dataPost = dataSources[dataSources.count - indexPath.section + 1]
+            cell.setdata(data: dataSources[dataSources.count - indexPath.section + 1])
             cell.selectionStyle = .none
             return cell
         }

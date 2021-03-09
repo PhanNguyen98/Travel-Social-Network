@@ -72,12 +72,14 @@ class LoginViewController: UIViewController {
     
     @objc func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.contentView.translatesAutoresizingMaskIntoConstraints = true
             self.contentView.frame.origin.y = self.view.bounds.height - keyboardSize.height - contentView.frame.height + 50
         }
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
         self.contentView.frame.origin.y = self.view.bounds.height - contentView.frame.height
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
     }
     
 //MARK: IBAction
@@ -109,6 +111,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func showSignUp(_ sender: Any) {
+        emailTextField.text = ""
+        passwordTextField.text = ""
         let signUpViewController = SignUpViewController()
         signUpViewController.modalPresentationStyle = .overFullScreen
         signUpViewController.signUpDelegate = self

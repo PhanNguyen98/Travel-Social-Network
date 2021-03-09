@@ -22,6 +22,7 @@ class InfoUserTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var jobLabel: UILabel!
     
     weak var cellDelegate: InfoUserTableViewCellDelegate?
     
@@ -44,14 +45,16 @@ class InfoUserTableViewCell: UITableViewCell {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
         avatarImageView.layer.borderWidth = 1
+        
         editProfileButton.layer.cornerRadius = 10
         editProfileButton.layer.masksToBounds = true
     }
     
-    func setData(item: User) {
+    func setData(item: User, countPost: Int) {
         nameLabel.text = item.name
         birthdayLabel.text = item.birthday
         placeLabel.text = item.place
+        jobLabel.text = item.job
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: item.nameBackgroundImage!) { result in
             DispatchQueue.main.async() {
                 self.backgroundImageView.image = result
@@ -62,6 +65,8 @@ class InfoUserTableViewCell: UITableViewCell {
                 self.avatarImageView.image = result
             }
         }
+        segmentedControl.setTitle("Post " + String(countPost), forSegmentAt: 0)
+        segmentedControl.setTitle("Friends " + String(DataManager.shared.user.listIdFriends?.count ?? 0), forSegmentAt: 1)
     }
     
     @IBAction func loadData(_ sender: UISegmentedControl) {

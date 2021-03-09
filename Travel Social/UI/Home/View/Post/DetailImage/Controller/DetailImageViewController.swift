@@ -33,6 +33,7 @@ class DetailImageViewController: UIViewController {
     
 //MARK: SetData
     func setTableView() {
+        tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "DetailImageTableViewCell", bundle: nil), forCellReuseIdentifier: "DetailImageTableViewCell")

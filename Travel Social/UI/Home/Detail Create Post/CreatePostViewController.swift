@@ -49,6 +49,8 @@ class CreatePostViewController: UIViewController {
         
         selectImageButton.layer.cornerRadius = 5
         selectImageButton.layer.masksToBounds = true
+        
+        placeTextField.placeholder = ""
     }
     
     func setNavigationBar() {
@@ -108,17 +110,17 @@ class CreatePostViewController: UIViewController {
             resultImage.append(nameImage)
             DataImageManager.shared.uploadsImage(image: Utilities.getAssetThumbnail(asset: asset), place: "post", nameImage: nameImage)
         }
-        if contentTextView.text != nil || dataPost.listImage != nil {
+        if contentTextView.text != "" || resultImage.count != 0 || placeTextField.text != "" {
             dataPost.idUser = DataManager.shared.user.id!
             dataPost.date = getCurrentDate()
             dataPost.listImage = resultImage
             dataPost.content = contentTextView.text
             dataPost.place = placeTextField.text
-            DataManager.shared.getCountPost() { result in
+            DataManager.shared.getCountObject(nameCollection: "posts") { result in
                 self.dataPost.id = String(result + 1)
                 DataManager.shared.setDataPost(data: self.dataPost)
+                self.navigationController?.popViewController(animated: true)
             }
-            self.navigationController?.popViewController(animated: true)
         }
     }
 

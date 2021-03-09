@@ -132,12 +132,14 @@ class SignUpViewController: UIViewController {
     
     @objc func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.contentView.translatesAutoresizingMaskIntoConstraints = true
             self.contentView.frame.origin.y = UIScreen.main.bounds.height - keyboardSize.height - contentView.frame.height + 50
         }
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
         self.contentView.frame.origin.y = UIScreen.main.bounds.height - contentView.frame.height
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
     }
     
 }

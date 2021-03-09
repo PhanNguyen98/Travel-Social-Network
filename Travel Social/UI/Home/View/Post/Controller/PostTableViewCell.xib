@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="380" id="KGk-i7-Jjw" customClass="PostTableViewCell" customModule="Travel_Social" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="424" id="KGk-i7-Jjw" customClass="PostTableViewCell" customModule="Travel_Social" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="434" height="424"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -37,14 +37,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQm-Zi-RBt">
-                        <rect key="frame" x="25" y="79" width="389" height="20.5"/>
+                        <rect key="frame" x="20" y="79" width="394" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="SZQ-sy-m6Q">
-                        <rect key="frame" x="0.0" y="99.5" width="434" height="264.5"/>
+                        <rect key="frame" x="0.0" y="99.5" width="424" height="264.5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="264.5" id="rif-SV-bxG"/>
+                        </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Jr-M1-smW">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -102,7 +105,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0Z-Ty-UEv">
-                        <rect key="frame" x="0.0" y="364" width="434" height="1"/>
+                        <rect key="frame" x="10" y="364" width="414" height="1"/>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="YBy-p3-bsx"/>
@@ -118,26 +121,27 @@
                     <constraint firstItem="cRR-59-q4D" firstAttribute="leading" secondItem="SyD-27-3K7" secondAttribute="trailing" constant="10" id="9bk-4W-0rw"/>
                     <constraint firstItem="eQm-Zi-RBt" firstAttribute="top" secondItem="cRR-59-q4D" secondAttribute="bottom" constant="10" id="AJh-Ef-3sC"/>
                     <constraint firstAttribute="trailing" secondItem="zoN-YS-nBI" secondAttribute="trailing" constant="20" id="H7s-WX-DS3"/>
-                    <constraint firstItem="F0Z-Ty-UEv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="HAI-4I-Mqy"/>
+                    <constraint firstItem="F0Z-Ty-UEv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="HAI-4I-Mqy"/>
                     <constraint firstItem="3Uh-Zb-9jy" firstAttribute="leading" secondItem="cNV-nx-2k3" secondAttribute="trailing" constant="30" id="Jsa-Tw-DK9"/>
                     <constraint firstItem="SyD-27-3K7" firstAttribute="leading" secondItem="2bK-4q-XHx" secondAttribute="trailing" constant="20" id="MJf-FS-NuV"/>
                     <constraint firstItem="eQm-Zi-RBt" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="O75-eU-zXW"/>
+                    <constraint firstAttribute="bottom" secondItem="gbE-LW-kd3" secondAttribute="bottom" constant="15" id="OHq-ek-a1i"/>
                     <constraint firstItem="SyD-27-3K7" firstAttribute="top" secondItem="zoN-YS-nBI" secondAttribute="bottom" constant="8" id="P7W-2z-VaL"/>
                     <constraint firstItem="zoN-YS-nBI" firstAttribute="leading" secondItem="2bK-4q-XHx" secondAttribute="trailing" constant="20" id="QZI-ad-a3f"/>
                     <constraint firstAttribute="trailing" secondItem="cRR-59-q4D" secondAttribute="trailing" constant="20" symbolic="YES" id="R74-9F-GWt"/>
                     <constraint firstItem="gbE-LW-kd3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="VLk-Wg-Q8L"/>
-                    <constraint firstAttribute="trailing" secondItem="F0Z-Ty-UEv" secondAttribute="trailing" id="WH5-Dy-7au"/>
+                    <constraint firstAttribute="trailing" secondItem="F0Z-Ty-UEv" secondAttribute="trailing" constant="10" id="WH5-Dy-7au"/>
                     <constraint firstItem="SZQ-sy-m6Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Xab-3C-zb1"/>
                     <constraint firstItem="zoN-YS-nBI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Xo6-Sl-WaH"/>
                     <constraint firstItem="gbE-LW-kd3" firstAttribute="top" secondItem="SZQ-sy-m6Q" secondAttribute="bottom" constant="15" id="azS-ii-gTZ"/>
-                    <constraint firstAttribute="bottom" secondItem="SZQ-sy-m6Q" secondAttribute="bottom" constant="60" id="e1c-uF-MIM"/>
+                    <constraint firstAttribute="bottom" secondItem="3Uh-Zb-9jy" secondAttribute="bottom" constant="14" id="eB5-oO-Ulg"/>
                     <constraint firstItem="cNV-nx-2k3" firstAttribute="leading" secondItem="gbE-LW-kd3" secondAttribute="trailing" id="gBV-8o-KdL"/>
                     <constraint firstItem="3Uh-Zb-9jy" firstAttribute="top" secondItem="SZQ-sy-m6Q" secondAttribute="bottom" constant="16" id="gKm-yW-mJ0"/>
-                    <constraint firstAttribute="trailing" secondItem="SZQ-sy-m6Q" secondAttribute="trailing" id="hho-zW-n46"/>
+                    <constraint firstAttribute="trailing" secondItem="SZQ-sy-m6Q" secondAttribute="trailing" constant="10" id="hho-zW-n46"/>
                     <constraint firstItem="cNV-nx-2k3" firstAttribute="centerY" secondItem="gbE-LW-kd3" secondAttribute="centerY" id="hjw-5p-ifL"/>
                     <constraint firstItem="SZQ-sy-m6Q" firstAttribute="top" secondItem="eQm-Zi-RBt" secondAttribute="bottom" id="k6l-2n-3za"/>
                     <constraint firstItem="F0Z-Ty-UEv" firstAttribute="top" secondItem="SZQ-sy-m6Q" secondAttribute="bottom" id="n8p-k7-a0e"/>
-                    <constraint firstItem="eQm-Zi-RBt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="vfm-HY-27z"/>
+                    <constraint firstItem="eQm-Zi-RBt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="vfm-HY-27z"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

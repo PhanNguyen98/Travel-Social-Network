@@ -22,6 +22,8 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var birthdayDatePicker: UIDatePicker!
     @IBOutlet weak var placeTextField: UITextField!
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var jobTextField: UITextField!
     
     weak var editVCDelegate: EditProfileViewControllerDelegate?
     var imagePicker: ImagePicker!
@@ -106,15 +108,29 @@ class EditProfileViewController: UIViewController {
     
 //MARK: @objc func
     @objc func keyboardWillShow(sender: NSNotification) {
-        if let keyboardFrame: NSValue = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            self.view.frame.origin.y = -keyboardHeight
+        let info = sender.userInfo!
+        let rect: CGRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
+        let kbSize = rect.size
+
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+        var aRect = self.view.frame;
+        aRect.size.height -= kbSize.height;
+
+        let activeField: UITextField? = [nameTextField, placeTextField, jobTextField].first { $0.isFirstResponder }
+        if let activeField = activeField {
+            if !aRect.contains(activeField.frame.origin) {
+                let scrollPoint = CGPoint(x: 0, y: activeField.frame.origin.y-kbSize.height)
+                scrollView.setContentOffset(scrollPoint, animated: true)
+            }
         }
+        
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
-         self.view.frame.origin.y = 0
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
     
     @objc func popViewController() {
@@ -132,6 +148,7 @@ class EditProfileViewController: UIViewController {
         if let nameImage = fileNameBackground {
             DataManager.shared.user.nameBackgroundImage = nameImage
         }
+        DataManager.shared.user.job = jobTextField.text
         DataManager.shared.user.place = placeTextField.text
         DataImageManager.shared.uploadsImage(image: backgroundImageView.image!, place: "avatar", nameImage: fileNameBackground ?? "")
         DataImageManager.shared.uploadsImage(image: avatarImageView.image!, place: "avatar", nameImage: fileNameAvatar ?? "")
