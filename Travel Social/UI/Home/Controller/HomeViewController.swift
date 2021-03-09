@@ -52,11 +52,16 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
+        case 0:
+            break
         case 1:
             let createPostViewController = CreatePostViewController()
             self.navigationController?.pushViewController(createPostViewController, animated: true)
         default:
-            break
+            let commentViewController = CommentViewController()
+            commentViewController.dataPost = dataSources[dataSources.count - indexPath.section]
+            commentViewController.commentDelegate = self
+            self.navigationController?.pushViewController(commentViewController, animated: true)
         }
     }
     
@@ -67,7 +72,7 @@ extension HomeViewController: UITableViewDelegate {
         case 1:
             return 80
         default:
-            return 425
+            return 380
         }
     }
     
@@ -115,7 +120,6 @@ extension HomeViewController: UITableViewDataSource {
             cell.dataPost = dataSources[dataSources.count - indexPath.section]
             cell.setdata(data: dataSources[dataSources.count - indexPath.section])
             cell.selectionStyle = .none
-            cell.collectionView.contentOffset = .zero
             return cell
         }
     }
@@ -124,9 +128,9 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: PostTableViewCellDelegate {
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, listImage: [String]) {
         let detailImageViewController = DetailImageViewController()
-        detailImageViewController.nameImage = nameImage
+        detailImageViewController.dataSources = listImage
         self.navigationController?.pushViewController(detailImageViewController, animated: true)
     }
     
@@ -142,7 +146,7 @@ extension HomeViewController: PostTableViewCellDelegate {
         let commentViewController = CommentViewController()
         commentViewController.dataPost = dataPost
         commentViewController.commentDelegate = self
-        self.present(commentViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(commentViewController, animated: true)
     }
     
 }
@@ -164,7 +168,7 @@ extension HomeViewController: UITabBarControllerDelegate {
         if tabBarController.selectedIndex == 2 {
             let userViewController = viewController as? UserViewController
             DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-                userViewController?.dataSources = result
+                userViewController?.dataPost = result
                 DataManager.shared.setDataUser()
                 userViewController?.dataUser = DataManager.shared.user
                 userViewController?.tableView.reloadData()

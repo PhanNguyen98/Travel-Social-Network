@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class DataManager {
     static let shared = DataManager()
-    let db = Firestore.firestore()
+    private let db = Firestore.firestore()
     var user = User(id: "", nameImage: "user.png", name: nil, birthday: nil, place: nil, listIdFriends: nil, nameBackgroundImage: "background.jpg")
     
     private init(){

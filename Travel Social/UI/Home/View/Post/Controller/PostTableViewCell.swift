@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: PostTableViewCellDelegate
 protocol PostTableViewCellDelegate: class {
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String)
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, listImage: [String])
     func showListUser(listUser: [String])
     func showListComment(dataPost: Post)
 }
@@ -57,21 +57,22 @@ class PostTableViewCell: UITableViewCell {
             }
             self.nameLabel.text = result.name
         }
+        heartButton.setImage(UIImage(named: "heart-normal"), for: .normal)
         if data.listIdHeart?.count != 0 {
             for item in data.listIdHeart! {
                 if item == DataManager.shared.user.id {
-                    heartButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+                    heartButton.setImage(UIImage(named: "heart-click"), for: .normal)
                     isActive = false
                     break
                 }
             }
         }
-        timeLabel.text = data.date
+        timeLabel.text = data.place ?? "Ha Noi" + "  " + data.date!
         contentPostLabel.text = data.content
         listNameImage = data.listImage ?? [""]
         countHeartButton.setTitle(String(data.listIdHeart!.count), for: .normal)
         DataManager.shared.getCountComment(idPost: data.id!) { result in
-            self.countCommentButton.setTitle("\(result) comment", for: .normal)
+            self.countCommentButton.setTitle("\(result)", for: .normal)
         }
     }
 
@@ -84,11 +85,11 @@ class PostTableViewCell: UITableViewCell {
 
 //MARK: SetUI
     func setUI() {
-        heartButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
+        heartButton.setImage(UIImage(named: "heart-normal"), for: .normal)
         countHeartButton.setTitle("", for: .normal)
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.layer.borderWidth = 1
-        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
     }
     
 //MARK: IBAction
@@ -102,7 +103,7 @@ class PostTableViewCell: UITableViewCell {
     @IBAction func addHeart(_ sender: Any) {
         if isActive {
             isActive = false
-            heartButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+            heartButton.setImage(UIImage(named: "heart-click"), for: .normal)
             if dataPost?.listIdHeart!.first(where: { $0 == DataManager.shared.user.id }) == nil {
                 dataPost?.listIdHeart?.append(DataManager.shared.user.id!)
                 DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: (dataPost?.listIdHeart)!)
@@ -110,7 +111,7 @@ class PostTableViewCell: UITableViewCell {
             }
         } else {
             isActive = true
-            heartButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
+            heartButton.setImage(UIImage(named: "heart-normal"), for: .normal)
             for index in 0..<(dataPost?.listIdHeart!.count)! {
                 if DataManager.shared.user.id == dataPost?.listIdHeart?[index] {
                     dataPost?.listIdHeart?.remove(at: index)
@@ -130,7 +131,7 @@ class PostTableViewCell: UITableViewCell {
 //MARK: UICollectionViewDelegate
 extension PostTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.cellDelegate?.collectionView(collectionView: collectionView, didSelectItemAt: indexPath, nameImage: listNameImage[indexPath.row])
+        self.cellDelegate?.collectionView(collectionView: collectionView, didSelectItemAt: indexPath, listImage: listNameImage)
     }
 }
 
@@ -152,19 +153,14 @@ extension PostTableViewCell: UICollectionViewDataSource {
 extension PostTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width
         if listNameImage.count == 1 {
-            return CGSize(width: width, height: width*9/16)
+            return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height - 20)
         }
-        return CGSize(width: width - 40, height: (width - 20)*9/16 - 20)
+        return CGSize(width: (collectionView.bounds.width - 20)*2/3, height: collectionView.bounds.height - 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if listNameImage.count == 1 {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        } else {
-            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        }
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

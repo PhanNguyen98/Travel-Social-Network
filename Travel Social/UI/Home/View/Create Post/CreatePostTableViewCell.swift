@@ -24,7 +24,7 @@ class CreatePostTableViewCell: UITableViewCell {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.borderWidth = 1
-        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
         
     }
     

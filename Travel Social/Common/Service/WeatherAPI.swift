@@ -51,7 +51,7 @@ extension WeatherAPI: TargetType {
         case .search(let city):
             return [
                 "q": city,
-                "appid": SeverPath.weatherAccessKey
+                "appid": AccessKey.weatherAccessKey
             ]
         }
     }

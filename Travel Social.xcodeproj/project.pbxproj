@@ -23,7 +23,6 @@
 		D54BCCE925EF29EF0025EFEA /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54BCCE825EF29EF0025EFEA /* APIManager.swift */; };
 		D54BCCEC25EF2A390025EFEA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54BCCEB25EF2A390025EFEA /* WeatherAPI.swift */; };
 		D54BCCEF25EF2A6B0025EFEA /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54BCCEE25EF2A6B0025EFEA /* ResponseError.swift */; };
-		D54BCCF725EF38C10025EFEA /* SeverPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54BCCF625EF38C10025EFEA /* SeverPath.swift */; };
 		D54BCCFB25EF42310025EFEA /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54BCCFA25EF42310025EFEA /* Weather.swift */; };
 		D54BCCFE25EF45B90025EFEA /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54BCCFD25EF45B90025EFEA /* WeatherManager.swift */; };
 		D55BABCE25C291AE00567C22 /* UIView+SetBackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55BABCD25C291AE00567C22 /* UIView+SetBackgroundImage.swift */; };
@@ -74,6 +73,7 @@
 		D5DFBDBE25BEAD9400C7AC50 /* UILabel+UnderLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DFBDBD25BEAD9400C7AC50 /* UILabel+UnderLine.swift */; };
 		D5DFBDC425BEC1D000C7AC50 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DFBDC225BEC1D000C7AC50 /* UserTableViewCell.swift */; };
 		D5DFBDC525BEC1D000C7AC50 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5DFBDC325BEC1D000C7AC50 /* UserTableViewCell.xib */; };
+		D5E729A325F70ACE00313BB2 /* AccessKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E729A225F70ACE00313BB2 /* AccessKey.swift */; };
 		D5E78F9A25C7EE620066C71B /* KeySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E78F9825C7EE620066C71B /* KeySearchViewController.swift */; };
 		D5E78F9B25C7EE620066C71B /* KeySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E78F9925C7EE620066C71B /* KeySearchViewController.xib */; };
 		D5E78F9E25C7F0560066C71B /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E78F9D25C7F0560066C71B /* UserDefaultManager.swift */; };
@@ -89,6 +89,8 @@
 		D5F4116325C7A22F00EAFEF1 /* DetailImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F4116125C7A22F00EAFEF1 /* DetailImageViewController.xib */; };
 		D5FA609225F5B13C004121F0 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA609025F5B13C004121F0 /* TitleTableViewCell.swift */; };
 		D5FA609325F5B13C004121F0 /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FA609125F5B13C004121F0 /* TitleTableViewCell.xib */; };
+		D5FA609C25F614F7004121F0 /* DetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA609A25F614F7004121F0 /* DetailImageTableViewCell.swift */; };
+		D5FA609D25F614F7004121F0 /* DetailImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FA609B25F614F7004121F0 /* DetailImageTableViewCell.xib */; };
 		ECA9BFC04B4E55E34EDD8D20 /* Pods_Travel_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836F0B7ED4C0D8C388AC73F4 /* Pods_Travel_Social.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,7 +113,6 @@
 		D54BCCE825EF29EF0025EFEA /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		D54BCCEB25EF2A390025EFEA /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		D54BCCEE25EF2A6B0025EFEA /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
-		D54BCCF625EF38C10025EFEA /* SeverPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeverPath.swift; sourceTree = "<group>"; };
 		D54BCCFA25EF42310025EFEA /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		D54BCCFD25EF45B90025EFEA /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		D55BABCD25C291AE00567C22 /* UIView+SetBackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SetBackgroundImage.swift"; sourceTree = "<group>"; };
@@ -164,6 +165,7 @@
 		D5DFBDBD25BEAD9400C7AC50 /* UILabel+UnderLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+UnderLine.swift"; sourceTree = "<group>"; };
 		D5DFBDC225BEC1D000C7AC50 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		D5DFBDC325BEC1D000C7AC50 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		D5E729A225F70ACE00313BB2 /* AccessKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessKey.swift; sourceTree = "<group>"; };
 		D5E78F9825C7EE620066C71B /* KeySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeySearchViewController.swift; sourceTree = "<group>"; };
 		D5E78F9925C7EE620066C71B /* KeySearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeySearchViewController.xib; sourceTree = "<group>"; };
 		D5E78F9D25C7F0560066C71B /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
@@ -179,6 +181,8 @@
 		D5F4116125C7A22F00EAFEF1 /* DetailImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailImageViewController.xib; sourceTree = "<group>"; };
 		D5FA609025F5B13C004121F0 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		D5FA609125F5B13C004121F0 /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
+		D5FA609A25F614F7004121F0 /* DetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageTableViewCell.swift; sourceTree = "<group>"; };
+		D5FA609B25F614F7004121F0 /* DetailImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailImageTableViewCell.xib; sourceTree = "<group>"; };
 		F6C99052D11F6870D7A639C5 /* Pods-Travel Social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travel Social.release.xcconfig"; path = "Target Support Files/Pods-Travel Social/Pods-Travel Social.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -306,7 +310,7 @@
 		D54BCCF525EF388A0025EFEA /* Constant */ = {
 			isa = PBXGroup;
 			children = (
-				D54BCCF625EF38C10025EFEA /* SeverPath.swift */,
+				D5E729A225F70ACE00313BB2 /* AccessKey.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -711,8 +715,8 @@
 		D5F4116525C7A6BF00EAFEF1 /* DetailImage */ = {
 			isa = PBXGroup;
 			children = (
-				D5F4116025C7A22F00EAFEF1 /* DetailImageViewController.swift */,
-				D5F4116125C7A22F00EAFEF1 /* DetailImageViewController.xib */,
+				D5FA609825F61455004121F0 /* View */,
+				D5FA609725F6144B004121F0 /* Controller */,
 			);
 			path = DetailImage;
 			sourceTree = "<group>";
@@ -733,6 +737,24 @@
 				D5FA609125F5B13C004121F0 /* TitleTableViewCell.xib */,
 			);
 			path = Title;
+			sourceTree = "<group>";
+		};
+		D5FA609725F6144B004121F0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D5F4116025C7A22F00EAFEF1 /* DetailImageViewController.swift */,
+				D5F4116125C7A22F00EAFEF1 /* DetailImageViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D5FA609825F61455004121F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D5FA609A25F614F7004121F0 /* DetailImageTableViewCell.swift */,
+				D5FA609B25F614F7004121F0 /* DetailImageTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -804,6 +826,7 @@
 				D565AF7725B6C7860090FA5B /* LaunchScreen.storyboard in Resources */,
 				D565AF7425B6C7860090FA5B /* Assets.xcassets in Resources */,
 				D564899D25E74D8600A34CB6 /* CommentTableViewCell.xib in Resources */,
+				D5FA609D25F614F7004121F0 /* DetailImageTableViewCell.xib in Resources */,
 				D5C34B5F25EDCBE4009E4260 /* NotifyViewController.xib in Resources */,
 				D50A537225E6897E009D2C74 /* ListUserViewController.xib in Resources */,
 				D5FA609325F5B13C004121F0 /* TitleTableViewCell.xib in Resources */,
@@ -883,10 +906,12 @@
 				D5DFBDC425BEC1D000C7AC50 /* UserTableViewCell.swift in Sources */,
 				D59EF59725F06D8F003DC267 /* WeatherTableViewCell.swift in Sources */,
 				D5D1B60825B819D50041C30C /* Utilities.swift in Sources */,
+				D5FA609C25F614F7004121F0 /* DetailImageTableViewCell.swift in Sources */,
 				D5D1B5B525B7C32D0041C30C /* LoginViewController.swift in Sources */,
 				D54BCCFB25EF42310025EFEA /* Weather.swift in Sources */,
 				D53B4A8625BFC814007D9604 /* InfoUserTableViewCell.swift in Sources */,
 				D5F410FA25BAAC33007F8E03 /* CreatePostViewController.swift in Sources */,
+				D5E729A325F70ACE00313BB2 /* AccessKey.swift in Sources */,
 				D59ECF2625BA8B9C0078DC87 /* PostTableViewCell.swift in Sources */,
 				D5C34B5E25EDCBE4009E4260 /* NotifyViewController.swift in Sources */,
 				D565AF6B25B6C7830090FA5B /* AppDelegate.swift in Sources */,
@@ -920,7 +945,6 @@
 				D5DFBDBE25BEAD9400C7AC50 /* UILabel+UnderLine.swift in Sources */,
 				D50A537125E6897E009D2C74 /* ListUserViewController.swift in Sources */,
 				D5A208EA25C1179400BE9473 /* FriendViewController.swift in Sources */,
-				D54BCCF725EF38C10025EFEA /* SeverPath.swift in Sources */,
 				D53B4A8025BFC7AF007D9604 /* UserViewController.swift in Sources */,
 				D5A208F225C1187300BE9473 /* ProfileFriendTableViewCell.swift in Sources */,
 				D54BCCEF25EF2A6B0025EFEA /* ResponseError.swift in Sources */,

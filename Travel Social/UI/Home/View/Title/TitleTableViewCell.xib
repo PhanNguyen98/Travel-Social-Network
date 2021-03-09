@@ -17,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KW3-nG-L9u">
-                        <rect key="frame" x="297" y="15" width="37" height="37"/>
+                        <rect key="frame" x="301" y="15" width="33" height="33"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="37" id="bdx-VH-Oux"/>
-                            <constraint firstAttribute="width" constant="37" id="v7x-UO-ryz"/>
+                            <constraint firstAttribute="height" constant="33" id="bdx-VH-Oux"/>
+                            <constraint firstAttribute="width" constant="33" id="v7x-UO-ryz"/>
                         </constraints>
                         <state key="normal" title="Button" image="notify"/>
                         <connections>
@@ -32,7 +32,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </searchBar>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1l-kU-3wz">
-                        <rect key="frame" x="10" y="10" width="287" height="30"/>
+                        <rect key="frame" x="10" y="10" width="291" height="30"/>
                         <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="30"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

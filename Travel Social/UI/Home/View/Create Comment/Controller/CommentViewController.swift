@@ -29,12 +29,24 @@ class CommentViewController: UIViewController {
         setTableView()
         setViewKeyboard()
         setData()
+        setNavigationBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
 //MARK: SetData
     func setTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "PostTableViewCell")
         tableView.register(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentTableViewCell")
     }
     
@@ -49,6 +61,11 @@ class CommentViewController: UIViewController {
             self.tableView.reloadData()
             self.commentDelegate?.reloadCountComment()
         }
+    }
+    
+    func setNavigationBar() {
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(popViewController))
+        self.navigationItem.leftBarButtonItem = backButton
     }
 
 //MARK: HandleCommentChanges
@@ -96,6 +113,10 @@ class CommentViewController: UIViewController {
     @objc func keyboardWillHide(sender: NSNotification) {
          self.view.frame.origin.y = 0
     }
+    
+    @objc func popViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
 
 //MARK: IBAction
     @IBAction func saveComment(_ sender: Any) {
@@ -126,38 +147,58 @@ class CommentViewController: UIViewController {
 //MARK: UITableViewDelegate
 extension CommentViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        switch indexPath.section {
+        case 0:
+            return 380
+        default:
+            return 90
+        }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 80))
-        
-        let label = UILabel()
-        label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
-        label.text = " Comments"
-        label.font = .boldSystemFont(ofSize: 25)
-        label.textColor = .black
-        headerView.addSubview(label)
-        
-        return headerView
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 0
+        default:
+            return 10
+        }
     }
+    
 }
 
 //MARK: UITableViewDataSource
 extension CommentViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSources.count
+        switch section {
+        case 0:
+            return 1
+        default:
+            return dataSources.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else { return CommentTableViewCell()
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
+                 return PostTableViewCell()
+            }
+            cell.selectionStyle = .none
+            cell.setdata(data: dataPost)
+            cell.dataPost = dataPost
+            cell.commentButton.isEnabled = false
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else { return CommentTableViewCell()
+            }
+            cell.setData(comment: dataSources[indexPath.row])
+            cell.selectionStyle = .none
+            return cell
         }
-        cell.setData(comment: dataSources[indexPath.row])
-        return cell
     }
     
 }
