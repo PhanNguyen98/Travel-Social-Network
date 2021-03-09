@@ -67,7 +67,7 @@ class PostTableViewCell: UITableViewCell {
                 }
             }
         }
-        timeLabel.text = data.place ?? "" + "  " + data.date!
+        timeLabel.text = data.place ?? "Ha Noi" + "  " + data.date!
         contentPostLabel.text = data.content
         listNameImage = data.listImage ?? [""]
         countHeartButton.setTitle(String(data.listIdHeart!.count), for: .normal)
@@ -89,7 +89,7 @@ class PostTableViewCell: UITableViewCell {
         countHeartButton.setTitle("", for: .normal)
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.layer.borderWidth = 1
-        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
     }
     
 //MARK: IBAction
@@ -156,7 +156,7 @@ extension PostTableViewCell: UICollectionViewDelegateFlowLayout {
         if listNameImage.count == 1 {
             return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height - 20)
         }
-        return CGSize(width: collectionView.bounds.width - 40, height: collectionView.bounds.height - 20)
+        return CGSize(width: (collectionView.bounds.width - 20)*2/3, height: collectionView.bounds.height - 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

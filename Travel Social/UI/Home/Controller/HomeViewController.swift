@@ -168,7 +168,7 @@ extension HomeViewController: UITabBarControllerDelegate {
         if tabBarController.selectedIndex == 2 {
             let userViewController = viewController as? UserViewController
             DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-                userViewController?.dataSources = result
+                userViewController?.dataPost = result
                 DataManager.shared.setDataUser()
                 userViewController?.dataUser = DataManager.shared.user
                 userViewController?.tableView.reloadData()

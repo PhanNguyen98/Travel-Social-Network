@@ -9,6 +9,8 @@ import UIKit
 
 protocol InfoUserTableViewCellDelegate: class {
     func pushViewController(viewController: UIViewController)
+    func sendDataPost(dataPost: [Post])
+    func sendDataFriend(dataFriend: [User])
 }
 
 class InfoUserTableViewCell: UITableViewCell {
@@ -19,6 +21,7 @@ class InfoUserTableViewCell: UITableViewCell {
     @IBOutlet weak var birthdayLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     weak var cellDelegate: InfoUserTableViewCellDelegate?
     
@@ -39,11 +42,8 @@ class InfoUserTableViewCell: UITableViewCell {
     
     func setUI() {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
-        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
         avatarImageView.layer.borderWidth = 1
-        nameLabel.underline()
-        birthdayLabel.underline()
-        placeLabel.underline()
         editProfileButton.layer.cornerRadius = 10
         editProfileButton.layer.masksToBounds = true
     }
@@ -61,6 +61,22 @@ class InfoUserTableViewCell: UITableViewCell {
             DispatchQueue.main.async() {
                 self.avatarImageView.image = result
             }
+        }
+    }
+    
+    @IBAction func loadData(_ sender: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
+                self.cellDelegate?.sendDataPost(dataPost: result)
+            }
+        case 1:
+            DataManager.shared.setDataUser()
+            DataManager.shared.getUserFromListId(listId: DataManager.shared.user.listIdFriends ?? []) { result in
+                self.cellDelegate?.sendDataFriend(dataFriend: result)
+            }
+        default:
+            break
         }
     }
     

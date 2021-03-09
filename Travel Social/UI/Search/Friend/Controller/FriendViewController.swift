@@ -53,7 +53,7 @@ extension FriendViewController: UITableViewDelegate {
         case 0:
             return 440
         default:
-            return 425
+            return 380
         }
     }
     

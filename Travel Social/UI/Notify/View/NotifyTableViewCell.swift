@@ -28,6 +28,8 @@ class NotifyTableViewCell: UITableViewCell {
     
     func setUI() {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        avatarImageView.layer.borderWidth = 1
+        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
     }
     
     func setData(data: Notify) {

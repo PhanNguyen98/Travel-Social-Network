@@ -151,7 +151,7 @@ extension CommentViewController: UITableViewDelegate {
         case 0:
             return 380
         default:
-            return 80
+            return 90
         }
     }
     

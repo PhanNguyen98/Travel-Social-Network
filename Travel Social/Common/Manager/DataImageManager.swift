@@ -12,7 +12,7 @@ import FirebaseStorage
 class DataImageManager {
     static let shared = DataImageManager()
     
-    let storageRef = Storage.storage().reference()
+    private let storageRef = Storage.storage().reference()
     
     private init(){
     }

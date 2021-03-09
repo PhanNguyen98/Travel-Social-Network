@@ -60,15 +60,15 @@ class ProfileFriendTableViewCell: UITableViewCell {
                 }
             }
         }
+        DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
+        }
     }
     
     func setUI() {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
-        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
         avatarImageView.layer.borderWidth = 1
-        nameLabel.underline()
-        birthdayLabel.underline()
-        placeLabel.underline()
+       
         addFriendButton.layer.cornerRadius = 10
         addFriendButton.layer.masksToBounds = true
         addFriendButton.setTitle("Add Friend", for: .normal)

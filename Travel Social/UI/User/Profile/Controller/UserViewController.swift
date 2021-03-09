@@ -9,9 +9,11 @@ import UIKit
 
 class UserViewController: UIViewController {
 
+//MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     
-    var dataSources = [Post]()
+    var dataPost = [Post]()
+    var dataFriend = [User]()
     var dataUser = DataManager.shared.user
     
     override func viewDidLoad() {
@@ -30,17 +32,8 @@ class UserViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "InfoUserTableViewCell", bundle: nil), forCellReuseIdentifier: "InfoUserTableViewCell")
-        tableView.register(UINib(nibName: "ListFriendTableViewCell", bundle: nil), forCellReuseIdentifier: "ListFriendTableViewCell")
+        tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserTableViewCell")
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "PostTableViewCell")
-    }
-    
-    func setDataPost() {
-        DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-            self.dataSources = result
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
     }
     
     @objc func showsetting(sender: UIButton!) {
@@ -65,20 +58,36 @@ class UserViewController: UIViewController {
 
 extension UserViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 1:
+            let commentViewController = CommentViewController()
+            commentViewController.dataPost = dataPost[indexPath.row]
+            commentViewController.commentDelegate = self
+            self.navigationController?.pushViewController(commentViewController, animated: true)
+        case 2:
+            let friendViewController = FriendViewController()
+            friendViewController.dataUser = dataFriend[indexPath.row]
+            navigationController?.pushViewController(friendViewController, animated: true)
+        default:
+            break
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 470
+            return 580
         case 1:
-            return 140
+            return 380
         default:
-            return 425
+            return 80
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 45
+            return 60
         } else {
             return 10
         }
@@ -87,9 +96,17 @@ extension UserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 45))
+            
+            let label = UILabel()
+            label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
+            label.text = "  Profile"
+            label.font = .boldSystemFont(ofSize: 23)
+            label.textColor = .black
+            headerView.addSubview(label)
+            
             let logoutButton = UIButton()
-            logoutButton.frame = CGRect.init(x: Int(UIScreen.main.bounds.width)-45, y: 5, width: 35, height: 35)
-            logoutButton.setImage(UIImage(named: "setting"), for: .normal)
+            logoutButton.frame = CGRect.init(x: Int(UIScreen.main.bounds.width)-45, y: 5, width: 30, height: 30)
+            logoutButton.setImage(UIImage(named: "options"), for: .normal)
             logoutButton.addTarget(self, action: #selector(showsetting(sender:)), for: .touchUpInside)
             logoutButton.tag = 1
             headerView.addSubview(logoutButton)
@@ -103,11 +120,18 @@ extension UserViewController: UITableViewDelegate {
 extension UserViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSources.count + 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return dataPost.count
+        default:
+            return dataFriend.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,15 +143,14 @@ extension UserViewController: UITableViewDataSource {
             cell.setData(item: dataUser)
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListFriendTableViewCell", for: indexPath) as? ListFriendTableViewCell else { return ListFriendTableViewCell() }
-            cell.selectionStyle = .none
-            cell.countFriendLabel.text = String(DataManager.shared.user.listIdFriends?.count ?? 0) + " friends"
-            cell.cellDelegate = self
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else { return PostTableViewCell() }
+            cell.dataPost = dataPost[indexPath.row]
+            cell.setdata(data: dataPost[indexPath.row])
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else { return PostTableViewCell() }
-            cell.dataPost = dataSources[indexPath.section - 2]
-            cell.setdata(data: dataSources[indexPath.section - 2])
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell", for: indexPath) as? UserTableViewCell else { return UserTableViewCell() }
+            cell.selectionStyle = .none
+            cell.setData(item: dataFriend[indexPath.row])
             return cell
         }
     }
@@ -135,6 +158,22 @@ extension UserViewController: UITableViewDataSource {
 }
 
 extension UserViewController: InfoUserTableViewCellDelegate {
+    func sendDataPost(dataPost: [Post]) {
+        self.dataPost = dataPost
+        self.dataFriend = [User]()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func sendDataFriend(dataFriend: [User]) {
+        self.dataFriend = dataFriend
+        self.dataPost = [Post]()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     func pushViewController(viewController: UIViewController) {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -148,6 +187,40 @@ extension UserViewController: ListFriendTableViewCellDelegate {
                 listFriendViewController?.dataSources = result
                 self.navigationController?.pushViewController(listFriendViewController!, animated: true)
             }
+        }
+    }
+}
+
+
+extension UserViewController: PostTableViewCellDelegate {
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, listImage: [String]) {
+        let detailImageViewController = DetailImageViewController()
+        detailImageViewController.dataSources = listImage
+        self.navigationController?.pushViewController(detailImageViewController, animated: true)
+    }
+    
+    func showListUser(listUser: [String]) {
+        let listUserViewController = ListUserViewController()
+        DataManager.shared.getListUser(listId: listUser) { result in
+            listUserViewController.dataSources = result
+            self.present(listUserViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func showListComment(dataPost: Post) {
+        let commentViewController = CommentViewController()
+        commentViewController.dataPost = dataPost
+        commentViewController.commentDelegate = self
+        self.navigationController?.pushViewController(commentViewController, animated: true)
+    }
+    
+}
+
+extension UserViewController: CommentViewControllerDelegate {
+    func reloadCountComment() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
 }
