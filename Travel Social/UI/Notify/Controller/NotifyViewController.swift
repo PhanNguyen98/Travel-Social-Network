@@ -32,6 +32,7 @@ class NotifyViewController: UIViewController {
     }
     
     func setTableView() {
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "NotifyTableViewCell", bundle: nil), forCellReuseIdentifier: "NotifyTableViewCell")

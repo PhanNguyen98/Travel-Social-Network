@@ -49,12 +49,7 @@ extension FriendViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 440
-        default:
-            return 380
-        }
+        return UITableView.automaticDimension
     }
     
 }

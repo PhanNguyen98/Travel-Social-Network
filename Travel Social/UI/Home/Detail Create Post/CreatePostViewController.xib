@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatePostViewController" customModule="Travel_Social" customModuleProvider="target">
             <connections>
                 <outlet property="avatarImageView" destination="Hpk-0B-egR" id="5co-nv-AuD"/>
+                <outlet property="collectionView" destination="Gbh-fQ-bSq" id="kAO-sF-mhL"/>
                 <outlet property="contentTextView" destination="lCy-OS-b4B" id="otz-m0-LCE"/>
                 <outlet property="nameLabel" destination="c4P-ot-KYT" id="NvY-Ub-uZK"/>
                 <outlet property="placeTextField" destination="2pL-l1-cms" id="gK7-xj-Cz3"/>
@@ -50,7 +51,7 @@
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lCy-OS-b4B">
-                    <rect key="frame" x="10" y="163" width="394" height="609"/>
+                    <rect key="frame" x="10" y="163" width="394" height="422"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -68,19 +69,34 @@
                         <constraint firstAttribute="height" constant="33" id="FMn-2V-m1g"/>
                     </constraints>
                 </imageView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Gbh-fQ-bSq">
+                    <rect key="frame" x="10" y="605" width="394" height="197"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Gbh-fQ-bSq" secondAttribute="height" multiplier="2" id="g0O-gT-2US"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UxC-NC-caC">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.52544463429613131" green="0.69644921460440767" blue="0.79825561215179142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2pL-l1-cms" secondAttribute="trailing" constant="10" id="1SW-Ho-DNc"/>
                 <constraint firstItem="c4P-ot-KYT" firstAttribute="leading" secondItem="Hpk-0B-egR" secondAttribute="trailing" constant="20" id="4xc-fX-CMO"/>
+                <constraint firstItem="Gbh-fQ-bSq" firstAttribute="top" secondItem="lCy-OS-b4B" secondAttribute="bottom" constant="20" id="8V5-hI-t8c"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gbh-fQ-bSq" secondAttribute="trailing" constant="10" id="Db0-BL-bI8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lQW-Mg-Ncz" secondAttribute="trailing" constant="10" id="FhZ-Wb-adj"/>
+                <constraint firstItem="Gbh-fQ-bSq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="LfH-4D-XaW"/>
                 <constraint firstItem="c4P-ot-KYT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="N4a-hd-MbS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="c4P-ot-KYT" secondAttribute="trailing" constant="10" id="REs-R9-uUU"/>
                 <constraint firstItem="2pL-l1-cms" firstAttribute="leading" secondItem="8jM-Ps-hgE" secondAttribute="trailing" constant="5" id="RWV-7m-8vK"/>
                 <constraint firstItem="Hpk-0B-egR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="SY2-3U-dhg"/>
+                <constraint firstItem="lQW-Mg-Ncz" firstAttribute="top" secondItem="Gbh-fQ-bSq" secondAttribute="bottom" constant="20" id="Vp1-Ur-rsI"/>
                 <constraint firstItem="lCy-OS-b4B" firstAttribute="top" secondItem="Hpk-0B-egR" secondAttribute="bottom" constant="20" id="YIW-oi-Bnx"/>
-                <constraint firstItem="lQW-Mg-Ncz" firstAttribute="top" secondItem="lCy-OS-b4B" secondAttribute="bottom" constant="50" id="a7a-KX-KRr"/>
                 <constraint firstItem="Hpk-0B-egR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="dwo-MU-Nij"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="lQW-Mg-Ncz" secondAttribute="bottom" constant="10" id="gUD-8L-EAO"/>
                 <constraint firstItem="lCy-OS-b4B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="j9x-HJ-Ncv"/>

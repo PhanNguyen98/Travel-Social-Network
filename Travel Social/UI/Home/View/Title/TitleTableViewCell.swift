@@ -21,6 +21,7 @@ class TitleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setSearchBar()
+        self.setBackgroundImage(img: UIImage(named: "background")!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

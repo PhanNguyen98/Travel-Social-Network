@@ -22,7 +22,7 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func setUI() {
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2 - 2
     }
     
     func setData(item: User) {

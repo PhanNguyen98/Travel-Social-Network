@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="Travel_Social" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="8DI-D4-2Sn" id="9uN-V7-10k"/>
+                <outlet property="contentViewBottomConstraint" destination="lqi-31-DVa" id="gwJ-IU-eCN"/>
                 <outlet property="emailTextField" destination="rdA-5C-Xli" id="u2T-sJ-qYb"/>
                 <outlet property="nameTextField" destination="Kn8-Ek-N9g" id="agw-ic-SIO"/>
                 <outlet property="passwordTextField" destination="git-cI-hdu" id="QVV-5V-xIB"/>

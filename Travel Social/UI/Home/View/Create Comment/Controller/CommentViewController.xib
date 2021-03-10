@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="commentTextField" destination="aiy-Tt-x0W" id="NV4-aP-Zvx"/>
                 <outlet property="contentView" destination="YnP-Ny-bS2" id="BBA-e8-3i8"/>
+                <outlet property="contentViewBottomConstraint" destination="VVk-Wv-wCS" id="vCA-7S-9gT"/>
                 <outlet property="tableView" destination="OTi-T6-cXr" id="tXB-ef-xcQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,11 +22,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OTi-T6-cXr">
-                    <rect key="frame" x="0.0" y="44" width="414" height="768"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OTi-T6-cXr">
+                    <rect key="frame" x="0.0" y="44" width="414" height="798"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YnP-Ny-bS2">
-                    <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                    <rect key="frame" x="0.0" y="842" width="414" height="54"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aiy-Tt-x0W">
                             <rect key="frame" x="10" y="8" width="354" height="34"/>
@@ -46,25 +47,25 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                     <constraints>
-                        <constraint firstItem="aiy-Tt-x0W" firstAttribute="centerY" secondItem="YnP-Ny-bS2" secondAttribute="centerY" id="30G-aS-Y7d"/>
-                        <constraint firstItem="aiy-Tt-x0W" firstAttribute="leading" secondItem="YnP-Ny-bS2" secondAttribute="leading" constant="10" id="7KR-iW-jG8"/>
+                        <constraint firstItem="aiy-Tt-x0W" firstAttribute="top" secondItem="YnP-Ny-bS2" secondAttribute="top" constant="8" id="GtP-Bb-xOU"/>
+                        <constraint firstAttribute="trailing" secondItem="H6F-L1-Am0" secondAttribute="trailing" constant="5" id="Jq5-0T-SFo"/>
+                        <constraint firstAttribute="height" constant="54" id="OJz-rH-wi6"/>
+                        <constraint firstItem="aiy-Tt-x0W" firstAttribute="leading" secondItem="YnP-Ny-bS2" secondAttribute="leading" constant="10" id="PuN-Fy-6nb"/>
                         <constraint firstItem="H6F-L1-Am0" firstAttribute="leading" secondItem="aiy-Tt-x0W" secondAttribute="trailing" constant="15" id="Q95-iC-7ed"/>
-                        <constraint firstAttribute="trailing" secondItem="H6F-L1-Am0" secondAttribute="trailing" constant="5" id="SeA-X0-jeM"/>
-                        <constraint firstAttribute="height" constant="50" id="VTN-cS-LQr"/>
-                        <constraint firstItem="H6F-L1-Am0" firstAttribute="centerY" secondItem="YnP-Ny-bS2" secondAttribute="centerY" id="rRw-ZA-du6"/>
+                        <constraint firstItem="H6F-L1-Am0" firstAttribute="top" secondItem="YnP-Ny-bS2" secondAttribute="top" constant="10" id="YUe-99-1FI"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="YnP-Ny-bS2" firstAttribute="top" secondItem="OTi-T6-cXr" secondAttribute="bottom" id="8MF-BZ-22D"/>
-                <constraint firstItem="YnP-Ny-bS2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="KZM-4a-g05"/>
+                <constraint firstItem="YnP-Ny-bS2" firstAttribute="top" secondItem="OTi-T6-cXr" secondAttribute="bottom" id="4qL-dx-nsa"/>
+                <constraint firstItem="YnP-Ny-bS2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="SDI-7W-jA0"/>
+                <constraint firstAttribute="bottom" secondItem="YnP-Ny-bS2" secondAttribute="bottom" id="VVk-Wv-wCS"/>
                 <constraint firstItem="OTi-T6-cXr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="W4f-zL-f8i"/>
                 <constraint firstItem="OTi-T6-cXr" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ZzE-ID-fCp"/>
-                <constraint firstItem="YnP-Ny-bS2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hbx-QP-0NI"/>
-                <constraint firstItem="YnP-Ny-bS2" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="jxL-3f-2YZ"/>
                 <constraint firstItem="OTi-T6-cXr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ncb-ct-Bzf"/>
+                <constraint firstItem="YnP-Ny-bS2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="pki-b5-Svn"/>
             </constraints>
             <point key="canvasLocation" x="100.00000000000001" y="82.366071428571431"/>
         </view>

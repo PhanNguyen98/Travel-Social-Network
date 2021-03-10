@@ -14,20 +14,24 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var dataSources = [Post]()
-    
+
+//MARK: ViewCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
         self.tabBarController?.delegate = self
-        setData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        setData()
     }
     
+    //MARK: SetData
     func setUpTableView() {
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
@@ -48,6 +52,7 @@ class HomeViewController: UIViewController {
     
 }
 
+//MARK: UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -56,7 +61,9 @@ extension HomeViewController: UITableViewDelegate {
             break
         case 1:
             let createPostViewController = CreatePostViewController()
-            self.navigationController?.pushViewController(createPostViewController, animated: true)
+            let navigationController = UINavigationController(rootViewController: createPostViewController)
+            navigationController.modalPresentationStyle = .overFullScreen
+            self.present(navigationController, animated: true, completion: nil)
         default:
             let commentViewController = CommentViewController()
             commentViewController.dataPost = dataSources[dataSources.count - indexPath.section]
@@ -70,6 +77,7 @@ extension HomeViewController: UITableViewDelegate {
     }
 }
 
+//MARK: UITableViewDataSource
 extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -118,6 +126,7 @@ extension HomeViewController: UITableViewDataSource {
     
 }
 
+//MARK: PostTableViewCellDelegate
 extension HomeViewController: PostTableViewCellDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, listImage: [String]) {
@@ -143,6 +152,7 @@ extension HomeViewController: PostTableViewCellDelegate {
     
 }
 
+//MARK: UITabBarControllerDelegate
 extension HomeViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -150,26 +160,25 @@ extension HomeViewController: UITabBarControllerDelegate {
             var data = DataManager.shared.user.listIdFriends ?? []
             data.append(DataManager.shared.user.id!)
             DataManager.shared.getPostFromListId(listId: data) { result in
-                if self.dataSources.count != result.count {
-                    self.dataSources = result
-                    self.tableView.reloadData()
-                }
+                self.dataSources = result
+                self.tableView.reloadData()
             }
         }
         
         if tabBarController.selectedIndex == 2 {
-            let userViewController = viewController as? UserViewController
+            let profileUserViewController = viewController as? ProfileUserViewController
             DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-                userViewController?.dataPost = result
+                profileUserViewController?.dataPost = result
                 DataManager.shared.setDataUser()
-                userViewController?.dataUser = DataManager.shared.user
-                userViewController?.tableView.reloadData()
+                profileUserViewController?.dataUser = DataManager.shared.user
+                profileUserViewController?.collectionView.reloadData()
             }
         }
     }
     
 }
 
+//MARK: CommentViewControllerDelegate
 extension HomeViewController: CommentViewControllerDelegate {
     func reloadCountComment() {
         DispatchQueue.main.async {
@@ -178,6 +187,7 @@ extension HomeViewController: CommentViewControllerDelegate {
     }
 }
 
+//MARK: TitleTableViewCellDelegate
 extension HomeViewController: TitleTableViewCellDelegate {
     func pushViewController(viewController: UIViewController) {
         self.navigationController?.pushViewController(viewController, animated: true)

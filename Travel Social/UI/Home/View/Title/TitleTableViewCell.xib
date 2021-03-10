@@ -32,7 +32,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </searchBar>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1l-kU-3wz">
-                        <rect key="frame" x="10" y="10" width="291" height="30"/>
+                        <rect key="frame" x="10" y="16.5" width="291" height="30"/>
                         <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="30"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                     <constraint firstItem="KW3-nG-L9u" firstAttribute="leading" secondItem="g1l-kU-3wz" secondAttribute="trailing" id="C40-4N-S1m"/>
                     <constraint firstAttribute="bottom" secondItem="Vn1-MN-Fmu" secondAttribute="bottom" id="ZdH-RU-ohc"/>
                     <constraint firstAttribute="trailing" secondItem="KW3-nG-L9u" secondAttribute="trailing" constant="15" id="bcd-Lb-Erh"/>
-                    <constraint firstItem="g1l-kU-3wz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="fFm-Ga-Wxt"/>
+                    <constraint firstItem="g1l-kU-3wz" firstAttribute="centerY" secondItem="KW3-nG-L9u" secondAttribute="centerY" id="hDI-yU-nF9"/>
                     <constraint firstItem="KW3-nG-L9u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="pkM-B4-fMP"/>
                     <constraint firstItem="g1l-kU-3wz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="rwX-Gc-mDW"/>
                 </constraints>

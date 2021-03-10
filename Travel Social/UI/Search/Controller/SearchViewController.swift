@@ -50,7 +50,7 @@ extension SearchViewController: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let keySearchViewController = KeySearchViewController()
-        keySearchViewController.keySearch = dataSources[indexPath.row]
+        //keySearchViewController.keySearch = dataSources[indexPath.row]
         let navigationController = UINavigationController(rootViewController: keySearchViewController)
         navigationController.modalPresentationStyle = .overFullScreen
         self.present(navigationController, animated: true, completion: nil)

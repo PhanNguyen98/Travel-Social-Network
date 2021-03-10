@@ -43,7 +43,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="SZQ-sy-m6Q">
-                        <rect key="frame" x="0.0" y="99.5" width="424" height="264.5"/>
+                        <rect key="frame" x="10" y="99.5" width="414" height="264.5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="264.5" id="rif-SV-bxG"/>
@@ -131,7 +131,7 @@
                     <constraint firstAttribute="trailing" secondItem="cRR-59-q4D" secondAttribute="trailing" constant="20" symbolic="YES" id="R74-9F-GWt"/>
                     <constraint firstItem="gbE-LW-kd3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="VLk-Wg-Q8L"/>
                     <constraint firstAttribute="trailing" secondItem="F0Z-Ty-UEv" secondAttribute="trailing" constant="10" id="WH5-Dy-7au"/>
-                    <constraint firstItem="SZQ-sy-m6Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Xab-3C-zb1"/>
+                    <constraint firstItem="SZQ-sy-m6Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Xab-3C-zb1"/>
                     <constraint firstItem="zoN-YS-nBI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Xo6-Sl-WaH"/>
                     <constraint firstItem="gbE-LW-kd3" firstAttribute="top" secondItem="SZQ-sy-m6Q" secondAttribute="bottom" constant="15" id="azS-ii-gTZ"/>
                     <constraint firstAttribute="bottom" secondItem="3Uh-Zb-9jy" secondAttribute="bottom" constant="14" id="eB5-oO-Ulg"/>

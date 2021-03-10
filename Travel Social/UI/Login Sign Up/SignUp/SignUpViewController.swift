@@ -22,6 +22,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
     weak var signUpDelegate: SignUpViewControllerDelegate?
     
@@ -132,14 +133,12 @@ class SignUpViewController: UIViewController {
     
     @objc func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.contentView.translatesAutoresizingMaskIntoConstraints = true
-            self.contentView.frame.origin.y = UIScreen.main.bounds.height - keyboardSize.height - contentView.frame.height + 50
+            contentViewBottomConstraint.constant = keyboardSize.height - 50
         }
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
-        self.contentView.frame.origin.y = UIScreen.main.bounds.height - contentView.frame.height
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentViewBottomConstraint.constant = 0
     }
     
 }

@@ -15,6 +15,7 @@ class ProfileFriendTableViewCell: UITableViewCell {
     @IBOutlet weak var birthdayLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var addFriendButton: UIButton!
+    @IBOutlet weak var jobLabel: UILabel!
     
     var isActive = true
     var dataUser = User()
@@ -65,7 +66,7 @@ class ProfileFriendTableViewCell: UITableViewCell {
     }
     
     func setUI() {
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2 - 2
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
         avatarImageView.layer.borderWidth = 1
        
@@ -83,6 +84,7 @@ class ProfileFriendTableViewCell: UITableViewCell {
                 }
             }
         }
+        jobLabel.text = user.job
         nameLabel.text = user.name
         birthdayLabel.text = user.birthday
         placeLabel.text = user.place

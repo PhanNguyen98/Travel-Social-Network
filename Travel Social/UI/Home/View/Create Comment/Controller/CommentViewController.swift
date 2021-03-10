@@ -19,6 +19,7 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
     var dataSources = [Comment]()
     var dataPost = Post()
@@ -45,7 +46,7 @@ class CommentViewController: UIViewController {
     
 //MARK: SetData
     func setTableView() {
-        tableView.tableFooterView = UIView()
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "PostTableViewCell")
@@ -106,14 +107,12 @@ class CommentViewController: UIViewController {
 //MARK: Objc Func
     @objc func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.contentView.translatesAutoresizingMaskIntoConstraints = true
-            self.contentView.frame.origin.y = self.view.bounds.height - keyboardSize.height - contentView.frame.height
+            contentViewBottomConstraint.constant = keyboardSize.height
         }
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
-        self.contentView.frame.origin.y = self.view.bounds.height - contentView.frame.height
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentViewBottomConstraint.constant = 0
     }
     
     @objc func popViewController() {

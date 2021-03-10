@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Travel_Social" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="Fgs-fZ-bdO" id="32z-T9-KWd"/>
+                <outlet property="contentViewBottomConstraint" destination="jXk-b9-IPI" id="f3A-ap-fMT"/>
                 <outlet property="emailTextField" destination="P1f-I0-9W1" id="bqn-MG-kol"/>
                 <outlet property="logInButton" destination="2a1-Z4-4gj" id="WSW-zl-9VS"/>
                 <outlet property="passwordTextField" destination="g6L-eX-HxW" id="cZx-aF-Tqc"/>
@@ -50,6 +51,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qme-69-j6s">
                             <rect key="frame" x="40" y="238" width="334" height="42"/>
                             <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="42" id="8Mv-3k-4RJ"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                             <state key="normal" title="Sign Up">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,6 +65,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a1-Z4-4gj">
                             <rect key="frame" x="40" y="166" width="334" height="42"/>
                             <color key="backgroundColor" red="0.31372549019607843" green="0.47058823529411764" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="42" id="0gN-0t-5cW"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                             <state key="normal" title="Log In">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

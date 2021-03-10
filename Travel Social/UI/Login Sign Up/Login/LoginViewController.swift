@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
 //MARK: View cycle
     override func viewDidLoad() {
@@ -72,14 +73,12 @@ class LoginViewController: UIViewController {
     
     @objc func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.contentView.translatesAutoresizingMaskIntoConstraints = true
-            self.contentView.frame.origin.y = self.view.bounds.height - keyboardSize.height - contentView.frame.height + 50
+            contentViewBottomConstraint.constant = keyboardSize.height - 50
         }
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
-        self.contentView.frame.origin.y = self.view.bounds.height - contentView.frame.height
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentViewBottomConstraint.constant = 0
     }
     
 //MARK: IBAction

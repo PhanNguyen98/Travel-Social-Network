@@ -89,14 +89,17 @@ class EditProfileViewController: UIViewController {
     }
     
     func setUI() {
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2 - 8
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
         avatarImageView.layer.borderWidth = 1
         
-        nameTextField.layer.cornerRadius = 5
-        placeTextField.layer.cornerRadius = 5
+        nameTextField.layer.cornerRadius = 10
+        placeTextField.layer.cornerRadius = 10
+        jobTextField.layer.cornerRadius = 10
         birthdayDatePicker.preferredDatePickerStyle = .compact
         self.hideKeyboardWhenTappedAround()
+        
+        backgroundImageView.layer.cornerRadius = 15
     }
     
     func setNavigation() {
