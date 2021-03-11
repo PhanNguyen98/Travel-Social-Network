@@ -25,6 +25,9 @@ class ProfileUserViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        dataUser = DataManager.shared.user
+        dataFriend = [User]()
+        collectionView.reloadData()
     }
     
 //MARK: SetCollectionView
@@ -32,7 +35,8 @@ class ProfileUserViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "InfoUserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "InfoUserCollectionViewCell")
-        collectionView.register(UINib(nibName: "ImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionViewCell")
+        collectionView.register(UINib(nibName: "PostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PostCollectionViewCell")
+        collectionView.register(UINib(nibName: "FriendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FriendCollectionViewCell")
         collectionView.register(UINib(nibName: "HeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "\(HeaderCollectionReusableView.self)")
     }
 
@@ -96,12 +100,12 @@ extension ProfileUserViewController: UICollectionViewDataSource {
             cell.setData(item: dataUser, countPost: dataPost.count)
             return cell
         case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as? ImageCollectionViewCell else { return ImageCollectionViewCell() }
-            cell.setData(nameImage: dataPost[dataPost.count - indexPath.row - 1].listImage?[0] ?? "")
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionViewCell", for: indexPath) as? PostCollectionViewCell else { return PostCollectionViewCell() }
+            cell.setData(data: dataPost[dataPost.count - indexPath.row - 1])
             return cell
         default:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as? ImageCollectionViewCell else { return ImageCollectionViewCell() }
-            cell.setData(nameImage: dataFriend[indexPath.row].nameImage ?? "")
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCollectionViewCell", for: indexPath) as? FriendCollectionViewCell else { return FriendCollectionViewCell() }
+            cell.setData(data: dataFriend[indexPath.row])
             return cell
         }
     }
@@ -114,7 +118,7 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch section {
         case 0 :
-            return CGSize(width: collectionView.frame.width, height: 60)
+            return CGSize(width: collectionView.frame.width, height: 50)
         default:
             return CGSize()
         }
@@ -123,7 +127,7 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
-            return CGSize(width: collectionView.bounds.width, height: 610)
+            return CGSize(width: collectionView.bounds.width, height: 480)
         default:
             return CGSize(width: collectionView.bounds.width/2 - 30, height: collectionView.bounds.width/2)
         }

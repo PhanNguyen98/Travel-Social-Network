@@ -46,7 +46,7 @@ class CommentViewController: UIViewController {
     
 //MARK: SetData
     func setTableView() {
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "PostTableViewCell")
@@ -190,7 +190,7 @@ extension CommentViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             cell.setdata(data: dataPost)
             cell.dataPost = dataPost
-            cell.commentButton.isEnabled = false
+            cell.commentButton.isUserInteractionEnabled = false
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else { return CommentTableViewCell()

@@ -10,6 +10,10 @@ import OpalImagePicker
 import Photos
 import SVProgressHUD
 
+protocol CreatePostViewControllerDelegate: class {
+    func presentAlertController(alertController: UIAlertController)
+}
+
 class CreatePostViewController: UIViewController {
 
 //MARK: Properties
@@ -20,8 +24,10 @@ class CreatePostViewController: UIViewController {
     @IBOutlet weak var placeTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    weak var createPostDelegate: CreatePostViewControllerDelegate?
     var resultImagePicker = [PHAsset]()
     var dataPost = Post()
+    let colors = Colors()
     
 //MARK: ViewCycle
     override func viewDidLoad() {
@@ -46,6 +52,9 @@ class CreatePostViewController: UIViewController {
     }
     
     func setUI() {
+        colors.gradientLayer.frame = view.bounds
+        self.view.layer.insertSublayer(colors.gradientLayer, at:0)
+        
         nameLabel.underline()
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.layer.borderWidth = 1
@@ -105,6 +114,14 @@ class CreatePostViewController: UIViewController {
         return thumbnail
     }
     
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.dismiss(animated: true) {
+            self.createPostDelegate?.presentAlertController(alertController: alert)
+        }
+    }
+    
 //MARK: IBAction
     @IBAction func selectImage(_ sender: Any) {
         let imagePicker = OpalImagePickerController()
@@ -132,7 +149,8 @@ class CreatePostViewController: UIViewController {
             let assetResources = PHAssetResource.assetResources(for: asset)
             let nameImage = assetResources.first!.originalFilename
             resultImage.append(nameImage)
-            DataImageManager.shared.uploadsImage(image: Utilities.getAssetThumbnail(asset: asset), place: "post", nameImage: nameImage)
+            DataImageManager.shared.uploadsImage(image: Utilities.getAssetThumbnail(asset: asset), place: "post", nameImage: nameImage) { result in
+            }
         }
         if contentTextView.text != "" && resultImage.count != 0 && placeTextField.text != "" {
             SVProgressHUD.show()
@@ -143,9 +161,10 @@ class CreatePostViewController: UIViewController {
             dataPost.place = placeTextField.text
             DataManager.shared.getCountObject(nameCollection: "posts") { result in
                 self.dataPost.id = String(result + 1)
-                DataManager.shared.setDataPost(data: self.dataPost)
-                self.dismiss(animated: true, completion: nil)
-                SVProgressHUD.dismiss()
+                DataManager.shared.setDataPost(data: self.dataPost) { result in
+                    self.dismiss(animated: true, completion: nil)
+                    SVProgressHUD.dismiss()
+                }
             }
         }
     }

@@ -81,6 +81,7 @@ class EditProfileViewController: UIViewController {
         let date = dateFormatter.date(from: birthdate)
         self.birthdayDatePicker.date = date ?? Date()
         self.placeTextField.text = DataManager.shared.user.place
+        self.jobTextField.text = DataManager.shared.user.job
     }
     
     func setViewKeyboard() {
@@ -153,8 +154,12 @@ class EditProfileViewController: UIViewController {
         }
         DataManager.shared.user.job = jobTextField.text
         DataManager.shared.user.place = placeTextField.text
-        DataImageManager.shared.uploadsImage(image: backgroundImageView.image!, place: "avatar", nameImage: fileNameBackground ?? "")
-        DataImageManager.shared.uploadsImage(image: avatarImageView.image!, place: "avatar", nameImage: fileNameAvatar ?? "")
+        DataImageManager.shared.uploadsImage(image: backgroundImageView.image!, place: "avatar", nameImage: fileNameBackground ?? "") { result in
+            print(result)
+        }
+        DataImageManager.shared.uploadsImage(image: avatarImageView.image!, place: "avatar", nameImage: fileNameAvatar ?? "") { result in
+            print(result)
+        }
         DataManager.shared.setDataUser()
         DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
         }

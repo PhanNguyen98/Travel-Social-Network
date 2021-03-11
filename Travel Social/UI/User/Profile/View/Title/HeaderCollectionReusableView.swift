@@ -14,14 +14,23 @@ protocol HeaderCollectionReusableViewDelegate: class {
 
 class HeaderCollectionReusableView: UICollectionReusableView {
     
+    @IBOutlet weak var contentView: UIView!
+    
     weak var cellDelegate: HeaderCollectionReusableViewDelegate?
+    let colors = Colors()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setUI()
     }
     
     @IBAction func showSetting(_ sender: Any) {
         self.cellDelegate?.presentAlertController(alertController: setting())
+    }
+    
+    func setUI() {
+        colors.gradientLayer.frame = self.contentView.bounds
+        self.contentView.layer.insertSublayer(colors.gradientLayer, at:0)
     }
     
     func setting() -> UIAlertController {

@@ -61,6 +61,7 @@ extension HomeViewController: UITableViewDelegate {
             break
         case 1:
             let createPostViewController = CreatePostViewController()
+            createPostViewController.createPostDelegate = self
             let navigationController = UINavigationController(rootViewController: createPostViewController)
             navigationController.modalPresentationStyle = .overFullScreen
             self.present(navigationController, animated: true, completion: nil)
@@ -81,7 +82,7 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSources.count + 1
+        return dataSources.count + 2
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -196,4 +197,12 @@ extension HomeViewController: TitleTableViewCellDelegate {
     func presentViewController(viewController: UIViewController) {
         self.present(viewController, animated: true, completion: nil)
     }
+}
+
+//MARK: CreatePostViewControllerDelegate
+extension HomeViewController: CreatePostViewControllerDelegate {
+    func presentAlertController(alertController: UIAlertController) {
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }

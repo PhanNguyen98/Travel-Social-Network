@@ -22,17 +22,31 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var jobLabel: UILabel!
-    @IBOutlet weak var countPostButton: UIButton!
-    @IBOutlet weak var countFriendButton: UIButton!
-    @IBOutlet weak var countPostLabel: UILabel!
-    @IBOutlet weak var countFriendLabel: UILabel!
-    @IBOutlet weak var titleContentLabel: UILabel!
+    @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     weak var cellDelegate: InfoUserCollectionViewCellDelegate?
+    let colors = Colors()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
+    }
+    
+    @IBAction func loadData(_ sender: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
+                self.cellDelegate?.sendDataPost(dataPost: result)
+            }
+        case 1:
+            DataManager.shared.setDataUser()
+            DataManager.shared.getUserFromListId(listId: DataManager.shared.user.listIdFriends ?? []) { result in
+                self.cellDelegate?.sendDataFriend(dataFriend: result)
+            }
+        default:
+            break
+        }
     }
     
     @IBAction func editProfile(_ sender: Any) {
@@ -40,37 +54,25 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
         editProfileViewController.editVCDelegate = self
         self.cellDelegate?.pushViewController(viewController: editProfileViewController)
     }
-    @IBAction func showListPost(_ sender: Any) {
-        titleContentLabel.text = "My Posts"
-        DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-            self.cellDelegate?.sendDataPost(dataPost: result)
-        }
-    }
     
-    @IBAction func showListFriend(_ sender: Any) {
-        titleContentLabel.text = "My Friends"
-        DataManager.shared.setDataUser()
-        DataManager.shared.getUserFromListId(listId: DataManager.shared.user.listIdFriends ?? []) { result in
-            self.cellDelegate?.sendDataFriend(dataFriend: result)
-        }
-    }
     func setUI() {
-        self.setBackgroundImage(img: UIImage(named: "background")!)
-        self.layer.cornerRadius = 10
+        colors.gradientLayer.frame = self.profileView.bounds
+        self.profileView.layer.insertSublayer(colors.gradientLayer, at:0)
+        
         self.layer.borderWidth = 0.5
         self.layer.borderColor = UIColor.systemGray2.cgColor
         
-        backgroundImageView.layer.cornerRadius = 10
+        profileView.layer.cornerRadius = 15
+        profileView.layer.masksToBounds = true
         
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2 - 5
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2 - 3
         avatarImageView.layer.borderColor = UIColor.systemGray2.cgColor
         avatarImageView.layer.borderWidth = 1.5
         
         editProfileButton.layer.cornerRadius = 10
         editProfileButton.layer.masksToBounds = true
         
-        countPostButton.layer.cornerRadius = 10
-        countFriendButton.layer.cornerRadius = 10
+        segmentedControl.layer.cornerRadius = 10
     }
     
     func setData(item: User, countPost: Int) {
@@ -88,10 +90,6 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
                 self.avatarImageView.image = result
             }
         }
-        DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-            self.countPostLabel.text = String(result.count)
-        }
-        self.countFriendLabel.text = String(DataManager.shared.user.listIdFriends?.count ?? 0)
     }
     
 }

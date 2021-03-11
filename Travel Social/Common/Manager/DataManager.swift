@@ -42,7 +42,7 @@ class DataManager {
         ], merge: true)
     }
     
-    func setDataPost(data: Post) {
+    func setDataPost(data: Post, completionHandler: @escaping (_ result: String) -> ()) {
         db.collection("posts").document(data.id!).setData([
             "id": data.id!,
             "idUser": data.idUser ?? "",
@@ -53,9 +53,10 @@ class DataManager {
             "place": data.place ?? ""
         ]) { err in
             if let err = err {
-                print("Error writing document: \(err)")
+                print(err.localizedDescription)
+                completionHandler("Error Create Post")
             } else {
-                print("Document successfully written!")
+                completionHandler("Create Post Successfully")
             }
         }
     }

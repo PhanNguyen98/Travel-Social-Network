@@ -21,16 +21,15 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xgp-Hs-gsN">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xgp-Hs-gsN" secondAttribute="trailing" id="0DF-nB-U2D"/>
-                <constraint firstItem="xgp-Hs-gsN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5zV-HK-VAU"/>
-                <constraint firstItem="xgp-Hs-gsN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="mhC-Lh-ujt"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="xgp-Hs-gsN" secondAttribute="bottom" id="rPX-of-R6V"/>
+                <constraint firstItem="xgp-Hs-gsN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0d9-wd-9Yw"/>
+                <constraint firstItem="xgp-Hs-gsN" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="ELi-gy-kgA"/>
+                <constraint firstItem="xgp-Hs-gsN" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dAq-8K-scl"/>
+                <constraint firstItem="xgp-Hs-gsN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="yaD-iA-aA1"/>
             </constraints>
             <point key="canvasLocation" x="-243.47826086956525" y="67.633928571428569"/>
         </view>
