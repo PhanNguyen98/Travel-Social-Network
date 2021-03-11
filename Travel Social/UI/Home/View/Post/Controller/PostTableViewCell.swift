@@ -53,7 +53,9 @@ class PostTableViewCell: UITableViewCell {
     func setdata(data: Post) {
         DataManager.shared.getUserFromId(id: data.idUser!) { result in
             DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage!) { resultImage in
-                self.avatarImageView.image = resultImage
+                DispatchQueue.main.async {
+                    self.avatarImageView.image = resultImage
+                }
             }
             self.nameLabel.text = result.name
         }
@@ -67,7 +69,9 @@ class PostTableViewCell: UITableViewCell {
                 }
             }
         }
-        timeLabel.text = data.place ?? "Ha Noi" + "  " + data.date!
+        timeLabel.text = data.place ?? "Ha Noi"
+        timeLabel.text?.append("  ")
+        timeLabel.text?.append(data.date!)
         contentPostLabel.text = data.content
         listNameImage = data.listImage ?? [""]
         countHeartButton.setTitle(String(data.listIdHeart!.count), for: .normal)
@@ -154,12 +158,15 @@ extension PostTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if listNameImage.count == 1 {
-            return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height - 20)
+            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height - 20)
         }
         return CGSize(width: (collectionView.bounds.width - 20)*2/3, height: collectionView.bounds.height - 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if listNameImage.count == 1 {
+            return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        }
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     

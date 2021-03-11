@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="432" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HO5-Ih-zbU">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="HO5-Ih-zbU">
                         <rect key="frame" x="20" y="17.5" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="09J-dZ-yzv"/>
@@ -32,11 +32,12 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="HO5-Ih-zbU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8fu-7a-1uH"/>
                     <constraint firstItem="HO5-Ih-zbU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="BdJ-1u-12c"/>
-                    <constraint firstItem="7Bk-y5-KtZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="CWa-IV-d9T"/>
                     <constraint firstItem="7Bk-y5-KtZ" firstAttribute="leading" secondItem="HO5-Ih-zbU" secondAttribute="trailing" constant="10" id="D6g-Ck-fST"/>
+                    <constraint firstItem="7Bk-y5-KtZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="29.5" id="FpX-hr-tZF"/>
                     <constraint firstAttribute="trailing" secondItem="7Bk-y5-KtZ" secondAttribute="trailing" constant="10" id="IYh-4r-VHq"/>
+                    <constraint firstItem="HO5-Ih-zbU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17.5" id="Rpz-ZO-YTw"/>
+                    <constraint firstAttribute="bottom" secondItem="7Bk-y5-KtZ" secondAttribute="bottom" constant="29.5" id="aNp-78-lXB"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -47,6 +48,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="avatar" width="128" height="128"/>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

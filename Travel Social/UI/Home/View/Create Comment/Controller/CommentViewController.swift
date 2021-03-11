@@ -18,6 +18,8 @@ class CommentViewController: UIViewController {
 //MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
     var dataSources = [Comment]()
     var dataPost = Post()
@@ -44,6 +46,7 @@ class CommentViewController: UIViewController {
     
 //MARK: SetData
     func setTableView() {
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "PostTableViewCell")
@@ -103,15 +106,13 @@ class CommentViewController: UIViewController {
     
 //MARK: Objc Func
     @objc func keyboardWillShow(sender: NSNotification) {
-        if let keyboardFrame: NSValue = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            self.view.frame.origin.y = -keyboardHeight
+        if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            contentViewBottomConstraint.constant = keyboardSize.height
         }
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
-         self.view.frame.origin.y = 0
+        contentViewBottomConstraint.constant = 0
     }
     
     @objc func popViewController() {
@@ -120,26 +121,30 @@ class CommentViewController: UIViewController {
 
 //MARK: IBAction
     @IBAction func saveComment(_ sender: Any) {
-        let comment = Comment()
-        comment.content = commentTextField.text
-        comment.idPost = dataPost.id
-        comment.idUser = DataManager.shared.user.id
-        DataManager.shared.setDataComment(data: comment)
-        DataManager.shared.getComment(idPost: dataPost.id!) { result in
-            self.dataSources = result
-            self.tableView.reloadData()
+        if commentTextField.text != "" {
+            let comment = Comment()
+            comment.content = commentTextField.text
+            comment.idPost = dataPost.id
+            comment.idUser = DataManager.shared.user.id
+            DataManager.shared.getCountObject(nameCollection: "comments") { result in
+                DataManager.shared.setDataComment(data: comment, id: result)
+                DataManager.shared.getComment(idPost: self.dataPost.id!) { result in
+                    self.dataSources = result
+                    self.tableView.reloadData()
+                }
+            }
+            self.commentDelegate?.reloadCountComment()
+            
+            if dataPost.idUser != DataManager.shared.user.id {
+                let notify = Notify()
+                notify.id = dataPost.idUser ?? ""
+                notify.nameUser = DataManager.shared.user.name ?? ""
+                notify.nameImageAvatar = DataManager.shared.user.nameImage ?? ""
+                notify.content = commentTextField.text ?? ""
+                DataManager.shared.setDataNotify(data: notify)
+            }
+            self.commentTextField.text = ""
         }
-        self.commentDelegate?.reloadCountComment()
-        
-        if dataPost.idUser != DataManager.shared.user.id {
-            let notify = Notify()
-            notify.id = dataPost.idUser ?? ""
-            notify.nameUser = DataManager.shared.user.name ?? ""
-            notify.nameImageAvatar = DataManager.shared.user.nameImage ?? ""
-            notify.content = commentTextField.text ?? ""
-            DataManager.shared.setDataNotify(data: notify)
-        }
-        self.commentTextField.text = ""
     }
     
 }
@@ -147,12 +152,7 @@ class CommentViewController: UIViewController {
 //MARK: UITableViewDelegate
 extension CommentViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 380
-        default:
-            return 90
-        }
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -190,7 +190,7 @@ extension CommentViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             cell.setdata(data: dataPost)
             cell.dataPost = dataPost
-            cell.commentButton.isEnabled = false
+            cell.commentButton.isUserInteractionEnabled = false
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else { return CommentTableViewCell()

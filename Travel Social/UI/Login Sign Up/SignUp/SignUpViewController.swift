@@ -11,7 +11,7 @@ import Firebase
 import SVProgressHUD
 
 protocol SignUpViewControllerDelegate: class {
-    func pushViewController(viewController: UIViewController)
+    func getEmail(text: String)
 }
 
 class SignUpViewController: UIViewController {
@@ -22,6 +22,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
     weak var signUpDelegate: SignUpViewControllerDelegate?
     
@@ -86,6 +87,9 @@ class SignUpViewController: UIViewController {
     
 //MARK: IBAction
     @IBAction func closeScreen(_ sender: Any) {
+        self.nameTextField.text = ""
+        self.emailTextField.text = ""
+        self.passwordTextField.text = ""
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -108,14 +112,13 @@ class SignUpViewController: UIViewController {
                 } else {
                     SVProgressHUD.dismiss()
                     self.signUpButton.isEnabled = true
-                    self.nameTextField.text = ""
-                    self.emailTextField.text = ""
-                    self.passwordTextField.text = ""
                     DataManager.shared.user.name = fullName
                     DataManager.shared.user.id = result!.user.uid
                     DataManager.shared.setDataUser()
-                    let customBarViewController = CustomBarViewController()
-                    self.signUpDelegate?.pushViewController(viewController: customBarViewController)
+                    self.signUpDelegate?.getEmail(text: self.emailTextField.text ?? "")
+                    self.nameTextField.text = ""
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
                     self.dismiss(animated: false, completion: nil)
                 }
 
@@ -132,12 +135,12 @@ class SignUpViewController: UIViewController {
     
     @objc func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.contentView.frame.origin.y = UIScreen.main.bounds.height - keyboardSize.height - contentView.frame.height + 50
+            contentViewBottomConstraint.constant = keyboardSize.height - 50
         }
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
-        self.contentView.frame.origin.y = UIScreen.main.bounds.height - contentView.frame.height
+        contentViewBottomConstraint.constant = 0
     }
     
 }

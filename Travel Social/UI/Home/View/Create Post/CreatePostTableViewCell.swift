@@ -19,13 +19,12 @@ class CreatePostTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func setUI() {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.borderWidth = 1
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
-        
     }
     
     func setData(item: User) {

@@ -14,7 +14,6 @@ class KeySearchViewController: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     var dataSources = [User]()
-    var keySearch = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,14 @@ class KeySearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        searchUser()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+      DispatchQueue.main.async {
+        self.searchController.searchBar.becomeFirstResponder()
+      }
     }
     
     func setSearchController() {
@@ -36,27 +42,13 @@ class KeySearchViewController: UIViewController {
         definesPresentationContext = true
         searchController.searchBar.delegate = self
         searchController.searchBar.enablesReturnKeyAutomatically = true
-        searchController.searchBar.text = keySearch
     }
     
     func setTableView() {
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserTableViewCell")
-    }
-    
-    func searchUser() {
-        DataManager.shared.getUserFromName(name: searchController.searchBar.text ?? "") { result in
-            var listUser = result
-            for index in 0..<result.count {
-                if result[index].id == DataManager.shared.user.id {
-                    listUser.remove(at: index)
-                    self.dataSources = listUser
-                    self.tableView.reloadData()
-                    break
-                }
-            }
-        }
     }
 
 }
@@ -64,13 +56,13 @@ class KeySearchViewController: UIViewController {
 extension KeySearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if dataSources[indexPath.row].id == DataManager.shared.user.id {
-            let userViewController = UserViewController()
-            navigationController?.pushViewController(userViewController, animated: true)
+            let profileUserViewController = ProfileUserViewController()
+            navigationController?.pushViewController(profileUserViewController, animated: true)
         } else {
             self.tableView.allowsSelection = false
             let friendViewController = FriendViewController()
@@ -104,19 +96,13 @@ extension KeySearchViewController: UITableViewDataSource {
 }
 
 extension KeySearchViewController: UISearchBarDelegate {
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         if let keySearch = searchBar.text {
             UserDefaultManager.shared.setData(text: keySearch)
             DataManager.shared.getUserFromName(name: keySearch) { result in
-                var listUser = result
-                for index in 0..<result.count {
-                    if result[index].id == DataManager.shared.user.id {
-                        listUser.remove(at: index)
-                        self.dataSources = listUser
-                        self.tableView.reloadData()
-                        break
-                    }
-                }
+                self.dataSources = result
+                self.tableView.reloadData()
             }
         }
     }

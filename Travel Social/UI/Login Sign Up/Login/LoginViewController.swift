@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
 //MARK: View cycle
     override func viewDidLoad() {
@@ -24,8 +25,6 @@ class LoginViewController: UIViewController {
         setUI()
         setViewKeyboard()
         setNavigation()
-        emailTextField.text = "c@c.com"
-        passwordTextField.text = "C123456"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,12 +71,12 @@ class LoginViewController: UIViewController {
     
     @objc func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.contentView.frame.origin.y = self.view.bounds.height - keyboardSize.height - contentView.frame.height + 50
+            contentViewBottomConstraint.constant = keyboardSize.height - 50
         }
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
-        self.contentView.frame.origin.y = self.view.bounds.height - contentView.frame.height
+        contentViewBottomConstraint.constant = 0
     }
     
 //MARK: IBAction
@@ -109,6 +108,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func showSignUp(_ sender: Any) {
+        emailTextField.text = ""
+        passwordTextField.text = ""
         let signUpViewController = SignUpViewController()
         signUpViewController.modalPresentationStyle = .overFullScreen
         signUpViewController.signUpDelegate = self
@@ -118,7 +119,7 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: SignUpViewControllerDelegate {
-    func pushViewController(viewController: UIViewController) {
-        self.navigationController?.pushViewController(viewController, animated: false)
+    func getEmail(text: String) {
+        self.emailTextField.text = text
     }
 }

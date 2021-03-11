@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
@@ -13,21 +14,23 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var dataSources = [Post]()
-    
+
+//MARK: ViewCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
         self.tabBarController?.delegate = self
-        setData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        tableView.reloadData()
+        setData()
     }
     
+    //MARK: SetData
     func setUpTableView() {
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
@@ -36,10 +39,10 @@ class HomeViewController: UIViewController {
     }
     
     func setData() {
-        var data = DataManager.shared.user.listIdFriends ?? []
-        data.append(DataManager.shared.user.id!)
-        DataManager.shared.getPostFromListId(listId: data) { result in
-            if self.dataSources.count != result.count {
+        DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
+            var data = DataManager.shared.user.listIdFriends ?? []
+            data.append(DataManager.shared.user.id!)
+            DataManager.shared.getPostFromListId(listId: data) { result in
                 self.dataSources = result
                 self.tableView.reloadData()
             }
@@ -48,15 +51,13 @@ class HomeViewController: UIViewController {
     
 }
 
+//MARK: UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             break
-        case 1:
-            let createPostViewController = CreatePostViewController()
-            self.navigationController?.pushViewController(createPostViewController, animated: true)
         default:
             let commentViewController = CommentViewController()
             commentViewController.dataPost = dataSources[dataSources.count - indexPath.section]
@@ -66,18 +67,11 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 130
-        case 1:
-            return 80
-        default:
-            return 380
-        }
+        return UITableView.automaticDimension
     }
-    
 }
 
+//MARK: UITableViewDataSource
 extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -103,14 +97,8 @@ extension HomeViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell", for: indexPath) as? TitleTableViewCell else { return TitleTableViewCell()
             }
             cell.cellDelegate = self
-            cell.selectionStyle = .none
-            return cell
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreatePostTableViewCell", for: indexPath) as? CreatePostTableViewCell else {
-                return CreatePostTableViewCell()
-            }
-            cell.selectionStyle = .none
             cell.setData(item: DataManager.shared.user)
+            cell.selectionStyle = .none
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
@@ -126,6 +114,7 @@ extension HomeViewController: UITableViewDataSource {
     
 }
 
+//MARK: PostTableViewCellDelegate
 extension HomeViewController: PostTableViewCellDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, listImage: [String]) {
@@ -151,14 +140,16 @@ extension HomeViewController: PostTableViewCellDelegate {
     
 }
 
+//MARK: UITabBarControllerDelegate
 extension HomeViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if tabBarController.selectedIndex == 0 {
-            var data = DataManager.shared.user.listIdFriends ?? []
-            data.append(DataManager.shared.user.id!)
-            DataManager.shared.getPostFromListId(listId: data) { result in
-                if self.dataSources.count != result.count {
+            
+            DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
+                var data = DataManager.shared.user.listIdFriends ?? []
+                data.append(DataManager.shared.user.id!)
+                DataManager.shared.getPostFromListId(listId: data) { result in
                     self.dataSources = result
                     self.tableView.reloadData()
                 }
@@ -166,18 +157,19 @@ extension HomeViewController: UITabBarControllerDelegate {
         }
         
         if tabBarController.selectedIndex == 2 {
-            let userViewController = viewController as? UserViewController
+            let profileUserViewController = viewController as? ProfileUserViewController
             DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-                userViewController?.dataPost = result
+                profileUserViewController?.dataPost = result
                 DataManager.shared.setDataUser()
-                userViewController?.dataUser = DataManager.shared.user
-                userViewController?.tableView.reloadData()
+                profileUserViewController?.dataUser = DataManager.shared.user
+                profileUserViewController?.collectionView.reloadData()
             }
         }
     }
     
 }
 
+//MARK: CommentViewControllerDelegate
 extension HomeViewController: CommentViewControllerDelegate {
     func reloadCountComment() {
         DispatchQueue.main.async {
@@ -186,6 +178,7 @@ extension HomeViewController: CommentViewControllerDelegate {
     }
 }
 
+//MARK: TitleTableViewCellDelegate
 extension HomeViewController: TitleTableViewCellDelegate {
     func pushViewController(viewController: UIViewController) {
         self.navigationController?.pushViewController(viewController, animated: true)
@@ -194,4 +187,12 @@ extension HomeViewController: TitleTableViewCellDelegate {
     func presentViewController(viewController: UIViewController) {
         self.present(viewController, animated: true, completion: nil)
     }
+}
+
+//MARK: CreatePostViewControllerDelegate
+extension HomeViewController: CreatePostViewControllerDelegate {
+    func presentAlertController(alertController: UIAlertController) {
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }

@@ -12,7 +12,7 @@ class CustomBarViewController: UITabBarController {
 
 //MARK: Properties
     var homeViewController = HomeViewController()
-    var userViewController = UserViewController()
+    var profileUserViewController = ProfileUserViewController()
     var weatherViewController = WeatherViewController()
     
 //MARK: ViewCycle
@@ -31,9 +31,9 @@ class CustomBarViewController: UITabBarController {
     func setTabBar() {
         self.delegate = self
         homeViewController.tabBarItem.image = UIImage(systemName: "house.fill")
-        userViewController.tabBarItem.image = UIImage(systemName: "person.fill")
+        profileUserViewController.tabBarItem.image = UIImage(systemName: "person.fill")
         weatherViewController.tabBarItem.image = UIImage(systemName: "cloud.sun.rain.fill")
-        viewControllers = [homeViewController, weatherViewController, userViewController]
+        viewControllers = [homeViewController, weatherViewController, profileUserViewController]
         tabBar.tintColor = UIColor.blue
         for tabBarItem in tabBar.items! {
             tabBarItem.title = ""

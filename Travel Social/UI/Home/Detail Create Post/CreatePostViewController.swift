@@ -8,6 +8,11 @@
 import UIKit
 import OpalImagePicker
 import Photos
+import SVProgressHUD
+
+protocol CreatePostViewControllerDelegate: class {
+    func presentAlertController(alertController: UIAlertController)
+}
 
 class CreatePostViewController: UIViewController {
 
@@ -17,7 +22,9 @@ class CreatePostViewController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var selectImageButton: UIButton!
     @IBOutlet weak var placeTextField: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
     
+    weak var createPostDelegate: CreatePostViewControllerDelegate?
     var resultImagePicker = [PHAsset]()
     var dataPost = Post()
     
@@ -26,6 +33,7 @@ class CreatePostViewController: UIViewController {
         super.viewDidLoad()
         setNavigationBar()
         setUI()
+        setCollectionView()
         Utilities.checkPhotoLibrary()
     }
     
@@ -36,6 +44,12 @@ class CreatePostViewController: UIViewController {
     }
     
 //MARK: SetUI
+    func setCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(UINib(nibName: "ImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionViewCell")
+    }
+    
     func setUI() {
         nameLabel.underline()
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
@@ -47,8 +61,14 @@ class CreatePostViewController: UIViewController {
         contentTextView.layer.borderWidth = 0.3
         contentTextView.layer.borderColor = UIColor.black.cgColor
         
-        selectImageButton.layer.cornerRadius = 5
+        selectImageButton.layer.cornerRadius = 15
         selectImageButton.layer.masksToBounds = true
+        
+        placeTextField.placeholder = "Location"
+        
+        self.hideKeyboardWhenTappedAround()
+        collectionView.layer.cornerRadius = 5
+        collectionView.backgroundColor = .clear
     }
     
     func setNavigationBar() {
@@ -79,6 +99,25 @@ class CreatePostViewController: UIViewController {
         return result
     }
     
+    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        let manager = PHImageManager.default()
+        let option = PHImageRequestOptions()
+        var thumbnail = UIImage()
+        option.isSynchronous = true
+        manager.requestImage(for: asset, targetSize: CGSize(width: (collectionView.bounds.width - 20)*2/3, height: collectionView.bounds.height - 20), contentMode: .aspectFill, options: option, resultHandler: {(result, info)->Void in
+            thumbnail = result!
+        })
+        return thumbnail
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.dismiss(animated: true) {
+            self.createPostDelegate?.presentAlertController(alertController: alert)
+        }
+    }
+    
 //MARK: IBAction
     @IBAction func selectImage(_ sender: Any) {
         let imagePicker = OpalImagePickerController()
@@ -97,7 +136,7 @@ class CreatePostViewController: UIViewController {
     
 //MARK: Objc Func
     @objc func popViewController() {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func pushPost() {
@@ -106,19 +145,25 @@ class CreatePostViewController: UIViewController {
             let assetResources = PHAssetResource.assetResources(for: asset)
             let nameImage = assetResources.first!.originalFilename
             resultImage.append(nameImage)
-            DataImageManager.shared.uploadsImage(image: Utilities.getAssetThumbnail(asset: asset), place: "post", nameImage: nameImage)
+            DataImageManager.shared.uploadsImage(image: Utilities.getAssetThumbnail(asset: asset), place: "post", nameImage: nameImage) { result in
+            }
         }
-        if contentTextView.text != nil || dataPost.listImage != nil {
+        if contentTextView.text != "" && resultImage.count != 0 && placeTextField.text != "" {
+            SVProgressHUD.show()
             dataPost.idUser = DataManager.shared.user.id!
             dataPost.date = getCurrentDate()
             dataPost.listImage = resultImage
             dataPost.content = contentTextView.text
             dataPost.place = placeTextField.text
-            DataManager.shared.getCountPost() { result in
+            DataManager.shared.getCountObject(nameCollection: "posts") { result in
                 self.dataPost.id = String(result + 1)
-                DataManager.shared.setDataPost(data: self.dataPost)
+                DataManager.shared.setDataPost(data: self.dataPost) { result in
+                    self.showAlert(message: result)
+                    SVProgressHUD.dismiss()
+                }
             }
-            self.navigationController?.popViewController(animated: true)
+        } else {
+            
         }
     }
 
@@ -132,11 +177,54 @@ extension CreatePostViewController: OpalImagePickerControllerDelegate {
     
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
         resultImagePicker = assets
+        self.collectionView.reloadData()
         presentedViewController?.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerDidCancel(_ picker: OpalImagePickerController) {
         presentedViewController?.dismiss(animated: true, completion: nil)
     }
+    
+}
+
+//MARK: UICollectionViewDelegate
+extension CreatePostViewController: UICollectionViewDelegate {
+}
+
+//MARK: UICollectionViewDataSource
+extension CreatePostViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return resultImagePicker.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as? ImageCollectionViewCell else {
+            return ImageCollectionViewCell()
+        }
+        cell.imageView.image = self.getAssetThumbnail(asset: self.resultImagePicker[indexPath.row])
+        return cell
+    }
+    
+}
+
+//MARK: UICollectionViewDelegateFlowLayout
+extension CreatePostViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height/2)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    
     
 }

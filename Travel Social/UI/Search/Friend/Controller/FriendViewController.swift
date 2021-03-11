@@ -19,6 +19,16 @@ class FriendViewController: UIViewController {
         setTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -49,12 +59,7 @@ extension FriendViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 440
-        default:
-            return 380
-        }
+        return UITableView.automaticDimension
     }
     
 }

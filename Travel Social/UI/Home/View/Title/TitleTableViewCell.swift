@@ -15,12 +15,15 @@ protocol TitleTableViewCellDelegate: class {
 class TitleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var createPostButton: UIButton!
     
     weak var cellDelegate: TitleTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         setSearchBar()
+        setUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,6 +33,32 @@ class TitleTableViewCell: UITableViewCell {
     func setSearchBar() {
         searchBar.delegate = self
         searchBar.placeholder = "Search User"
+    }
+    
+    func setUI() {
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        avatarImageView.layer.masksToBounds = true
+        avatarImageView.layer.borderWidth = 1
+        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
+        
+        createPostButton.layer.cornerRadius = 15
+        createPostButton.layer.masksToBounds = true
+    }
+    
+    func setData(item: User) {
+        DataImageManager.shared.downloadImage(path: "avatar", nameImage: item.nameImage!) { result in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.avatarImageView.image = result
+            }
+        }
+    }
+    
+    @IBAction func showCreatePost(_ sender: Any) {
+        let createPostViewController = CreatePostViewController()
+        createPostViewController.createPostDelegate = self
+        let navigationController = UINavigationController(rootViewController: createPostViewController)
+        navigationController.modalPresentationStyle = .overFullScreen
+        self.cellDelegate?.presentViewController(viewController: navigationController)
     }
     
     @IBAction func showNotification(_ sender: Any) {
@@ -46,5 +75,11 @@ extension TitleTableViewCell: UISearchBarDelegate {
         navigationController.modalPresentationStyle = .overFullScreen
         searchBar.endEditing(true)
         self.cellDelegate?.presentViewController(viewController: navigationController)
+    }
+}
+
+extension TitleTableViewCell: CreatePostViewControllerDelegate {
+    func presentAlertController(alertController: UIAlertController) {
+        self.cellDelegate?.presentViewController(viewController: alertController)
     }
 }

@@ -15,6 +15,6 @@ struct User {
     var birthday: String?
     var place: String?
     var listIdFriends: [String]?
-    var nameBackgroundImage: String?
+    var job: String?
     
 }

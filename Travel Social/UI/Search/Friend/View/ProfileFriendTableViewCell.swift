@@ -9,12 +9,12 @@ import UIKit
 
 class ProfileFriendTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var addFriendButton: UIButton!
+    @IBOutlet weak var jobLabel: UILabel!
     
     var isActive = true
     var dataUser = User()
@@ -33,7 +33,7 @@ class ProfileFriendTableViewCell: UITableViewCell {
         if isActive {
             DataManager.shared.setDataUser()
             isActive = false
-            addFriendButton.setTitle("Friend", for: .normal)
+            addFriendButton.setTitle("Unfriend", for: .normal)
             if dataUser.listIdFriends!.first{ $0 == DataManager.shared.user.id } == nil {
                 dataUser.listIdFriends?.append(DataManager.shared.user.id!)
                 DataManager.shared.setDataFriend(id: dataUser.id!, listFriend: dataUser.listIdFriends!)
@@ -65,7 +65,7 @@ class ProfileFriendTableViewCell: UITableViewCell {
     }
     
     func setUI() {
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2 - 2
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
         avatarImageView.layer.borderWidth = 1
        
@@ -78,19 +78,15 @@ class ProfileFriendTableViewCell: UITableViewCell {
         if user.listIdFriends != nil {
             for item in user.listIdFriends! {
                 if item == DataManager.shared.user.id {
-                    addFriendButton.setTitle("Friend", for: .normal)
+                    addFriendButton.setTitle(" Unfriend", for: .normal)
                     isActive = false
                 }
             }
         }
+        jobLabel.text = user.job
         nameLabel.text = user.name
         birthdayLabel.text = user.birthday
         placeLabel.text = user.place
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: user.nameBackgroundImage!) { result in
-            DispatchQueue.main.async() {
-                self.backgroundImageView.image = result
-            }
-        }
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: user.nameImage!) { result in
             DispatchQueue.main.async() {
                 self.avatarImageView.image = result
