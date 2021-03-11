@@ -127,7 +127,7 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
-            return CGSize(width: collectionView.bounds.width, height: 480)
+            return CGSize(width: collectionView.bounds.width, height: 295)
         default:
             return CGSize(width: collectionView.bounds.width/2 - 30, height: collectionView.bounds.width/2)
         }

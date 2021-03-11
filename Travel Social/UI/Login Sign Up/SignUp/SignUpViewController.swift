@@ -11,7 +11,7 @@ import Firebase
 import SVProgressHUD
 
 protocol SignUpViewControllerDelegate: class {
-    func pushViewController(viewController: UIViewController)
+    func getEmail(text: String)
 }
 
 class SignUpViewController: UIViewController {
@@ -87,6 +87,9 @@ class SignUpViewController: UIViewController {
     
 //MARK: IBAction
     @IBAction func closeScreen(_ sender: Any) {
+        self.nameTextField.text = ""
+        self.emailTextField.text = ""
+        self.passwordTextField.text = ""
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -109,14 +112,13 @@ class SignUpViewController: UIViewController {
                 } else {
                     SVProgressHUD.dismiss()
                     self.signUpButton.isEnabled = true
-                    self.nameTextField.text = ""
-                    self.emailTextField.text = ""
-                    self.passwordTextField.text = ""
                     DataManager.shared.user.name = fullName
                     DataManager.shared.user.id = result!.user.uid
                     DataManager.shared.setDataUser()
-                    let customBarViewController = CustomBarViewController()
-                    self.signUpDelegate?.pushViewController(viewController: customBarViewController)
+                    self.signUpDelegate?.getEmail(text: self.emailTextField.text ?? "")
+                    self.nameTextField.text = ""
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
                     self.dismiss(animated: false, completion: nil)
                 }
 

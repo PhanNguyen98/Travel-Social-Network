@@ -9,7 +9,6 @@ import UIKit
 
 class ProfileFriendTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
@@ -34,7 +33,7 @@ class ProfileFriendTableViewCell: UITableViewCell {
         if isActive {
             DataManager.shared.setDataUser()
             isActive = false
-            addFriendButton.setTitle("Friend", for: .normal)
+            addFriendButton.setTitle("Unfriend", for: .normal)
             if dataUser.listIdFriends!.first{ $0 == DataManager.shared.user.id } == nil {
                 dataUser.listIdFriends?.append(DataManager.shared.user.id!)
                 DataManager.shared.setDataFriend(id: dataUser.id!, listFriend: dataUser.listIdFriends!)
@@ -79,7 +78,7 @@ class ProfileFriendTableViewCell: UITableViewCell {
         if user.listIdFriends != nil {
             for item in user.listIdFriends! {
                 if item == DataManager.shared.user.id {
-                    addFriendButton.setTitle("Friend", for: .normal)
+                    addFriendButton.setTitle(" Unfriend", for: .normal)
                     isActive = false
                 }
             }
@@ -88,11 +87,6 @@ class ProfileFriendTableViewCell: UITableViewCell {
         nameLabel.text = user.name
         birthdayLabel.text = user.birthday
         placeLabel.text = user.place
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: user.nameBackgroundImage!) { result in
-            DispatchQueue.main.async() {
-                self.backgroundImageView.image = result
-            }
-        }
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: user.nameImage!) { result in
             DispatchQueue.main.async() {
                 self.avatarImageView.image = result

@@ -53,7 +53,9 @@ class PostTableViewCell: UITableViewCell {
     func setdata(data: Post) {
         DataManager.shared.getUserFromId(id: data.idUser!) { result in
             DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage!) { resultImage in
-                self.avatarImageView.image = resultImage
+                DispatchQueue.main.async {
+                    self.avatarImageView.image = resultImage
+                }
             }
             self.nameLabel.text = result.name
         }

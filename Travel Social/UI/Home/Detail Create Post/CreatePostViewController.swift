@@ -27,7 +27,6 @@ class CreatePostViewController: UIViewController {
     weak var createPostDelegate: CreatePostViewControllerDelegate?
     var resultImagePicker = [PHAsset]()
     var dataPost = Post()
-    let colors = Colors()
     
 //MARK: ViewCycle
     override func viewDidLoad() {
@@ -52,9 +51,6 @@ class CreatePostViewController: UIViewController {
     }
     
     func setUI() {
-        colors.gradientLayer.frame = view.bounds
-        self.view.layer.insertSublayer(colors.gradientLayer, at:0)
-        
         nameLabel.underline()
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.layer.borderWidth = 1
@@ -65,7 +61,7 @@ class CreatePostViewController: UIViewController {
         contentTextView.layer.borderWidth = 0.3
         contentTextView.layer.borderColor = UIColor.black.cgColor
         
-        selectImageButton.layer.cornerRadius = 5
+        selectImageButton.layer.cornerRadius = 15
         selectImageButton.layer.masksToBounds = true
         
         placeTextField.placeholder = "Location"
@@ -162,10 +158,12 @@ class CreatePostViewController: UIViewController {
             DataManager.shared.getCountObject(nameCollection: "posts") { result in
                 self.dataPost.id = String(result + 1)
                 DataManager.shared.setDataPost(data: self.dataPost) { result in
-                    self.dismiss(animated: true, completion: nil)
+                    self.showAlert(message: result)
                     SVProgressHUD.dismiss()
                 }
             }
+        } else {
+            
         }
     }
 
@@ -213,10 +211,7 @@ extension CreatePostViewController: UICollectionViewDataSource {
 extension CreatePostViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if resultImagePicker.count == 1 {
-            return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height - 20)
-        }
-        return CGSize(width: (collectionView.bounds.width - 20)*2/3, height: collectionView.bounds.height - 20)
+            return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height/2)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -224,11 +219,11 @@ extension CreatePostViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 20
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 20
     }
     
     

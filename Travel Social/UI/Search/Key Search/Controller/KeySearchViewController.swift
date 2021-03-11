@@ -22,6 +22,18 @@ class KeySearchViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+      DispatchQueue.main.async {
+        self.searchController.searchBar.becomeFirstResponder()
+      }
+    }
+    
     func setSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search user"
@@ -44,7 +56,7 @@ class KeySearchViewController: UIViewController {
 extension KeySearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -89,15 +101,8 @@ extension KeySearchViewController: UISearchBarDelegate {
         if let keySearch = searchBar.text {
             UserDefaultManager.shared.setData(text: keySearch)
             DataManager.shared.getUserFromName(name: keySearch) { result in
-                var listUser = result
-                for index in 0..<result.count {
-                    if result[index].id == DataManager.shared.user.id {
-                        listUser.remove(at: index)
-                        self.dataSources = listUser
-                        self.tableView.reloadData()
-                        break
-                    }
-                }
+                self.dataSources = result
+                self.tableView.reloadData()
             }
         }
     }

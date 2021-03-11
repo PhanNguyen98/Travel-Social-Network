@@ -12,7 +12,7 @@ import FirebaseFirestore
 class DataManager {
     static let shared = DataManager()
     private let db = Firestore.firestore()
-    var user = User(id: "", nameImage: "user.png", name: nil, birthday: nil, place: nil, listIdFriends: nil, nameBackgroundImage: "background.jpg", job: nil)
+    var user = User(id: "", nameImage: "user.png", name: nil, birthday: nil, place: nil, listIdFriends: nil, job: nil)
     
     private init(){
     }
@@ -25,7 +25,6 @@ class DataManager {
             "birthday": user.birthday ?? "",
             "place": user.place ?? "",
             "listIdFriends": user.listIdFriends ?? [],
-            "background": user.nameBackgroundImage ?? "background.jpg",
             "job": user.job ?? ""
         ]) { err in
             if let err = err {
@@ -118,8 +117,6 @@ class DataManager {
                                 self.user.name = value as? String
                             case "avatar":
                                 self.user.nameImage = value as? String
-                            case "background":
-                                self.user.nameBackgroundImage = value as? String
                             case "job":
                                 self.user.job = value as? String
                             default:
@@ -181,8 +178,6 @@ class DataManager {
                                 result.name = value as? String
                             case "avatar":
                                 result.nameImage = value as? String
-                            case "background":
-                                result.nameBackgroundImage = value as? String
                             case "job":
                                 result.job = value as? String
                             default:
@@ -218,15 +213,15 @@ class DataManager {
                                 result.name = value as? String
                             case "avatar":
                                 result.nameImage = value as? String
-                            case "background":
-                                result.nameBackgroundImage = value as? String
                             case "job":
                                 result.job = value as? String
                             default:
                                 break
                             }
                         }
-                        dataSources.append(result)
+                        if result.id != self.user.id {
+                            dataSources.append(result)
+                        }
                     }
                     completionHandler(dataSources)
                 }
@@ -312,8 +307,6 @@ class DataManager {
                                 user.name = value as? String
                             case "avatar":
                                 user.nameImage = value as? String
-                            case "background":
-                                user.nameBackgroundImage = value as? String
                             case "job":
                                 user.job = value as? String
                             default:
@@ -385,8 +378,6 @@ class DataManager {
                                 user.name = value as? String
                             case "avatar":
                                 user.nameImage = value as? String
-                            case "background":
-                                user.nameBackgroundImage = value as? String
                             case "job":
                                 user.job = value as? String
                             default:

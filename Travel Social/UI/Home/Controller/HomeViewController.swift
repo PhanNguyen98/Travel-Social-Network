@@ -20,7 +20,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setUpTableView()
         self.tabBarController?.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,10 +39,10 @@ class HomeViewController: UIViewController {
     }
     
     func setData() {
-        var data = DataManager.shared.user.listIdFriends ?? []
-        data.append(DataManager.shared.user.id!)
-        DataManager.shared.getPostFromListId(listId: data) { result in
-            if self.dataSources.count != result.count {
+        DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
+            var data = DataManager.shared.user.listIdFriends ?? []
+            data.append(DataManager.shared.user.id!)
+            DataManager.shared.getPostFromListId(listId: data) { result in
                 self.dataSources = result
                 self.tableView.reloadData()
             }
@@ -59,12 +58,6 @@ extension HomeViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             break
-        case 1:
-            let createPostViewController = CreatePostViewController()
-            createPostViewController.createPostDelegate = self
-            let navigationController = UINavigationController(rootViewController: createPostViewController)
-            navigationController.modalPresentationStyle = .overFullScreen
-            self.present(navigationController, animated: true, completion: nil)
         default:
             let commentViewController = CommentViewController()
             commentViewController.dataPost = dataSources[dataSources.count - indexPath.section]
@@ -82,7 +75,7 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSources.count + 2
+        return dataSources.count + 1
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -104,22 +97,16 @@ extension HomeViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell", for: indexPath) as? TitleTableViewCell else { return TitleTableViewCell()
             }
             cell.cellDelegate = self
-            cell.selectionStyle = .none
-            return cell
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreatePostTableViewCell", for: indexPath) as? CreatePostTableViewCell else {
-                return CreatePostTableViewCell()
-            }
-            cell.selectionStyle = .none
             cell.setData(item: DataManager.shared.user)
+            cell.selectionStyle = .none
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
                 return PostTableViewCell()
             }
             cell.cellDelegate = self
-            cell.dataPost = dataSources[dataSources.count - indexPath.section + 1]
-            cell.setdata(data: dataSources[dataSources.count - indexPath.section + 1])
+            cell.dataPost = dataSources[dataSources.count - indexPath.section]
+            cell.setdata(data: dataSources[dataSources.count - indexPath.section])
             cell.selectionStyle = .none
             return cell
         }
@@ -158,11 +145,14 @@ extension HomeViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if tabBarController.selectedIndex == 0 {
-            var data = DataManager.shared.user.listIdFriends ?? []
-            data.append(DataManager.shared.user.id!)
-            DataManager.shared.getPostFromListId(listId: data) { result in
-                self.dataSources = result
-                self.tableView.reloadData()
+            
+            DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
+                var data = DataManager.shared.user.listIdFriends ?? []
+                data.append(DataManager.shared.user.id!)
+                DataManager.shared.getPostFromListId(listId: data) { result in
+                    self.dataSources = result
+                    self.tableView.reloadData()
+                }
             }
         }
         

@@ -26,7 +26,6 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     weak var cellDelegate: InfoUserCollectionViewCellDelegate?
-    let colors = Colors()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,8 +40,12 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
             }
         case 1:
             DataManager.shared.setDataUser()
-            DataManager.shared.getUserFromListId(listId: DataManager.shared.user.listIdFriends ?? []) { result in
-                self.cellDelegate?.sendDataFriend(dataFriend: result)
+            if DataManager.shared.user.listIdFriends?.count != 0 {
+                DataManager.shared.getUserFromListId(listId: DataManager.shared.user.listIdFriends!) { result in
+                    self.cellDelegate?.sendDataFriend(dataFriend: result)
+                }
+            } else {
+                self.cellDelegate?.sendDataFriend(dataFriend: [User]())
             }
         default:
             break
@@ -56,9 +59,6 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
     }
     
     func setUI() {
-        colors.gradientLayer.frame = self.profileView.bounds
-        self.profileView.layer.insertSublayer(colors.gradientLayer, at:0)
-        
         self.layer.borderWidth = 0.5
         self.layer.borderColor = UIColor.systemGray2.cgColor
         
@@ -80,11 +80,6 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
         birthdayLabel.text = item.birthday
         placeLabel.text = item.place
         jobLabel.text = item.job
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: item.nameBackgroundImage!) { result in
-            DispatchQueue.main.async() {
-                self.backgroundImageView.image = result
-            }
-        }
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: item.nameImage!) { result in
             DispatchQueue.main.async() {
                 self.avatarImageView.image = result

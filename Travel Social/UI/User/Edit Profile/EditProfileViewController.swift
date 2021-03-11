@@ -21,7 +21,6 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var birthdayDatePicker: UIDatePicker!
     @IBOutlet weak var placeTextField: UITextField!
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var jobTextField: UITextField!
     
@@ -51,28 +50,12 @@ class EditProfileViewController: UIViewController {
         self.imagePicker.present(from: sender)
     }
     
-    @IBAction func changeBackground(_ sender: Any) {
-        let imagePicker = OpalImagePickerController()
-        imagePicker.imagePickerDelegate = self
-        imagePicker.selectionTintColor = UIColor.white.withAlphaComponent(0.7)
-        imagePicker.selectionImageTintColor = UIColor.black
-        imagePicker.selectionImage = UIImage(systemName: "checkmark")
-        imagePicker.statusBarPreference = UIStatusBarStyle.lightContent
-        imagePicker.maximumSelectionsAllowed = 1
-        imagePicker.allowedMediaTypes = Set([PHAssetMediaType.image])
-        let configuration = OpalImagePickerConfiguration()
-        configuration.maximumSelectionsAllowedMessage = NSLocalizedString("You cannot select that many images!", comment: "")
-        imagePicker.configuration = configuration
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
 //MARK: SetUI
     func setData() {
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: DataManager.shared.user.nameImage!) { result in
-            self.avatarImageView.image = result
-        }
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: DataManager.shared.user.nameBackgroundImage!) { result in
-            self.backgroundImageView.image = result
+            DispatchQueue.main.async {
+                self.avatarImageView.image = result
+            }
         }
         self.nameTextField.text = DataManager.shared.user.name
         let dateFormatter = DateFormatter()
@@ -100,7 +83,6 @@ class EditProfileViewController: UIViewController {
         birthdayDatePicker.preferredDatePickerStyle = .compact
         self.hideKeyboardWhenTappedAround()
         
-        backgroundImageView.layer.cornerRadius = 15
     }
     
     func setNavigation() {
@@ -149,14 +131,8 @@ class EditProfileViewController: UIViewController {
         if let nameImage = fileNameAvatar {
             DataManager.shared.user.nameImage = nameImage
         }
-        if let nameImage = fileNameBackground {
-            DataManager.shared.user.nameBackgroundImage = nameImage
-        }
         DataManager.shared.user.job = jobTextField.text
         DataManager.shared.user.place = placeTextField.text
-        DataImageManager.shared.uploadsImage(image: backgroundImageView.image!, place: "avatar", nameImage: fileNameBackground ?? "") { result in
-            print(result)
-        }
         DataImageManager.shared.uploadsImage(image: avatarImageView.image!, place: "avatar", nameImage: fileNameAvatar ?? "") { result in
             print(result)
         }
@@ -166,21 +142,6 @@ class EditProfileViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-}
-
-//MARK: OpalImagePickerControllerDelegate
-extension EditProfileViewController: OpalImagePickerControllerDelegate {
-    func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
-        backgroundImageView.image = Utilities.getAssetThumbnail(asset: assets[0])
-        self.editVCDelegate?.changeBackgroundImage(image: Utilities.getAssetThumbnail(asset: assets[0]))
-        let assetResources = PHAssetResource.assetResources(for: assets[0])
-        fileNameBackground = assetResources.first!.originalFilename
-        presentedViewController?.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerDidCancel(_ picker: OpalImagePickerController) {
-        presentedViewController?.dismiss(animated: true, completion: nil)
-    }
 }
 
 //MARK: ImagePickerDelegate

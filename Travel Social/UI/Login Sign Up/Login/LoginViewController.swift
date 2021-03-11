@@ -25,8 +25,6 @@ class LoginViewController: UIViewController {
         setUI()
         setViewKeyboard()
         setNavigation()
-        emailTextField.text = "c@c.com"
-        passwordTextField.text = "C123456"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,7 +119,7 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: SignUpViewControllerDelegate {
-    func pushViewController(viewController: UIViewController) {
-        self.navigationController?.pushViewController(viewController, animated: false)
+    func getEmail(text: String) {
+        self.emailTextField.text = text
     }
 }

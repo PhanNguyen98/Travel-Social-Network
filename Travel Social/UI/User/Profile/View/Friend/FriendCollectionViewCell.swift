@@ -14,7 +14,6 @@ class FriendCollectionViewCell: UICollectionViewCell {
      
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = 10
     }
     
     override func prepareForReuse() {

@@ -15,6 +15,8 @@ protocol TitleTableViewCellDelegate: class {
 class TitleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var createPostButton: UIButton!
     
     weak var cellDelegate: TitleTableViewCellDelegate?
 
@@ -34,15 +36,29 @@ class TitleTableViewCell: UITableViewCell {
     }
     
     func setUI() {
-        let colorTop =  UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.5).cgColor
-        let colorBottom = UIColor(red: 195.0/255.0, green: 226.0/255.0, blue: 245.0/255.0, alpha: 0.5).cgColor
-                    
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = self.contentView.bounds
-                
-        self.contentView.layer.insertSublayer(gradientLayer, at:0)
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        avatarImageView.layer.masksToBounds = true
+        avatarImageView.layer.borderWidth = 1
+        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
+        
+        createPostButton.layer.cornerRadius = 15
+        createPostButton.layer.masksToBounds = true
+    }
+    
+    func setData(item: User) {
+        DataImageManager.shared.downloadImage(path: "avatar", nameImage: item.nameImage!) { result in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.avatarImageView.image = result
+            }
+        }
+    }
+    
+    @IBAction func showCreatePost(_ sender: Any) {
+        let createPostViewController = CreatePostViewController()
+        createPostViewController.createPostDelegate = self
+        let navigationController = UINavigationController(rootViewController: createPostViewController)
+        navigationController.modalPresentationStyle = .overFullScreen
+        self.cellDelegate?.presentViewController(viewController: navigationController)
     }
     
     @IBAction func showNotification(_ sender: Any) {
@@ -59,5 +75,11 @@ extension TitleTableViewCell: UISearchBarDelegate {
         navigationController.modalPresentationStyle = .overFullScreen
         searchBar.endEditing(true)
         self.cellDelegate?.presentViewController(viewController: navigationController)
+    }
+}
+
+extension TitleTableViewCell: CreatePostViewControllerDelegate {
+    func presentAlertController(alertController: UIAlertController) {
+        self.cellDelegate?.presentViewController(viewController: alertController)
     }
 }

@@ -30,8 +30,6 @@ class PostCollectionViewCell: UICollectionViewCell {
         colors.gradientLayer.frame = self.infoView.bounds
         self.infoView.layer.insertSublayer(colors.gradientLayer, at:0)
         
-        self.layer.cornerRadius = 10
-        
         infoView.layer.cornerRadius = 10
         infoView.layer.masksToBounds = true
     }

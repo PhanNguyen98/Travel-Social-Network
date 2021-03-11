@@ -26,7 +26,7 @@ class DataImageManager {
                 print(error)
                 completion("Upload Image Error")
             } else {
-                completion("Upload Image Success")
+                completion("Upload Success")
             }
         }
     }
