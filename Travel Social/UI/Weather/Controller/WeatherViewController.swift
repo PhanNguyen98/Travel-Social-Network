@@ -92,6 +92,7 @@ extension WeatherViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as? WeatherTableViewCell else {
             return WeatherTableViewCell()
         }
+        cell.selectionStyle = .none
         if let data = dataSources.list?[indexPath.row] {
             cell.setData(data: data, index: indexPath.row)
         }
