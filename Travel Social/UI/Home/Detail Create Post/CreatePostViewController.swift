@@ -158,9 +158,12 @@ class CreatePostViewController: UIViewController {
             DataManager.shared.getCountObject(nameCollection: "posts") { result in
                 self.dataPost.id = String(result + 1)
                 DataManager.shared.setDataPost(data: self.dataPost) { result in
-                    self.showAlert(message: result)
-                    self.dismiss(animated: true, completion: nil)
-                    SVProgressHUD.dismiss()
+                    let alert = UIAlertController(title: "Message", message: result, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.dismiss(animated: true) {
+                        SVProgressHUD.dismiss()
+                        self.createPostDelegate?.presentAlertController(alertController: alert)
+                    }
                 }
             }
         } else {
