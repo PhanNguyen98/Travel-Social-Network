@@ -81,7 +81,7 @@
                                     <constraint firstAttribute="width" secondItem="18L-Px-9fU" secondAttribute="height" multiplier="1:1" id="ahY-2h-VDN"/>
                                 </constraints>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aQa-c9-x3l">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQa-c9-x3l">
                                 <rect key="frame" x="20" y="218.5" width="368" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="FD3-9c-veS"/>

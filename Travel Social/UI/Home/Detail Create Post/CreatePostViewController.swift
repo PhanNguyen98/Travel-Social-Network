@@ -115,9 +115,7 @@ class CreatePostViewController: UIViewController {
     func showAlert(message: String) {
         let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.dismiss(animated: true) {
-            self.createPostDelegate?.presentAlertController(alertController: alert)
-        }
+        self.present(alert, animated: true, completion: nil)
     }
     
 //MARK: IBAction
@@ -148,7 +146,6 @@ class CreatePostViewController: UIViewController {
             let nameImage = assetResources.first!.originalFilename
             resultImage.append(nameImage)
             DataImageManager.shared.uploadsImage(image: Utilities.getAssetThumbnail(asset: asset), place: "post", nameImage: nameImage) { result in
-               print("")
             }
         }
         if contentTextView.text != "" && resultImage.count != 0 && placeTextField.text != "" {
@@ -162,11 +159,12 @@ class CreatePostViewController: UIViewController {
                 self.dataPost.id = String(result + 1)
                 DataManager.shared.setDataPost(data: self.dataPost) { result in
                     self.showAlert(message: result)
+                    self.dismiss(animated: true, completion: nil)
                     SVProgressHUD.dismiss()
                 }
             }
         } else {
-            
+            showAlert(message: "please fill in all fields and select image")
         }
     }
 

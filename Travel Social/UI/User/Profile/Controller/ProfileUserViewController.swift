@@ -30,6 +30,11 @@ class ProfileUserViewController: UIViewController {
         collectionView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setViewSegment()
+    }
+    
 //MARK: SetCollectionView
     func setCollectionView() {
         collectionView.delegate = self
@@ -38,6 +43,17 @@ class ProfileUserViewController: UIViewController {
         collectionView.register(UINib(nibName: "PostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PostCollectionViewCell")
         collectionView.register(UINib(nibName: "FriendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FriendCollectionViewCell")
         collectionView.register(UINib(nibName: "HeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "\(HeaderCollectionReusableView.self)")
+    }
+    
+    func setViewSegment() {
+        DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
+            self.dataPost = result
+        }
+        let indexPath = IndexPath(row: 0, section: 0)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? InfoUserCollectionViewCell else {
+            return
+        }
+        cell.segmentedControl.selectedSegmentIndex = 0
     }
 
 }
