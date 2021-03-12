@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 import FirebaseStorage
-import Kingfisher
 
 class DataImageManager {
     static let shared = DataImageManager()
@@ -31,15 +30,13 @@ class DataImageManager {
         }
     }
     
-    func downloadImage(path: String, nameImage: String, completionHandler: @escaping (_ result: UIImage) -> ()) {
+    func downloadImage(path: String, nameImage: String, completionHandler: @escaping (_ result: URL) -> ()) {
         let imageRef = storageRef.child(path).child(nameImage)
         imageRef.downloadURL { url, error in
             if let error = error {
                 print(error)
             } else {
-                let result = UIImageView()
-                result.kf.setImage(with: url)
-                completionHandler(result.image ?? UIImage())
+                completionHandler((url ?? URL(string: ""))!)
             }
         }
     }

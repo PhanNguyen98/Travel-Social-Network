@@ -30,7 +30,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wte-zT-8k1">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dcO-ut-lsP">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="dcO-ut-lsP">
                                     <rect key="frame" x="138" y="51.5" width="138" height="138"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="dcO-ut-lsP" secondAttribute="height" multiplier="1:1" id="QC6-ia-q2i"/>
@@ -172,6 +172,7 @@
         </view>
     </objects>
     <resources>
+        <image name="avatar" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

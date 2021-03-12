@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NotifyTableViewCell: UITableViewCell {
 
@@ -34,7 +35,8 @@ class NotifyTableViewCell: UITableViewCell {
     
     func setData(data: Notify) {
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: data.nameImageAvatar) { result in
-            self.avatarImageView.image = result
+            self.avatarImageView.kf.indicatorType = .activity
+            self.avatarImageView.kf.setImage(with: result)
         }
         contentLabel.text = data.nameUser + " was comment: " + data.content
     }

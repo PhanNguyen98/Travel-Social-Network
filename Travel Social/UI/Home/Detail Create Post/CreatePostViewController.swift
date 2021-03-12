@@ -9,6 +9,7 @@ import UIKit
 import OpalImagePicker
 import Photos
 import SVProgressHUD
+import Kingfisher
 
 protocol CreatePostViewControllerDelegate: class {
     func presentAlertController(alertController: UIAlertController)
@@ -80,7 +81,8 @@ class CreatePostViewController: UIViewController {
     func setDataUser() {
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: DataManager.shared.user.nameImage!) { result in
             DispatchQueue.main.async() {
-                self.avatarImageView.image = result
+                self.avatarImageView.kf.indicatorType = .activity
+                self.avatarImageView.kf.setImage(with: result)
             }
         }
         nameLabel.text = DataManager.shared.user.name
@@ -113,9 +115,7 @@ class CreatePostViewController: UIViewController {
     func showAlert(message: String) {
         let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.dismiss(animated: true) {
-            self.createPostDelegate?.presentAlertController(alertController: alert)
-        }
+        self.present(alert, animated: true, completion: nil)
     }
     
 //MARK: IBAction
@@ -159,11 +159,12 @@ class CreatePostViewController: UIViewController {
                 self.dataPost.id = String(result + 1)
                 DataManager.shared.setDataPost(data: self.dataPost) { result in
                     self.showAlert(message: result)
+                    self.dismiss(animated: true, completion: nil)
                     SVProgressHUD.dismiss()
                 }
             }
         } else {
-            
+            showAlert(message: "please fill in all fields and select image")
         }
     }
 

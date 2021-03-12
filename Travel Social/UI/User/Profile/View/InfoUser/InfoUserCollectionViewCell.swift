@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol InfoUserCollectionViewCellDelegate: class {
     func pushViewController(viewController: UIViewController)
@@ -82,7 +83,8 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
         jobLabel.text = item.job
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: item.nameImage!) { result in
             DispatchQueue.main.async() {
-                self.avatarImageView.image = result
+                self.avatarImageView.kf.indicatorType = .activity
+                self.avatarImageView.kf.setImage(with: result)
             }
         }
     }

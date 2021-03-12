@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CommentTableViewCell: UITableViewCell {
 
@@ -37,7 +38,8 @@ class CommentTableViewCell: UITableViewCell {
     func setData(comment: Comment) {
         DataManager.shared.getUserFromId(id: comment.idUser!) { result in
             DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage!) { result in
-                self.avatarImageView.image = result
+                self.avatarImageView.kf.indicatorType = .activity
+                self.avatarImageView.kf.setImage(with: result)
             }
             self.nameLabel.text = result.name
         }

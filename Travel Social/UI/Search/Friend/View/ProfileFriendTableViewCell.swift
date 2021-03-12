@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProfileFriendTableViewCell: UITableViewCell {
 
@@ -89,7 +90,8 @@ class ProfileFriendTableViewCell: UITableViewCell {
         placeLabel.text = user.place
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: user.nameImage!) { result in
             DispatchQueue.main.async() {
-                self.avatarImageView.image = result
+                self.avatarImageView.kf.indicatorType = .activity
+                self.avatarImageView.kf.setImage(with: result)
             }
         }
     }
