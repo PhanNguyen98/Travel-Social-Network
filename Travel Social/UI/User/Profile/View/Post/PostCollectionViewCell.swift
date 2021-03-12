@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PostCollectionViewCell: UICollectionViewCell {
 
@@ -37,7 +38,8 @@ class PostCollectionViewCell: UICollectionViewCell {
     func setData(data: Post) {
         DataImageManager.shared.downloadImage(path: "post", nameImage: data.listImage?[0] ?? "") { result in
             DispatchQueue.main.async {
-                self.imageView.image = result
+                self.imageView.kf.indicatorType = .activity
+                self.imageView.kf.setImage(with: result)
             }
         }
         countHeartLabel.text = String(data.listIdHeart?.count ?? 0)

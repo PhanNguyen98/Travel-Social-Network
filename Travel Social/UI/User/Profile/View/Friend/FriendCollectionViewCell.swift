@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendCollectionViewCell: UICollectionViewCell {
 
@@ -25,7 +26,8 @@ class FriendCollectionViewCell: UICollectionViewCell {
         nameLabel.text = data.name
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: data.nameImage!) { result in
             DispatchQueue.main.async {
-                self.imageView.image = result
+                self.imageView.kf.indicatorType = .activity
+                self.imageView.kf.setImage(with: result)
             }
         }
     }

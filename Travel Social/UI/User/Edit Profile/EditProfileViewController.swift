@@ -8,6 +8,7 @@
 import UIKit
 import OpalImagePicker
 import Photos
+import Kingfisher
 
 protocol EditProfileViewControllerDelegate: class {
     func changeAvatarImage(image: UIImage?)
@@ -54,7 +55,8 @@ class EditProfileViewController: UIViewController {
     func setData() {
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: DataManager.shared.user.nameImage!) { result in
             DispatchQueue.main.async {
-                self.avatarImageView.image = result
+                self.avatarImageView.kf.indicatorType = .activity
+                self.avatarImageView.kf.setImage(with: result)
             }
         }
         self.nameTextField.text = DataManager.shared.user.name

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol TitleTableViewCellDelegate: class {
     func pushViewController(viewController: UIViewController)
@@ -47,8 +48,9 @@ class TitleTableViewCell: UITableViewCell {
     
     func setData(item: User) {
         DataImageManager.shared.downloadImage(path: "avatar", nameImage: item.nameImage!) { result in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.avatarImageView.image = result
+            DispatchQueue.main.async() {
+                self.avatarImageView.kf.indicatorType = .activity
+                self.avatarImageView.kf.setImage(with: result)
             }
         }
     }

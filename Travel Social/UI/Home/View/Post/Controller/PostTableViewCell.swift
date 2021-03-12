@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 //MARK: PostTableViewCellDelegate
 protocol PostTableViewCellDelegate: class {
@@ -54,7 +55,8 @@ class PostTableViewCell: UITableViewCell {
         DataManager.shared.getUserFromId(id: data.idUser!) { result in
             DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage!) { resultImage in
                 DispatchQueue.main.async {
-                    self.avatarImageView.image = resultImage
+                    self.avatarImageView.kf.indicatorType = .activity
+                    self.avatarImageView.kf.setImage(with: resultImage)
                 }
             }
             self.nameLabel.text = result.name

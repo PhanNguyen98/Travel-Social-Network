@@ -23,7 +23,8 @@ class DetailImageTableViewCell: UITableViewCell {
     func loadData(nameImage: String) {
         DataImageManager.shared.downloadImage(path: "post", nameImage: nameImage ) { result in
             DispatchQueue.main.async {
-                self.sightImageView.image = result
+                self.sightImageView.kf.indicatorType = .activity
+                self.sightImageView.kf.setImage(with: result)
             }
         }
     }
