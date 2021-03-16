@@ -12,6 +12,8 @@
 		D53B4A9425BFD439007D9604 /* ListFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B4A9225BFD439007D9604 /* ListFriendViewController.swift */; };
 		D53B4A9525BFD439007D9604 /* ListFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D53B4A9325BFD439007D9604 /* ListFriendViewController.xib */; };
 		D53BB37625BE6C5C001BEC4C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53BB37525BE6C5C001BEC4C /* Post.swift */; };
+		D53DAF9025FF646300A94839 /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53DAF8E25FF646300A94839 /* DetailImageViewController.swift */; };
+		D53DAF9125FF646300A94839 /* DetailImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D53DAF8F25FF646300A94839 /* DetailImageViewController.xib */; };
 		D5453D2625F8A1890054F97D /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5453D2425F8A1890054F97D /* HeaderCollectionReusableView.swift */; };
 		D5453D2725F8A1890054F97D /* HeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5453D2525F8A1890054F97D /* HeaderCollectionReusableView.xib */; };
 		D54BCCCB25EF277A0025EFEA /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54BCCC925EF277A0025EFEA /* WeatherViewController.swift */; };
@@ -52,8 +54,6 @@
 		D59ECEFD25BA7BB30078DC87 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECEFB25BA7BB30078DC87 /* SearchViewController.xib */; };
 		D59ECF1725BA8A620078DC87 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECF1525BA8A620078DC87 /* HomeViewController.swift */; };
 		D59ECF1825BA8A620078DC87 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECF1625BA8A620078DC87 /* HomeViewController.xib */; };
-		D59ECF2025BA8B8D0078DC87 /* CreatePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECF1E25BA8B8D0078DC87 /* CreatePostTableViewCell.swift */; };
-		D59ECF2125BA8B8D0078DC87 /* CreatePostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECF1F25BA8B8D0078DC87 /* CreatePostTableViewCell.xib */; };
 		D59ECF2625BA8B9C0078DC87 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECF2425BA8B9C0078DC87 /* PostTableViewCell.swift */; };
 		D59ECF2725BA8B9C0078DC87 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECF2525BA8B9C0078DC87 /* PostTableViewCell.xib */; };
 		D59EF59725F06D8F003DC267 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59EF59525F06D8F003DC267 /* WeatherTableViewCell.swift */; };
@@ -90,12 +90,8 @@
 		D5F4110325BAC50A007F8E03 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4110225BAC50A007F8E03 /* ImagePicker.swift */; };
 		D5F4115B25C79FCF00EAFEF1 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4115925C79FCF00EAFEF1 /* ImageCollectionViewCell.swift */; };
 		D5F4115C25C79FCF00EAFEF1 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F4115A25C79FCF00EAFEF1 /* ImageCollectionViewCell.xib */; };
-		D5F4116225C7A22F00EAFEF1 /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4116025C7A22F00EAFEF1 /* DetailImageViewController.swift */; };
-		D5F4116325C7A22F00EAFEF1 /* DetailImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F4116125C7A22F00EAFEF1 /* DetailImageViewController.xib */; };
 		D5FA609225F5B13C004121F0 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA609025F5B13C004121F0 /* TitleTableViewCell.swift */; };
 		D5FA609325F5B13C004121F0 /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FA609125F5B13C004121F0 /* TitleTableViewCell.xib */; };
-		D5FA609C25F614F7004121F0 /* DetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA609A25F614F7004121F0 /* DetailImageTableViewCell.swift */; };
-		D5FA609D25F614F7004121F0 /* DetailImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5FA609B25F614F7004121F0 /* DetailImageTableViewCell.xib */; };
 		ECA9BFC04B4E55E34EDD8D20 /* Pods_Travel_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836F0B7ED4C0D8C388AC73F4 /* Pods_Travel_Social.framework */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +103,8 @@
 		D53B4A9225BFD439007D9604 /* ListFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFriendViewController.swift; sourceTree = "<group>"; };
 		D53B4A9325BFD439007D9604 /* ListFriendViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFriendViewController.xib; sourceTree = "<group>"; };
 		D53BB37525BE6C5C001BEC4C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D53DAF8E25FF646300A94839 /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
+		D53DAF8F25FF646300A94839 /* DetailImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailImageViewController.xib; sourceTree = "<group>"; };
 		D5453D2425F8A1890054F97D /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		D5453D2525F8A1890054F97D /* HeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		D54BCCC925EF277A0025EFEA /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -149,8 +147,6 @@
 		D59ECEFB25BA7BB30078DC87 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		D59ECF1525BA8A620078DC87 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D59ECF1625BA8A620078DC87 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
-		D59ECF1E25BA8B8D0078DC87 /* CreatePostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostTableViewCell.swift; sourceTree = "<group>"; };
-		D59ECF1F25BA8B8D0078DC87 /* CreatePostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatePostTableViewCell.xib; sourceTree = "<group>"; };
 		D59ECF2425BA8B9C0078DC87 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		D59ECF2525BA8B9C0078DC87 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		D59EF59525F06D8F003DC267 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
@@ -187,12 +183,8 @@
 		D5F4110225BAC50A007F8E03 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		D5F4115925C79FCF00EAFEF1 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		D5F4115A25C79FCF00EAFEF1 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		D5F4116025C7A22F00EAFEF1 /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
-		D5F4116125C7A22F00EAFEF1 /* DetailImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailImageViewController.xib; sourceTree = "<group>"; };
 		D5FA609025F5B13C004121F0 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		D5FA609125F5B13C004121F0 /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
-		D5FA609A25F614F7004121F0 /* DetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageTableViewCell.swift; sourceTree = "<group>"; };
-		D5FA609B25F614F7004121F0 /* DetailImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailImageTableViewCell.xib; sourceTree = "<group>"; };
 		F6C99052D11F6870D7A639C5 /* Pods-Travel Social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travel Social.release.xcconfig"; path = "Target Support Files/Pods-Travel Social/Pods-Travel Social.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -478,18 +470,8 @@
 				D564899225E74D1B00A34CB6 /* Create Comment */,
 				D50A535F25E68887009D2C74 /* ListUserHeart */,
 				D59ECF1D25BA8B5E0078DC87 /* Post */,
-				D59ECF1B25BA8B430078DC87 /* Create Post */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		D59ECF1B25BA8B430078DC87 /* Create Post */ = {
-			isa = PBXGroup;
-			children = (
-				D59ECF1E25BA8B8D0078DC87 /* CreatePostTableViewCell.swift */,
-				D59ECF1F25BA8B8D0078DC87 /* CreatePostTableViewCell.xib */,
-			);
-			path = "Create Post";
 			sourceTree = "<group>";
 		};
 		D59ECF1D25BA8B5E0078DC87 /* Post */ = {
@@ -746,8 +728,8 @@
 		D5F4116525C7A6BF00EAFEF1 /* DetailImage */ = {
 			isa = PBXGroup;
 			children = (
-				D5FA609825F61455004121F0 /* View */,
-				D5FA609725F6144B004121F0 /* Controller */,
+				D53DAF8E25FF646300A94839 /* DetailImageViewController.swift */,
+				D53DAF8F25FF646300A94839 /* DetailImageViewController.xib */,
 			);
 			path = DetailImage;
 			sourceTree = "<group>";
@@ -768,24 +750,6 @@
 				D5FA609125F5B13C004121F0 /* TitleTableViewCell.xib */,
 			);
 			path = Title;
-			sourceTree = "<group>";
-		};
-		D5FA609725F6144B004121F0 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D5F4116025C7A22F00EAFEF1 /* DetailImageViewController.swift */,
-				D5F4116125C7A22F00EAFEF1 /* DetailImageViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D5FA609825F61455004121F0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D5FA609A25F614F7004121F0 /* DetailImageTableViewCell.swift */,
-				D5FA609B25F614F7004121F0 /* DetailImageTableViewCell.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -848,7 +812,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5DFBDC525BEC1D000C7AC50 /* UserTableViewCell.xib in Resources */,
-				D59ECF2125BA8B8D0078DC87 /* CreatePostTableViewCell.xib in Resources */,
 				D5921E6F25BD24CC009F9D17 /* EditProfileViewController.xib in Resources */,
 				D5C34B6825EDCDA0009E4260 /* NotifyTableViewCell.xib in Resources */,
 				D59ECEF025BA7B220078DC87 /* CustomBarViewController.xib in Resources */,
@@ -857,7 +820,6 @@
 				D565AF7725B6C7860090FA5B /* LaunchScreen.storyboard in Resources */,
 				D565AF7425B6C7860090FA5B /* Assets.xcassets in Resources */,
 				D564899D25E74D8600A34CB6 /* CommentTableViewCell.xib in Resources */,
-				D5FA609D25F614F7004121F0 /* DetailImageTableViewCell.xib in Resources */,
 				D5C34B5F25EDCBE4009E4260 /* NotifyViewController.xib in Resources */,
 				D50A537225E6897E009D2C74 /* ListUserViewController.xib in Resources */,
 				D5FA609325F5B13C004121F0 /* TitleTableViewCell.xib in Resources */,
@@ -865,7 +827,6 @@
 				D5F410FB25BAAC33007F8E03 /* CreatePostViewController.xib in Resources */,
 				D5D1B5B625B7C32D0041C30C /* LoginViewController.xib in Resources */,
 				D5E78F9B25C7EE620066C71B /* KeySearchViewController.xib in Resources */,
-				D5F4116325C7A22F00EAFEF1 /* DetailImageViewController.xib in Resources */,
 				D5A208E325C1118300BE9473 /* SearchTableViewCell.xib in Resources */,
 				D5453D2725F8A1890054F97D /* HeaderCollectionReusableView.xib in Resources */,
 				D59ECEFD25BA7BB30078DC87 /* SearchViewController.xib in Resources */,
@@ -882,6 +843,7 @@
 				D5F4115C25C79FCF00EAFEF1 /* ImageCollectionViewCell.xib in Resources */,
 				D59ECF2725BA8B9C0078DC87 /* PostTableViewCell.xib in Resources */,
 				D59EF59825F06D8F003DC267 /* WeatherTableViewCell.xib in Resources */,
+				D53DAF9125FF646300A94839 /* DetailImageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,7 +902,6 @@
 				D5DFBDC425BEC1D000C7AC50 /* UserTableViewCell.swift in Sources */,
 				D59EF59725F06D8F003DC267 /* WeatherTableViewCell.swift in Sources */,
 				D5D1B60825B819D50041C30C /* Utilities.swift in Sources */,
-				D5FA609C25F614F7004121F0 /* DetailImageTableViewCell.swift in Sources */,
 				D5D1B5B525B7C32D0041C30C /* LoginViewController.swift in Sources */,
 				D54BCCFB25EF42310025EFEA /* Weather.swift in Sources */,
 				D5F410FA25BAAC33007F8E03 /* CreatePostViewController.swift in Sources */,
@@ -956,7 +917,6 @@
 				D599137F25F9BEC700D3B0E1 /* FriendCollectionViewCell.swift in Sources */,
 				D5F410FF25BAB37D007F8E03 /* User.swift in Sources */,
 				D59ECEEF25BA7B220078DC87 /* CustomBarViewController.swift in Sources */,
-				D5F4116225C7A22F00EAFEF1 /* DetailImageViewController.swift in Sources */,
 				D54BCCEC25EF2A390025EFEA /* WeatherAPI.swift in Sources */,
 				D5C34B6725EDCDA0009E4260 /* NotifyTableViewCell.swift in Sources */,
 				D53BB37625BE6C5C001BEC4C /* Post.swift in Sources */,
@@ -976,7 +936,6 @@
 				D585826025BD5966003BE66C /* DataManager.swift in Sources */,
 				D5E78F9A25C7EE620066C71B /* KeySearchViewController.swift in Sources */,
 				D5F4115B25C79FCF00EAFEF1 /* ImageCollectionViewCell.swift in Sources */,
-				D59ECF2025BA8B8D0078DC87 /* CreatePostTableViewCell.swift in Sources */,
 				D5F4110325BAC50A007F8E03 /* ImagePicker.swift in Sources */,
 				D5DFBDBE25BEAD9400C7AC50 /* UILabel+UnderLine.swift in Sources */,
 				D50A537125E6897E009D2C74 /* ListUserViewController.swift in Sources */,
@@ -984,6 +943,7 @@
 				D5453D2625F8A1890054F97D /* HeaderCollectionReusableView.swift in Sources */,
 				D5A208F225C1187300BE9473 /* ProfileFriendTableViewCell.swift in Sources */,
 				D54BCCEF25EF2A6B0025EFEA /* ResponseError.swift in Sources */,
+				D53DAF9025FF646300A94839 /* DetailImageViewController.swift in Sources */,
 				D56489A025E780EB00A34CB6 /* Comment.swift in Sources */,
 				D54BCCE925EF29EF0025EFEA /* APIManager.swift in Sources */,
 				D5D1B5C525B7C8DB0041C30C /* SignUpViewController.swift in Sources */,

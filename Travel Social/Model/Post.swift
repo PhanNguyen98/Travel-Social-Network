@@ -17,7 +17,7 @@ class Post {
     var listIdHeart: [String]?
     var place: String?
     
-    func setData(withData: QueryDocumentSnapshot) {
+    func updatePost(withData: QueryDocumentSnapshot) {
         self.idUser = withData.get("idUser") as? String ?? ""
         self.content = withData.get("content") as? String ?? ""
         self.listImage = withData.get("listImage") as? [String] ?? []

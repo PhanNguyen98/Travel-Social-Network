@@ -8,11 +8,6 @@
 import UIKit
 import FirebaseFirestore
 
-//MARK: CommentViewControllerDelegate
-protocol CommentViewControllerDelegate: class {
-    func reloadCountComment()
-}
-
 class CommentViewController: UIViewController {
 
 //MARK: Properties
@@ -23,7 +18,6 @@ class CommentViewController: UIViewController {
     
     var dataSources = [Comment]()
     var dataPost = Post()
-    weak var commentDelegate: CommentViewControllerDelegate?
     
 //MARK: ViewCycle
     override func viewDidLoad() {
@@ -62,7 +56,6 @@ class CommentViewController: UIViewController {
     func setData() {
         handleCommentChanges {
             self.tableView.reloadData()
-            self.commentDelegate?.reloadCountComment()
         }
     }
     
@@ -133,13 +126,13 @@ class CommentViewController: UIViewController {
                     self.tableView.reloadData()
                 }
             }
-            self.commentDelegate?.reloadCountComment()
             
             if dataPost.idUser != DataManager.shared.user.id {
                 let notify = Notify()
                 notify.id = dataPost.idUser ?? ""
-                notify.nameUser = DataManager.shared.user.name ?? ""
-                notify.nameImageAvatar = DataManager.shared.user.nameImage ?? ""
+                notify.type = "comment"
+                notify.idFriend = DataManager.shared.user.id ?? ""
+                notify.idType = dataPost.id ?? ""
                 notify.content = commentTextField.text ?? ""
                 DataManager.shared.setDataNotify(data: notify)
             }
@@ -188,6 +181,7 @@ extension CommentViewController: UITableViewDataSource {
                  return PostTableViewCell()
             }
             cell.selectionStyle = .none
+            cell.cellDelegate = self
             cell.setdata(data: dataPost)
             cell.dataPost = dataPost
             cell.commentButton.isUserInteractionEnabled = false
@@ -195,10 +189,54 @@ extension CommentViewController: UITableViewDataSource {
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else { return CommentTableViewCell()
             }
+            cell.cellDelegate = self
             cell.setData(comment: dataSources[indexPath.row])
+            cell.dataComment = dataSources[indexPath.row]
             cell.selectionStyle = .none
             return cell
         }
     }
     
+}
+
+//MARK: PostTableViewCellDelegate
+extension CommentViewController: PostTableViewCellDelegate {
+    func showProfile(user: User) {
+        DataManager.shared.getPostFromId(idUser: user.id!) { result in
+            DataManager.shared.setDataUser()
+            if user.id == DataManager.shared.user.id {
+                let profileUserViewController = ProfileUserViewController()
+                profileUserViewController.dataPost = result
+                profileUserViewController.dataUser = user
+                self.navigationController?.pushViewController(profileUserViewController, animated: true)
+            } else {
+                let friendViewController = FriendViewController()
+                friendViewController.dataPost = result
+                friendViewController.dataUser = user
+                self.navigationController?.pushViewController(friendViewController, animated: true)
+            }
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String) {
+        let detailImageViewController = DetailImageViewController()
+        detailImageViewController.nameImage = nameImage
+        self.navigationController?.pushViewController(detailImageViewController, animated: true)
+    }
+    
+    func showListUser(listUser: [String]) {
+        let listUserViewController = ListUserViewController()
+        DataManager.shared.getListUser(listId: listUser) { result in
+            listUserViewController.dataSources = result
+            self.present(listUserViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func showListComment(dataPost: Post) {
+    }
+    
+}
+
+//MARK: CommentTableViewCellDelegate
+extension CommentViewController: CommentTableViewCellDelegate {
 }

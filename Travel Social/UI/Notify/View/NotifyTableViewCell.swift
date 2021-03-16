@@ -34,11 +34,11 @@ class NotifyTableViewCell: UITableViewCell {
     }
     
     func setData(data: Notify) {
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: data.nameImageAvatar) { result in
-            self.avatarImageView.kf.indicatorType = .activity
-            self.avatarImageView.kf.setImage(with: result)
-        }
-        contentLabel.text = data.nameUser + " was comment: " + data.content
+//        DataImageManager.shared.downloadImage(path: "avatar", nameImage: data.nameImageAvatar) { result in
+//            self.avatarImageView.kf.indicatorType = .activity
+//            self.avatarImageView.kf.setImage(with: result)
+//        }
+//        contentLabel.text = data.nameUser + " was comment: " + data.content
     }
     
 }

@@ -63,9 +63,10 @@ class DataManager {
     func setDataNotify(data: Notify) {
         db.collection("notifies").document().setData([
             "id": data.id,
-            "nameUser": data.nameUser,
+            "idFriend": data.idFriend,
             "content": data.content,
-            "nameImageAvatar": data.nameImageAvatar
+            "type": data.type,
+            "idType": data.idType
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")

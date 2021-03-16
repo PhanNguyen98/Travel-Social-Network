@@ -20,12 +20,20 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setUpTableView()
         self.tabBarController?.delegate = self
+        handlePostChanges {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         setData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     //MARK: SetData
@@ -49,6 +57,33 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func handlePostChanges(completed: @escaping () -> ()) {
+        let db = Firestore.firestore()
+        var data = DataManager.shared.user.listIdFriends ?? []
+        data.append(DataManager.shared.user.id!)
+        db.collection("posts").whereField("idUser", in: data).addSnapshotListener { (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                print("Error fetching snapshots: \(error!)")
+                return completed()
+            }
+            
+            snapshot.documentChanges.forEach { diff in
+                if (diff.type == .added) {
+                }
+                if (diff.type == .modified) {
+                    let docId = diff.document.documentID
+                    if let indexOfPostToModify = self.dataSources.firstIndex(where: { $0.id == docId} ) {
+                        let postToModify = self.dataSources[indexOfPostToModify]
+                        postToModify.updatePost(withData: diff.document)
+                    }
+                }
+                if (diff.type == .removed) {
+                }
+            }
+            completed()
+        }
+    }
+    
 }
 
 //MARK: UITableViewDelegate
@@ -61,7 +96,6 @@ extension HomeViewController: UITableViewDelegate {
         default:
             let commentViewController = CommentViewController()
             commentViewController.dataPost = dataSources[dataSources.count - indexPath.section]
-            commentViewController.commentDelegate = self
             self.navigationController?.pushViewController(commentViewController, animated: true)
         }
     }
@@ -103,7 +137,6 @@ extension HomeViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell", for: indexPath) as? TitleTableViewCell else { return TitleTableViewCell()
             }
             cell.cellDelegate = self
-            cell.setData(item: DataManager.shared.user)
             cell.selectionStyle = .none
             return cell
         default:
@@ -122,10 +155,26 @@ extension HomeViewController: UITableViewDataSource {
 
 //MARK: PostTableViewCellDelegate
 extension HomeViewController: PostTableViewCellDelegate {
+    func showProfile(user: User) {
+        DataManager.shared.getPostFromId(idUser: user.id!) { result in
+            DataManager.shared.setDataUser()
+            if user.id == DataManager.shared.user.id {
+                let profileUserViewController = ProfileUserViewController()
+                profileUserViewController.dataPost = result
+                profileUserViewController.dataUser = user
+                self.navigationController?.pushViewController(profileUserViewController, animated: true)
+            } else {
+                let friendViewController = FriendViewController()
+                friendViewController.dataPost = result
+                friendViewController.dataUser = user
+                self.navigationController?.pushViewController(friendViewController, animated: true)
+            }
+        }
+    }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, listImage: [String]) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String) {
         let detailImageViewController = DetailImageViewController()
-        detailImageViewController.dataSources = listImage
+        detailImageViewController.nameImage = nameImage
         self.navigationController?.pushViewController(detailImageViewController, animated: true)
     }
     
@@ -140,7 +189,6 @@ extension HomeViewController: PostTableViewCellDelegate {
     func showListComment(dataPost: Post) {
         let commentViewController = CommentViewController()
         commentViewController.dataPost = dataPost
-        commentViewController.commentDelegate = self
         self.navigationController?.pushViewController(commentViewController, animated: true)
     }
     
@@ -151,7 +199,6 @@ extension HomeViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if tabBarController.selectedIndex == 0 {
-            
             DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
                 var data = DataManager.shared.user.listIdFriends ?? []
                 data.append(DataManager.shared.user.id!)
@@ -175,30 +222,9 @@ extension HomeViewController: UITabBarControllerDelegate {
     
 }
 
-//MARK: CommentViewControllerDelegate
-extension HomeViewController: CommentViewControllerDelegate {
-    func reloadCountComment() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-}
-
 //MARK: TitleTableViewCellDelegate
 extension HomeViewController: TitleTableViewCellDelegate {
-    func pushViewController(viewController: UIViewController) {
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
     func presentViewController(viewController: UIViewController) {
         self.present(viewController, animated: true, completion: nil)
     }
-}
-
-//MARK: CreatePostViewControllerDelegate
-extension HomeViewController: CreatePostViewControllerDelegate {
-    func presentAlertController(alertController: UIAlertController) {
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
 }

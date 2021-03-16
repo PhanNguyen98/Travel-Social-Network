@@ -19,12 +19,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
+    let colors = Colors()
+    
 //MARK: View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setViewKeyboard()
         setNavigation()
+        emailTextField.text = "nguyen@gmail.com"
+        passwordTextField.text = "A123456"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +43,8 @@ class LoginViewController: UIViewController {
     }
     
     func setUI() {
-        self.view.setBackgroundImage(img: UIImage(named: "background")!)
-        self.hideKeyboardWhenTappedAround()
+        colors.gradientLayer.frame = self.view.bounds
+        self.view.layer.insertSublayer(colors.gradientLayer, at:0)
         
         emailTextField.layer.cornerRadius = 20
         emailTextField.layer.masksToBounds = true
