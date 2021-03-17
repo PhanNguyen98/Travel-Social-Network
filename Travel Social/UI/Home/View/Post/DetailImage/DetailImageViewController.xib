@@ -19,16 +19,16 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cPc-EU-LW8">
-                    <rect key="frame" x="0.0" y="144" width="414" height="618"/>
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cPc-EU-LW8">
+                    <rect key="frame" x="0.0" y="94" width="414" height="718"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pzl-zW-vI4">
-                    <rect key="frame" x="364" y="707" width="40" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pzl-zW-vI4">
+                    <rect key="frame" x="364" y="757" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="5Mz-Lr-Qyu"/>
                         <constraint firstAttribute="height" constant="40" id="Kwm-AY-jIj"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="Button" image="download"/>
                     <connections>
                         <action selector="downLoadImage:" destination="-1" eventType="touchUpInside" id="elx-zr-EYu"/>
                     </connections>
@@ -37,14 +37,17 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cPc-EU-LW8" secondAttribute="bottom" constant="100" id="DBX-ZP-uyr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cPc-EU-LW8" secondAttribute="bottom" constant="50" id="DBX-ZP-uyr"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Pzl-zW-vI4" secondAttribute="trailing" constant="10" id="DWa-Ud-giH"/>
                 <constraint firstItem="cPc-EU-LW8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EcD-QJ-bEx"/>
-                <constraint firstItem="cPc-EU-LW8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="TSH-Rg-Z0e"/>
+                <constraint firstItem="cPc-EU-LW8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="TSH-Rg-Z0e"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cPc-EU-LW8" secondAttribute="trailing" id="WJP-Is-uxk"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Pzl-zW-vI4" secondAttribute="bottom" constant="115" id="h82-ro-Vkd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Pzl-zW-vI4" secondAttribute="bottom" constant="65" id="h82-ro-Vkd"/>
             </constraints>
             <point key="canvasLocation" x="-242" y="80"/>
         </view>
     </objects>
+    <resources>
+        <image name="download" width="128" height="128"/>
+    </resources>
 </document>

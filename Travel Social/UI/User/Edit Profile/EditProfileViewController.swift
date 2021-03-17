@@ -83,8 +83,8 @@ class EditProfileViewController: UIViewController {
         placeTextField.layer.cornerRadius = 10
         jobTextField.layer.cornerRadius = 10
         birthdayDatePicker.preferredDatePickerStyle = .compact
+        birthdayDatePicker.maximumDate = Date()
         self.hideKeyboardWhenTappedAround()
-        
     }
     
     func setNavigation() {
