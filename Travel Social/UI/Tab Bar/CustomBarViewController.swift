@@ -26,7 +26,7 @@ class CustomBarViewController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationController?.navigationBar.barTintColor = UIColor.white
     }
     

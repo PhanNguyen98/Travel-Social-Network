@@ -18,7 +18,6 @@ class NotifyViewController: UIViewController {
         super.viewDidLoad()
         setTableView()
         setData()
-        setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,16 +25,16 @@ class NotifyViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarItem.image = UIImage(systemName: "bell.fill")
+    }
+    
     func setTableView() {
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "NotifyTableViewCell", bundle: nil), forCellReuseIdentifier: "NotifyTableViewCell")
-    }
-    
-    func setNavigationBar() {
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(popViewController))
-        self.navigationItem.leftBarButtonItem = backButton
     }
     
     func setData() {
@@ -48,7 +47,6 @@ class NotifyViewController: UIViewController {
         let db = Firestore.firestore()
         db.collection("notifies").whereField("id", isEqualTo: DataManager.shared.user.id!).addSnapshotListener { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
-                print("Error fetching snapshots: \(error!)")
                 return completed()
             }
             
@@ -57,6 +55,7 @@ class NotifyViewController: UIViewController {
                     let newNotify = Notify()
                     newNotify.setData(withData: diff.document)
                     self.dataSources.append(newNotify)
+                    //self.tabBarItem.image = UIImage(systemName: "bell.badge.fill")
                 }
                 if (diff.type == .modified) {
                     let docId = diff.document.documentID
@@ -76,22 +75,12 @@ class NotifyViewController: UIViewController {
         }
     }
     
-    @objc func popViewController() {
-        self.navigationController?.popViewController(animated: true)
-    }
-
 }
 
 extension NotifyViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if dataSources[indexPath.row].type == "comment" {
-            DataManager.shared.getPostFromId(idPost: dataSources[dataSources.count - indexPath.row - 1].idPost) { result in
-                let commentViewController = CommentViewController()
-                commentViewController.dataPost = result[0]
-                self.navigationController?.pushViewController(commentViewController, animated: true)
-            }
-        } else {
+        if dataSources[indexPath.row].type == "follow" {
             DataManager.shared.getUserFromId(id: dataSources[dataSources.count - indexPath.row - 1].idFriend) { result in
                 let friendViewController = FriendViewController()
                 friendViewController.dataUser = result
@@ -99,6 +88,12 @@ extension NotifyViewController: UITableViewDelegate {
                     friendViewController.dataPost = result
                     self.navigationController?.pushViewController(friendViewController, animated: true)
                 }
+            }
+        } else {
+            DataManager.shared.getPostFromId(idPost: dataSources[dataSources.count - indexPath.row - 1].idPost) { result in
+                let commentViewController = CommentViewController()
+                commentViewController.dataPost = result[0]
+                self.navigationController?.pushViewController(commentViewController, animated: true)
             }
         }
     }
@@ -108,11 +103,11 @@ extension NotifyViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
+        return 60
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 80))
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 60))
         
         let label = UILabel()
         label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)

@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		D50A537125E6897E009D2C74 /* ListUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A536F25E6897E009D2C74 /* ListUserViewController.swift */; };
 		D50A537225E6897E009D2C74 /* ListUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50A537025E6897E009D2C74 /* ListUserViewController.xib */; };
-		D53B4A9425BFD439007D9604 /* ListFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B4A9225BFD439007D9604 /* ListFriendViewController.swift */; };
-		D53B4A9525BFD439007D9604 /* ListFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D53B4A9325BFD439007D9604 /* ListFriendViewController.xib */; };
 		D53BB37625BE6C5C001BEC4C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53BB37525BE6C5C001BEC4C /* Post.swift */; };
 		D53DAF9025FF646300A94839 /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53DAF8E25FF646300A94839 /* DetailImageViewController.swift */; };
 		D53DAF9125FF646300A94839 /* DetailImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D53DAF8F25FF646300A94839 /* DetailImageViewController.xib */; };
@@ -99,8 +97,6 @@
 		836F0B7ED4C0D8C388AC73F4 /* Pods_Travel_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Travel_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50A536F25E6897E009D2C74 /* ListUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUserViewController.swift; sourceTree = "<group>"; };
 		D50A537025E6897E009D2C74 /* ListUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListUserViewController.xib; sourceTree = "<group>"; };
-		D53B4A9225BFD439007D9604 /* ListFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFriendViewController.swift; sourceTree = "<group>"; };
-		D53B4A9325BFD439007D9604 /* ListFriendViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFriendViewController.xib; sourceTree = "<group>"; };
 		D53BB37525BE6C5C001BEC4C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D53DAF8E25FF646300A94839 /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		D53DAF8F25FF646300A94839 /* DetailImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailImageViewController.xib; sourceTree = "<group>"; };
@@ -236,7 +232,6 @@
 		D53B4A7825BFC245007D9604 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D53B4A9125BFD40D007D9604 /* List Friend */,
 				D53B4A7D25BFC788007D9604 /* View */,
 				D53B4A7B25BFC772007D9604 /* Controller */,
 			);
@@ -269,15 +264,6 @@
 				D54CC6C625F87CA200CDD99C /* InfoUserCollectionViewCell.xib */,
 			);
 			path = InfoUser;
-			sourceTree = "<group>";
-		};
-		D53B4A9125BFD40D007D9604 /* List Friend */ = {
-			isa = PBXGroup;
-			children = (
-				D53B4A9225BFD439007D9604 /* ListFriendViewController.swift */,
-				D53B4A9325BFD439007D9604 /* ListFriendViewController.xib */,
-			);
-			path = "List Friend";
 			sourceTree = "<group>";
 		};
 		D54BCCC625EF22A70025EFEA /* Weather */ = {
@@ -812,7 +798,6 @@
 				D5C34B5F25EDCBE4009E4260 /* NotifyViewController.xib in Resources */,
 				D50A537225E6897E009D2C74 /* ListUserViewController.xib in Resources */,
 				D5FA609325F5B13C004121F0 /* TitleTableViewCell.xib in Resources */,
-				D53B4A9525BFD439007D9604 /* ListFriendViewController.xib in Resources */,
 				D5F410FB25BAAC33007F8E03 /* CreatePostViewController.xib in Resources */,
 				D5D1B5B625B7C32D0041C30C /* LoginViewController.xib in Resources */,
 				D5E78F9B25C7EE620066C71B /* KeySearchViewController.xib in Resources */,
@@ -912,7 +897,6 @@
 				D5921E6E25BD24CC009F9D17 /* EditProfileViewController.swift in Sources */,
 				D5889B6F25F235F7008F1B97 /* UIViewController+hideKeyboardWhenTappedAround.swift in Sources */,
 				D59ECF1725BA8A620078DC87 /* HomeViewController.swift in Sources */,
-				D53B4A9425BFD439007D9604 /* ListFriendViewController.swift in Sources */,
 				D54BCCCB25EF277A0025EFEA /* WeatherViewController.swift in Sources */,
 				D5E78F9E25C7F0560066C71B /* UserDefaultManager.swift in Sources */,
 				D571B1B325F1D7A40093785C /* UIAlertController+pruneNegativeWidthConstraints.swift in Sources */,

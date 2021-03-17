@@ -67,8 +67,24 @@ class DataManager {
         }
     }
     
-    func setDataNotify(data: Notify) {
+    func setDataNotifyComment(data: Notify) {
         db.collection("notifies").document().setData([
+            "id": data.id,
+            "idFriend": data.idFriend,
+            "content": data.content,
+            "type": data.type,
+            "idPost": data.idPost
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
+    
+    func setDataNotify(data: Notify, idDocument: String) {
+        db.collection("notifies").document(idDocument).setData([
             "id": data.id,
             "idFriend": data.idFriend,
             "content": data.content,

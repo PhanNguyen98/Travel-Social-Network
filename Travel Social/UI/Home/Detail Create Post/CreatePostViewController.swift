@@ -52,7 +52,7 @@ class CreatePostViewController: UIViewController {
         avatarImageView.layer.borderWidth = 1
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
         
-        contentTextView.dropShadow(color: UIColor.gray, opacity: 0.3, offSet: .zero, radius: 10, scale: true)
+        contentTextView.dropShadow(color: UIColor.systemGray3, opacity: 0.3, offSet: .zero, radius: 10, scale: true)
         contentTextView.delegate = self
         contentTextView.layer.cornerRadius = 10
         

@@ -12,7 +12,6 @@ import Kingfisher
 
 protocol EditProfileViewControllerDelegate: class {
     func changeAvatarImage(image: UIImage?)
-    func changeBackgroundImage(image: UIImage?)
 }
 
 class EditProfileViewController: UIViewController {

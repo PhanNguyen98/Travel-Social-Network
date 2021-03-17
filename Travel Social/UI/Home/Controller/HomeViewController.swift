@@ -194,18 +194,17 @@ extension HomeViewController: PostTableViewCellDelegate {
 extension HomeViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if tabBarController.selectedIndex == 0 {
+        switch tabBarController.selectedIndex {
+        case 0:
             DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-                var data = DataManager.shared.user.listIdFollowers ?? []
+                var data = DataManager.shared.user.listIdFollowing ?? []
                 data.append(DataManager.shared.user.id!)
                 DataManager.shared.getPostFromListId(listId: data) { result in
                     self.dataSources = result
                     self.tableView.reloadData()
                 }
             }
-        }
-        
-        if tabBarController.selectedIndex == 4 {
+        case 4:
             let profileUserViewController = viewController as? ProfileUserViewController
             DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
                 profileUserViewController?.dataPost = result
@@ -213,6 +212,8 @@ extension HomeViewController: UITabBarControllerDelegate {
                 profileUserViewController?.dataUser = DataManager.shared.user
                 profileUserViewController?.collectionView.reloadData()
             }
+        default:
+            break
         }
     }
     

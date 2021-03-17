@@ -25,6 +25,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     }
     
     func setUI() {
+        self.dropShadow(color: UIColor.systemGray3, opacity: 0.3, offSet: .zero, radius: 10, scale: true)
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
         avatarImageView.layer.borderWidth = 0.5
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor

@@ -16,7 +16,6 @@ protocol InfoUserCollectionViewCellDelegate: class {
 
 class InfoUserCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
@@ -101,13 +100,9 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
 }
 
 extension InfoUserCollectionViewCell: EditProfileViewControllerDelegate {
-    
+
     func changeAvatarImage(image: UIImage?) {
         avatarImageView.image = image
-    }
-    
-    func changeBackgroundImage(image: UIImage?) {
-        backgroundImageView.image = image
     }
     
 }

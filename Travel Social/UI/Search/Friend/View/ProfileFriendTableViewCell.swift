@@ -43,6 +43,12 @@ class ProfileFriendTableViewCell: UITableViewCell {
                 DataManager.shared.user.listIdFollowing?.append(dataUser.id!)
                 DataManager.shared.setDataFollowing(id: DataManager.shared.user.id!, listIdFollowing: DataManager.shared.user.listIdFollowing!)
             }
+            let notify = Notify()
+            notify.id = dataUser.id ?? ""
+            notify.idFriend = DataManager.shared.user.id ?? ""
+            notify.type = "follow"
+            let idDocument = notify.id + notify.type + notify.idFriend
+            DataManager.shared.setDataNotify(data: notify, idDocument: idDocument)
         } else {
             DataManager.shared.setDataUser()
             isActive = true
@@ -73,14 +79,14 @@ class ProfileFriendTableViewCell: UITableViewCell {
        
         addFriendButton.layer.cornerRadius = 10
         addFriendButton.layer.masksToBounds = true
-        addFriendButton.setTitle("Add Friend", for: .normal)
+        addFriendButton.setTitle("Follow", for: .normal)
     }
     
     func setData(user: User) {
         if user.listIdFollowers != nil {
             for item in user.listIdFollowers! {
                 if item == DataManager.shared.user.id {
-                    addFriendButton.setTitle(" Unfriend", for: .normal)
+                    addFriendButton.setTitle(" Unfollow", for: .normal)
                     isActive = false
                 }
             }

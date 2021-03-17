@@ -134,7 +134,7 @@ class CommentViewController: UIViewController {
                 notify.idFriend = DataManager.shared.user.id ?? ""
                 notify.idPost = dataPost.id ?? ""
                 notify.content = commentTextField.text ?? ""
-                DataManager.shared.setDataNotify(data: notify)
+                DataManager.shared.setDataNotifyComment(data: notify)
             }
             self.commentTextField.text = ""
         }

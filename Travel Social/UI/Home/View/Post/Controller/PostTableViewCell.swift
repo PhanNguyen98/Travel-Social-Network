@@ -127,6 +127,15 @@ class PostTableViewCell: UITableViewCell {
                 DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: (dataPost?.listIdHeart)!)
                 countHeartButton.setTitle(String((dataPost?.listIdHeart!.count)!), for: .normal)
             }
+            if dataPost?.idUser != DataManager.shared.user.id {
+                let notify = Notify()
+                notify.id = dataPost?.idUser ?? ""
+                notify.idPost = dataPost?.id ?? ""
+                notify.idFriend = DataManager.shared.user.id ?? ""
+                notify.type = "heart"
+                let idDocument = notify.idFriend + notify.type + notify.idPost
+                DataManager.shared.setDataNotify(data: notify, idDocument: idDocument)
+            }
         } else {
             isActive = true
             heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
