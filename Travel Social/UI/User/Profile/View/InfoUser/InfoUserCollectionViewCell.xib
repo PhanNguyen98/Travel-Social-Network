@@ -27,7 +27,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYP-8K-sSi">
-                                <rect key="frame" x="50" y="173.5" width="338" height="20"/>
+                                <rect key="frame" x="50" y="163.5" width="338" height="40"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -82,13 +82,14 @@
                                 </constraints>
                             </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQa-c9-x3l">
-                                <rect key="frame" x="20" y="218.5" width="368" height="51"/>
+                                <rect key="frame" x="20" y="228.5" width="368" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="FD3-9c-veS"/>
+                                    <constraint firstAttribute="height" constant="40" id="FD3-9c-veS"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Post"/>
                                     <segment title="Friend"/>
+                                    <segment title="Following"/>
                                 </segments>
                                 <connections>
                                     <action selector="loadData:" destination="gTV-IL-0wX" eventType="valueChanged" id="t7u-eb-1hi"/>

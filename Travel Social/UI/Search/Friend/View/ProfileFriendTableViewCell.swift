@@ -19,7 +19,7 @@ class ProfileFriendTableViewCell: UITableViewCell {
     
     var isActive = true
     var dataUser = User()
-    var listFriend = DataManager.shared.user.listIdFriends
+    var listFriend = DataManager.shared.user.listIdFollowers
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,29 +34,30 @@ class ProfileFriendTableViewCell: UITableViewCell {
         if isActive {
             DataManager.shared.setDataUser()
             isActive = false
-            addFriendButton.setTitle("Unfriend", for: .normal)
-            if dataUser.listIdFriends!.first{ $0 == DataManager.shared.user.id } == nil {
-                dataUser.listIdFriends?.append(DataManager.shared.user.id!)
-                DataManager.shared.setDataFriend(id: dataUser.id!, listFriend: dataUser.listIdFriends!)
+            addFriendButton.setTitle("Unfollow", for: .normal)
+            if dataUser.listIdFollowers!.first(where: { $0 == DataManager.shared.user.id }) == nil {
+                dataUser.listIdFollowers?.append(DataManager.shared.user.id!)
+                DataManager.shared.setDataFollowers(id: dataUser.id!, listIdFollowers: dataUser.listIdFollowers!)
             }
-            if DataManager.shared.user.listIdFriends?.first{ $0 == dataUser.id} == nil {
-                DataManager.shared.user.listIdFriends?.append(dataUser.id!)
-                DataManager.shared.setDataFriend(id: DataManager.shared.user.id!, listFriend: DataManager.shared.user.listIdFriends!)
+            if DataManager.shared.user.listIdFollowing?.first(where: { $0 == dataUser.id}) == nil {
+                DataManager.shared.user.listIdFollowing?.append(dataUser.id!)
+                DataManager.shared.setDataFollowing(id: DataManager.shared.user.id!, listIdFollowing: DataManager.shared.user.listIdFollowing!)
             }
         } else {
             DataManager.shared.setDataUser()
             isActive = true
-            addFriendButton.setTitle("Add Friend", for: .normal)
-            for index in 0..<dataUser.listIdFriends!.count {
-                if dataUser.listIdFriends![index] == DataManager.shared.user.id {
-                    dataUser.listIdFriends?.remove(at: index)
-                    DataManager.shared.setDataFriend(id: dataUser.id!, listFriend: dataUser.listIdFriends!)
+            addFriendButton.setTitle("Follow", for: .normal)
+            for index in 0..<dataUser.listIdFollowers!.count {
+                if dataUser.listIdFollowers![index] == DataManager.shared.user.id {
+                    dataUser.listIdFollowers?.remove(at: index)
+                    DataManager.shared.setDataFollowers(id: dataUser.id!, listIdFollowers: dataUser.listIdFollowers!)
+                    break
                 }
             }
-            for index in 0..<DataManager.shared.user.listIdFriends!.count {
-                if DataManager.shared.user.listIdFriends?[index] == dataUser.id {
-                    DataManager.shared.user.listIdFriends?.remove(at: index)
-                    DataManager.shared.setDataFriend(id: DataManager.shared.user.id!, listFriend: DataManager.shared.user.listIdFriends!)
+            for index in 0..<DataManager.shared.user.listIdFollowing!.count {
+                if DataManager.shared.user.listIdFollowing?[index] == dataUser.id {
+                    DataManager.shared.user.listIdFollowing?.remove(at: index)
+                    DataManager.shared.setDataFollowing(id: DataManager.shared.user.id!, listIdFollowing: DataManager.shared.user.listIdFollowing!)
                     break
                 }
             }
@@ -76,8 +77,8 @@ class ProfileFriendTableViewCell: UITableViewCell {
     }
     
     func setData(user: User) {
-        if user.listIdFriends != nil {
-            for item in user.listIdFriends! {
+        if user.listIdFollowers != nil {
+            for item in user.listIdFollowers! {
                 if item == DataManager.shared.user.id {
                     addFriendButton.setTitle(" Unfriend", for: .normal)
                     isActive = false

@@ -23,11 +23,6 @@ class NotifyViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -89,6 +84,25 @@ class NotifyViewController: UIViewController {
 
 extension NotifyViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if dataSources[indexPath.row].type == "comment" {
+            DataManager.shared.getPostFromId(idPost: dataSources[dataSources.count - indexPath.row - 1].idPost) { result in
+                let commentViewController = CommentViewController()
+                commentViewController.dataPost = result[0]
+                self.navigationController?.pushViewController(commentViewController, animated: true)
+            }
+        } else {
+            DataManager.shared.getUserFromId(id: dataSources[dataSources.count - indexPath.row - 1].idFriend) { result in
+                let friendViewController = FriendViewController()
+                friendViewController.dataUser = result
+                DataManager.shared.getPostFromId(idUser: result.id ?? "") { result in
+                    friendViewController.dataPost = result
+                    self.navigationController?.pushViewController(friendViewController, animated: true)
+                }
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -123,7 +137,7 @@ extension NotifyViewController: UITableViewDataSource {
             return NotifyTableViewCell()
         }
         cell.selectionStyle = .none
-        cell.setData(data: dataSources[indexPath.row])
+        cell.setData(data: dataSources[dataSources.count - indexPath.row - 1])
         return cell
     }
 

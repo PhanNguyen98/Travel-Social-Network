@@ -20,6 +20,7 @@ class ProfileUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectionView()
+        setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +36,16 @@ class ProfileUserViewController: UIViewController {
         setViewSegment()
     }
     
+//MARK: Set Navigationbar
+    func setNavigationBar() {
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(popVC))
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc func popVC() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 //MARK: SetCollectionView
     func setCollectionView() {
         collectionView.delegate = self
@@ -42,7 +53,6 @@ class ProfileUserViewController: UIViewController {
         collectionView.register(UINib(nibName: "InfoUserCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "InfoUserCollectionViewCell")
         collectionView.register(UINib(nibName: "PostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PostCollectionViewCell")
         collectionView.register(UINib(nibName: "FriendCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FriendCollectionViewCell")
-        collectionView.register(UINib(nibName: "HeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "\(HeaderCollectionReusableView.self)")
     }
     
     func setViewSegment() {
@@ -79,19 +89,6 @@ extension ProfileUserViewController: UICollectionViewDelegate {
 
 //MARK:: UICollectionViewDataSource
 extension ProfileUserViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            guard let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "\(HeaderCollectionReusableView.self)", for: indexPath) as? HeaderCollectionReusableView else {
-                fatalError("Invalid view type")
-            }
-            reusableView.cellDelegate = self
-            return reusableView
-        default:
-            assert(false, "Invalid element type")
-        }
-    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
@@ -131,19 +128,12 @@ extension ProfileUserViewController: UICollectionViewDataSource {
 //MARK: UICollectionViewDelegateFlowLayout
 extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        switch section {
-        case 0 :
-            return CGSize(width: collectionView.frame.width, height: 50)
-        default:
-            return CGSize()
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
             return CGSize(width: collectionView.bounds.width, height: 295)
+        case 1:
+            return CGSize(width: collectionView.bounds.width - 20, height: 140)
         default:
             return CGSize(width: collectionView.bounds.width/2 - 30, height: collectionView.bounds.width/2)
         }
@@ -153,6 +143,8 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
         switch section {
         case 0:
             return UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        case 1:
+            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         default:
             return UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         }
@@ -178,7 +170,7 @@ extension ProfileUserViewController: InfoUserCollectionViewCellDelegate {
         }
     }
     
-    func sendDataFriend(dataFriend: [User]) {
+    func sendDataUser(dataFriend: [User]) {
         self.dataFriend = dataFriend
         self.dataPost = [Post]()
         DispatchQueue.main.async {
@@ -189,16 +181,4 @@ extension ProfileUserViewController: InfoUserCollectionViewCellDelegate {
     func pushViewController(viewController: UIViewController) {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-}
-
-//MARK:
-extension ProfileUserViewController: HeaderCollectionReusableViewDelegate {
-    func presentAlertController(alertController: UIAlertController) {
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func popViewController() {
-        self.navigationController?.popViewController(animated: false)
-    }
-    
 }

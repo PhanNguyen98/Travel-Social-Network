@@ -95,11 +95,11 @@ class PostTableViewCell: UITableViewCell {
         heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
         countHeartButton.setTitle("", for: .normal)
         
-        avatarButton.imageView?.contentMode = .scaleToFill
+        avatarButton.imageView?.contentMode = .scaleAspectFill
         avatarButton.imageView?.layer.cornerRadius = avatarButton.frame.height / 2
         avatarButton.layer.cornerRadius = avatarButton.frame.height / 2
         avatarButton.layer.borderWidth = 1
-        avatarButton.layer.borderColor = UIColor.systemGray3.cgColor
+        avatarButton.layer.borderColor = UIColor.systemGray2.cgColor
     }
     
 //MARK: IBAction
@@ -182,7 +182,7 @@ extension PostTableViewCell: UICollectionViewDelegateFlowLayout {
         if listNameImage.count == 1 {
             return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         }
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

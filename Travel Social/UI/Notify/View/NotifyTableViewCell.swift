@@ -34,11 +34,20 @@ class NotifyTableViewCell: UITableViewCell {
     }
     
     func setData(data: Notify) {
-//        DataImageManager.shared.downloadImage(path: "avatar", nameImage: data.nameImageAvatar) { result in
-//            self.avatarImageView.kf.indicatorType = .activity
-//            self.avatarImageView.kf.setImage(with: result)
-//        }
-//        contentLabel.text = data.nameUser + " was comment: " + data.content
+        DataManager.shared.getUserFromId(id: data.idFriend) { result in
+            DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage!) { [self] resultImage in
+                avatarImageView.kf.indicatorType = .activity
+                avatarImageView.kf.setImage(with: resultImage)
+            }
+            switch data.type {
+            case "comment":
+                self.contentLabel.text = result.name ?? "" + " was comment: " + data.content
+            case "follow":
+                self.contentLabel.text = result.name ?? "" + " was follow you"
+            default:
+                self.contentLabel.text = result.name ?? "" + "was "
+            }
+        }
     }
     
 }

@@ -12,7 +12,7 @@ import FirebaseFirestore
 class DataManager {
     static let shared = DataManager()
     private let db = Firestore.firestore()
-    var user = User(id: "", nameImage: "user.png", name: nil, birthday: nil, place: nil, listIdFriends: nil, job: nil)
+    var user = User(id: "", nameImage: "user.png", name: nil, birthday: nil, place: nil, listIdFollowers: nil, listIdFollowing: nil, job: nil)
     
     private init(){
     }
@@ -24,7 +24,8 @@ class DataManager {
             "name": user.name ?? "",
             "birthday": user.birthday ?? "",
             "place": user.place ?? "",
-            "listIdFriends": user.listIdFriends ?? [],
+            "listIdFollowers": user.listIdFollowers ?? [],
+            "listIdFollowing": user.listIdFollowing ?? [],
             "job": user.job ?? ""
         ]) { err in
             if let err = err {
@@ -35,9 +36,15 @@ class DataManager {
         }
     }
     
-    func setDataFriend(id: String, listFriend: [String]) {
+    func setDataFollowers(id: String, listIdFollowers: [String]) {
         db.collection("users").document(id).setData([
-            "listIdFriends": listFriend
+            "listIdFollowers": listIdFollowers
+        ], merge: true)
+    }
+    
+    func setDataFollowing(id: String, listIdFollowing: [String]) {
+        db.collection("users").document(id).setData([
+            "listIdFollowing": listIdFollowing
         ], merge: true)
     }
     
@@ -66,7 +73,7 @@ class DataManager {
             "idFriend": data.idFriend,
             "content": data.content,
             "type": data.type,
-            "idType": data.idType
+            "idPost": data.idPost
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -112,8 +119,10 @@ class DataManager {
                                 self.user.place = value as? String
                             case "id":
                                 self.user.id = value as? String
-                            case "listIdFriends":
-                                self.user.listIdFriends = value as? [String]
+                            case "listIdFollowers":
+                                self.user.listIdFollowers = value as? [String]
+                            case "listIdFollowing":
+                                self.user.listIdFollowing = value as? [String]
                             case "name":
                                 self.user.name = value as? String
                             case "avatar":
@@ -173,8 +182,10 @@ class DataManager {
                                 result.place = value as? String
                             case "id":
                                 result.id = value as? String
-                            case "listIdFriends":
-                                result.listIdFriends = value as? [String]
+                            case "listIdFollowers":
+                                result.listIdFollowers = value as? [String]
+                            case "listIdFollowing":
+                                result.listIdFollowing = value as? [String]
                             case "name":
                                 result.name = value as? String
                             case "avatar":
@@ -208,8 +219,10 @@ class DataManager {
                                 result.place = value as? String
                             case "id":
                                 result.id = value as? String
-                            case "listIdFriends":
-                                result.listIdFriends = value as? [String]
+                            case "listIdFollowers":
+                                result.listIdFollowers = value as? [String]
+                            case "listIdFollowing":
+                                result.listIdFollowing = value as? [String]
                             case "name":
                                 result.name = value as? String
                             case "avatar":
@@ -232,6 +245,42 @@ class DataManager {
     func getPostFromId(idUser: String, completionHandler: @escaping (_ result: [Post]) -> ()) {
         var dataSources = [Post]()
         db.collection("posts").whereField("idUser", isEqualTo: idUser)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let data = Post()
+                        for (key, value) in document.data() {
+                            switch key {
+                            case "id":
+                                data.id = value as? String
+                            case "idUser":
+                                data.idUser = value as? String
+                            case "listImage":
+                                data.listImage = value as? [String]
+                            case "content":
+                                data.content = value as? String
+                            case "date":
+                                data.date = value as? String
+                            case "listIdHeart":
+                                data.listIdHeart = value as? [String]
+                            case "place":
+                                data.place = value as? String
+                            default:
+                                break
+                            }
+                        }
+                        dataSources.append(data)
+                    }
+                    completionHandler(dataSources)
+                }
+        }
+    }
+    
+    func getPostFromId(idPost: String, completionHandler: @escaping (_ result: [Post]) -> ()) {
+        var dataSources = [Post]()
+        db.collection("posts").whereField("id", isEqualTo: idPost)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -302,8 +351,10 @@ class DataManager {
                                 user.place = value as? String
                             case "id":
                                 user.id = value as? String
-                            case "listIdFriends":
-                                user.listIdFriends = value as? [String]
+                            case "listIdFollowers":
+                                user.listIdFollowers = value as? [String]
+                            case "listIdFollowing":
+                                user.listIdFollowing = value as? [String]
                             case "name":
                                 user.name = value as? String
                             case "avatar":
@@ -373,8 +424,10 @@ class DataManager {
                                 user.place = value as? String
                             case "id":
                                 user.id = value as? String
-                            case "listIdFriends":
-                                user.listIdFriends = value as? [String]
+                            case "listIdFollowers":
+                                user.listIdFollowers = value as? [String]
+                            case "listIdFollowing":
+                                user.listIdFollowing = value as? [String]
                             case "name":
                                 user.name = value as? String
                             case "avatar":

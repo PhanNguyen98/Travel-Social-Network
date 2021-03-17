@@ -48,7 +48,7 @@ class HomeViewController: UIViewController {
     
     func setData() {
         DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-            var data = DataManager.shared.user.listIdFriends ?? []
+            var data = DataManager.shared.user.listIdFollowers ?? []
             data.append(DataManager.shared.user.id!)
             DataManager.shared.getPostFromListId(listId: data) { result in
                 self.dataSources = result
@@ -59,7 +59,7 @@ class HomeViewController: UIViewController {
     
     func handlePostChanges(completed: @escaping () -> ()) {
         let db = Firestore.firestore()
-        var data = DataManager.shared.user.listIdFriends ?? []
+        var data = DataManager.shared.user.listIdFollowers ?? []
         data.append(DataManager.shared.user.id!)
         db.collection("posts").whereField("idUser", in: data).addSnapshotListener { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
@@ -68,16 +68,12 @@ class HomeViewController: UIViewController {
             }
             
             snapshot.documentChanges.forEach { diff in
-                if (diff.type == .added) {
-                }
                 if (diff.type == .modified) {
                     let docId = diff.document.documentID
                     if let indexOfPostToModify = self.dataSources.firstIndex(where: { $0.id == docId} ) {
                         let postToModify = self.dataSources[indexOfPostToModify]
                         postToModify.updatePost(withData: diff.document)
                     }
-                }
-                if (diff.type == .removed) {
                 }
             }
             completed()
@@ -123,7 +119,7 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 10))
-        headerView.backgroundColor = .clear
+        headerView.backgroundColor = .systemGray6
         return headerView
     }
     
@@ -200,7 +196,7 @@ extension HomeViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if tabBarController.selectedIndex == 0 {
             DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-                var data = DataManager.shared.user.listIdFriends ?? []
+                var data = DataManager.shared.user.listIdFollowers ?? []
                 data.append(DataManager.shared.user.id!)
                 DataManager.shared.getPostFromListId(listId: data) { result in
                     self.dataSources = result
@@ -209,7 +205,7 @@ extension HomeViewController: UITabBarControllerDelegate {
             }
         }
         
-        if tabBarController.selectedIndex == 2 {
+        if tabBarController.selectedIndex == 4 {
             let profileUserViewController = viewController as? ProfileUserViewController
             DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
                 profileUserViewController?.dataPost = result

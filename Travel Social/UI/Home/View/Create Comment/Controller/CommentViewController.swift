@@ -132,7 +132,7 @@ class CommentViewController: UIViewController {
                 notify.id = dataPost.idUser ?? ""
                 notify.type = "comment"
                 notify.idFriend = DataManager.shared.user.id ?? ""
-                notify.idType = dataPost.id ?? ""
+                notify.idPost = dataPost.id ?? ""
                 notify.content = commentTextField.text ?? ""
                 DataManager.shared.setDataNotify(data: notify)
             }

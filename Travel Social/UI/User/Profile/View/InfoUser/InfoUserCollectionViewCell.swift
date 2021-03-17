@@ -11,7 +11,7 @@ import Kingfisher
 protocol InfoUserCollectionViewCellDelegate: class {
     func pushViewController(viewController: UIViewController)
     func sendDataPost(dataPost: [Post])
-    func sendDataFriend(dataFriend: [User])
+    func sendDataUser(dataFriend: [User])
 }
 
 class InfoUserCollectionViewCell: UICollectionViewCell {
@@ -41,12 +41,21 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
             }
         case 1:
             DataManager.shared.setDataUser()
-            if DataManager.shared.user.listIdFriends?.count != 0 {
-                DataManager.shared.getUserFromListId(listId: DataManager.shared.user.listIdFriends!) { result in
-                    self.cellDelegate?.sendDataFriend(dataFriend: result)
+            if DataManager.shared.user.listIdFollowers?.count != 0 {
+                DataManager.shared.getUserFromListId(listId: DataManager.shared.user.listIdFollowers!) { result in
+                    self.cellDelegate?.sendDataUser(dataFriend: result)
                 }
             } else {
-                self.cellDelegate?.sendDataFriend(dataFriend: [User]())
+                self.cellDelegate?.sendDataUser(dataFriend: [User]())
+            }
+        case 2:
+            DataManager.shared.setDataUser()
+            if DataManager.shared.user.listIdFollowing!.count != 0 {
+                DataManager.shared.getUserFromListId(listId: DataManager.shared.user.listIdFollowing!) { result in
+                    self.cellDelegate?.sendDataUser(dataFriend: result)
+                }
+            } else {
+                self.cellDelegate?.sendDataUser(dataFriend: [User]())
             }
         default:
             break

@@ -14,7 +14,7 @@ class Notify {
     var content = ""
     var idFriend = ""
     var type = ""
-    var idType = ""
+    var idPost = ""
     
     func setData(withData: QueryDocumentSnapshot) {
         self.idNotify = withData.documentID
@@ -22,7 +22,7 @@ class Notify {
         self.id = withData.get("id") as? String ?? ""
         self.idFriend = withData.get("idFriend") as? String ?? ""
         self.type = withData.get("type") as? String ?? ""
-        self.idType = withData.get("idType") as? String ?? ""
+        self.idPost = withData.get("idPost") as? String ?? ""
     }
     
     func updateNotify(withData: QueryDocumentSnapshot) {
@@ -30,6 +30,6 @@ class Notify {
         self.id = withData.get("id") as? String ?? ""
         self.idFriend = withData.get("idFriend") as? String ?? ""
         self.type = withData.get("type") as? String ?? ""
-        self.idType = withData.get("idType") as? String ?? ""
+        self.idPost = withData.get("idPost") as? String ?? ""
     }
 }
