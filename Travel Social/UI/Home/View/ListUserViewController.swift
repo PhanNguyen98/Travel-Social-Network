@@ -42,8 +42,24 @@ class ListUserViewController: UIViewController {
 //MARK: UITableViewDelegate
 extension ListUserViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DataManager.shared.getPostFromId(idUser: dataSources[indexPath.row].id ?? "") { [self] result in
+            if dataSources[indexPath.row].id == DataManager.shared.user.id {
+                let profileUserViewController = ProfileUserViewController()
+                profileUserViewController.dataPost = result
+                profileUserViewController.dataUser = dataSources[indexPath.row]
+                self.navigationController?.pushViewController(profileUserViewController, animated: true)
+            } else {
+                let friendViewController = FriendViewController()
+                friendViewController.dataPost = result
+                friendViewController.dataUser = dataSources[indexPath.row]
+                self.navigationController?.pushViewController(friendViewController, animated: true)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return UITableView.automaticDimension
     }
     
 }

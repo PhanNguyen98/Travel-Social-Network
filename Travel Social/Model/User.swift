@@ -14,7 +14,8 @@ struct User {
     var name: String?
     var birthday: String?
     var place: String?
-    var listIdFriends: [String]?
+    var listIdFollowers: [String]?
+    var listIdFollowing: [String]?
     var job: String?
     
 }

@@ -11,10 +11,6 @@ import Photos
 import SVProgressHUD
 import Kingfisher
 
-protocol CreatePostViewControllerDelegate: class {
-    func presentAlertController(alertController: UIAlertController)
-}
-
 class CreatePostViewController: UIViewController {
 
 //MARK: Properties
@@ -24,15 +20,14 @@ class CreatePostViewController: UIViewController {
     @IBOutlet weak var selectImageButton: UIButton!
     @IBOutlet weak var placeTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var createPostButton: UIButton!
     
-    weak var createPostDelegate: CreatePostViewControllerDelegate?
     var resultImagePicker = [PHAsset]()
     var dataPost = Post()
     
 //MARK: ViewCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBar()
         setUI()
         setCollectionView()
         Utilities.checkPhotoLibrary()
@@ -40,7 +35,7 @@ class CreatePostViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         setDataUser()
     }
     
@@ -57,10 +52,9 @@ class CreatePostViewController: UIViewController {
         avatarImageView.layer.borderWidth = 1
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
         
+        contentTextView.dropShadow(color: UIColor.systemGray3, opacity: 0.3, offSet: .zero, radius: 10, scale: true)
         contentTextView.delegate = self
         contentTextView.layer.cornerRadius = 10
-        contentTextView.layer.borderWidth = 0.3
-        contentTextView.layer.borderColor = UIColor.black.cgColor
         
         selectImageButton.layer.cornerRadius = 15
         selectImageButton.layer.masksToBounds = true
@@ -68,13 +62,9 @@ class CreatePostViewController: UIViewController {
         placeTextField.placeholder = "Location"
         
         self.hideKeyboardWhenTappedAround()
+
         collectionView.layer.cornerRadius = 5
         collectionView.backgroundColor = .clear
-    }
-    
-    func setNavigationBar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(popViewController))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "POST", style: .plain, target: self, action: #selector(pushPost))
     }
     
 //MARK: SetData
@@ -134,12 +124,7 @@ class CreatePostViewController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
     }
     
-//MARK: Objc Func
-    @objc func popViewController() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func pushPost() {
+    @IBAction func createPost(_ sender: Any) {
         var resultImage = [String]()
         for asset in resultImagePicker {
             let assetResources = PHAssetResource.assetResources(for: asset)
@@ -158,12 +143,11 @@ class CreatePostViewController: UIViewController {
             DataManager.shared.getCountObject(nameCollection: "posts") { result in
                 self.dataPost.id = String(result + 1)
                 DataManager.shared.setDataPost(data: self.dataPost) { result in
-                    let alert = UIAlertController(title: "Message", message: result, preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                    self.dismiss(animated: true) {
-                        SVProgressHUD.dismiss()
-                        self.createPostDelegate?.presentAlertController(alertController: alert)
-                    }
+                    SVProgressHUD.dismiss()
+                    self.placeTextField.text = ""
+                    self.contentTextView.text = ""
+                    self.resultImagePicker = [PHAsset]()
+                    self.showAlert(message: result)
                 }
             }
         } else {
@@ -178,7 +162,6 @@ extension CreatePostViewController: UITextViewDelegate {
 
 //MARK: OpalImagePickerControllerDelegate
 extension CreatePostViewController: OpalImagePickerControllerDelegate {
-    
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
         resultImagePicker = assets
         self.collectionView.reloadData()
@@ -215,7 +198,7 @@ extension CreatePostViewController: UICollectionViewDataSource {
 extension CreatePostViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height/2)
+            return CGSize(width: (collectionView.bounds.width - 20)*3/2, height: collectionView.bounds.height - 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -229,6 +212,4 @@ extension CreatePostViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
-    
-    
 }

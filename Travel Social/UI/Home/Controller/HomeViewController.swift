@@ -20,12 +20,20 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setUpTableView()
         self.tabBarController?.delegate = self
+        handlePostChanges {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         setData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     //MARK: SetData
@@ -40,12 +48,35 @@ class HomeViewController: UIViewController {
     
     func setData() {
         DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-            var data = DataManager.shared.user.listIdFriends ?? []
+            var data = DataManager.shared.user.listIdFollowers ?? []
             data.append(DataManager.shared.user.id!)
             DataManager.shared.getPostFromListId(listId: data) { result in
                 self.dataSources = result
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    func handlePostChanges(completed: @escaping () -> ()) {
+        let db = Firestore.firestore()
+        var data = DataManager.shared.user.listIdFollowers ?? []
+        data.append(DataManager.shared.user.id!)
+        db.collection("posts").whereField("idUser", in: data).addSnapshotListener { (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                print("Error fetching snapshots: \(error!)")
+                return completed()
+            }
+            
+            snapshot.documentChanges.forEach { diff in
+                if (diff.type == .modified) {
+                    let docId = diff.document.documentID
+                    if let indexOfPostToModify = self.dataSources.firstIndex(where: { $0.id == docId} ) {
+                        let postToModify = self.dataSources[indexOfPostToModify]
+                        postToModify.updatePost(withData: diff.document)
+                    }
+                }
+            }
+            completed()
         }
     }
     
@@ -61,7 +92,6 @@ extension HomeViewController: UITableViewDelegate {
         default:
             let commentViewController = CommentViewController()
             commentViewController.dataPost = dataSources[dataSources.count - indexPath.section]
-            commentViewController.commentDelegate = self
             self.navigationController?.pushViewController(commentViewController, animated: true)
         }
     }
@@ -89,7 +119,7 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 10))
-        headerView.backgroundColor = .clear
+        headerView.backgroundColor = .systemGray6
         return headerView
     }
     
@@ -103,7 +133,6 @@ extension HomeViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell", for: indexPath) as? TitleTableViewCell else { return TitleTableViewCell()
             }
             cell.cellDelegate = self
-            cell.setData(item: DataManager.shared.user)
             cell.selectionStyle = .none
             return cell
         default:
@@ -122,10 +151,26 @@ extension HomeViewController: UITableViewDataSource {
 
 //MARK: PostTableViewCellDelegate
 extension HomeViewController: PostTableViewCellDelegate {
+    func showProfile(user: User) {
+        DataManager.shared.getPostFromId(idUser: user.id!) { result in
+            DataManager.shared.setDataUser()
+            if user.id == DataManager.shared.user.id {
+                let profileUserViewController = ProfileUserViewController()
+                profileUserViewController.dataPost = result
+                profileUserViewController.dataUser = user
+                self.navigationController?.pushViewController(profileUserViewController, animated: true)
+            } else {
+                let friendViewController = FriendViewController()
+                friendViewController.dataPost = result
+                friendViewController.dataUser = user
+                self.navigationController?.pushViewController(friendViewController, animated: true)
+            }
+        }
+    }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, listImage: [String]) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String) {
         let detailImageViewController = DetailImageViewController()
-        detailImageViewController.dataSources = listImage
+        detailImageViewController.nameImage = nameImage
         self.navigationController?.pushViewController(detailImageViewController, animated: true)
     }
     
@@ -140,7 +185,6 @@ extension HomeViewController: PostTableViewCellDelegate {
     func showListComment(dataPost: Post) {
         let commentViewController = CommentViewController()
         commentViewController.dataPost = dataPost
-        commentViewController.commentDelegate = self
         self.navigationController?.pushViewController(commentViewController, animated: true)
     }
     
@@ -150,19 +194,17 @@ extension HomeViewController: PostTableViewCellDelegate {
 extension HomeViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if tabBarController.selectedIndex == 0 {
-            
+        switch tabBarController.selectedIndex {
+        case 0:
             DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-                var data = DataManager.shared.user.listIdFriends ?? []
+                var data = DataManager.shared.user.listIdFollowing ?? []
                 data.append(DataManager.shared.user.id!)
                 DataManager.shared.getPostFromListId(listId: data) { result in
                     self.dataSources = result
                     self.tableView.reloadData()
                 }
             }
-        }
-        
-        if tabBarController.selectedIndex == 2 {
+        case 4:
             let profileUserViewController = viewController as? ProfileUserViewController
             DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
                 profileUserViewController?.dataPost = result
@@ -170,35 +212,16 @@ extension HomeViewController: UITabBarControllerDelegate {
                 profileUserViewController?.dataUser = DataManager.shared.user
                 profileUserViewController?.collectionView.reloadData()
             }
+        default:
+            break
         }
     }
     
-}
-
-//MARK: CommentViewControllerDelegate
-extension HomeViewController: CommentViewControllerDelegate {
-    func reloadCountComment() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
 }
 
 //MARK: TitleTableViewCellDelegate
 extension HomeViewController: TitleTableViewCellDelegate {
-    func pushViewController(viewController: UIViewController) {
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
     func presentViewController(viewController: UIViewController) {
         self.present(viewController, animated: true, completion: nil)
     }
-}
-
-//MARK: CreatePostViewControllerDelegate
-extension HomeViewController: CreatePostViewControllerDelegate {
-    func presentAlertController(alertController: UIAlertController) {
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
 }

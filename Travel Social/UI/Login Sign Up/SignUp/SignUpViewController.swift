@@ -25,6 +25,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
     weak var signUpDelegate: SignUpViewControllerDelegate?
+    let colors = Colors()
     
 //MARK: View cycle
     override func viewDidLoad() {
@@ -40,8 +41,8 @@ class SignUpViewController: UIViewController {
     
 //MARK: SetUI
     func setUI() {
-        self.view.setBackgroundImage(img: UIImage(named: "background")!)
-        self.hideKeyboardWhenTappedAround()
+        colors.gradientLayer.frame = self.view.bounds
+        self.view.layer.insertSublayer(colors.gradientLayer, at:0)
         
         nameTextField.layer.cornerRadius = 20
         nameTextField.layer.masksToBounds = true

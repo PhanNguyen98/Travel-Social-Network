@@ -22,8 +22,7 @@ class DataImageManager {
         guard let data = image.jpegData(compressionQuality: 1.0) else { return }
         _ = imageRef.putData(data, metadata: nil) { (metadata, error) in
             if let error = error {
-                print(error)
-                completion("Upload Image Error")
+                completion(error.localizedDescription)
             } else {
                 completion("Upload Success")
             }

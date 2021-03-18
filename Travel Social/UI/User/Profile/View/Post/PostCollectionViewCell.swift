@@ -9,13 +9,11 @@ import UIKit
 import Kingfisher
 
 class PostCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var countHeartLabel: UILabel!
-    @IBOutlet weak var countCommentButton: UILabel!
     
-    let colors = Colors()
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var placeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,27 +22,28 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView.image = nil
     }
     
     func setUI() {
-        colors.gradientLayer.frame = self.infoView.bounds
-        self.infoView.layer.insertSublayer(colors.gradientLayer, at:0)
-        
-        infoView.layer.cornerRadius = 10
-        infoView.layer.masksToBounds = true
+        self.dropShadow(color: UIColor.systemGray3, opacity: 0.3, offSet: .zero, radius: 10, scale: true)
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
+        avatarImageView.layer.borderWidth = 0.5
+        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
     }
     
     func setData(data: Post) {
-        DataImageManager.shared.downloadImage(path: "post", nameImage: data.listImage?[0] ?? "") { result in
-            DispatchQueue.main.async {
-                self.imageView.kf.indicatorType = .activity
-                self.imageView.kf.setImage(with: result)
+        if let idUser = data.idUser {
+            DataManager.shared.getUserFromId(id: idUser) { result in
+                DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage ?? "") { resultUrl in
+                    self.avatarImageView.kf.indicatorType = .activity
+                    self.avatarImageView.kf.setImage(with: resultUrl)
+                }
+                self.nameLabel.text = result.name
             }
-        }
-        countHeartLabel.text = String(data.listIdHeart?.count ?? 0)
-        DataManager.shared.getCountComment(idPost: data.id!) { result in
-            self.countCommentButton.text = String(result)
+            placeLabel.text = data.place ?? ""
+            placeLabel.text?.append("  ")
+            placeLabel.text?.append(data.date!)
+            contentLabel.text = data.content
         }
     }
 

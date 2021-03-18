@@ -98,10 +98,27 @@ extension FriendViewController: UITableViewDataSource {
 }
 
 extension FriendViewController: PostTableViewCellDelegate {
+    func showProfile(user: User) {
+        DataManager.shared.getPostFromId(idUser: user.id!) { result in
+            DataManager.shared.setDataUser()
+            if user.id == DataManager.shared.user.id {
+                let profileUserViewController = ProfileUserViewController()
+                profileUserViewController.dataPost = result
+                profileUserViewController.dataUser = user
+                self.navigationController?.pushViewController(profileUserViewController, animated: true)
+            } else {
+                let friendViewController = FriendViewController()
+                friendViewController.dataPost = result
+                friendViewController.dataUser = user
+                self.navigationController?.pushViewController(friendViewController, animated: true)
+            }
+        }
+    }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, listImage: [String]) {
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String) {
         let detailImageViewController = DetailImageViewController()
-        detailImageViewController.dataSources = listImage
+        detailImageViewController.nameImage = nameImage
         self.navigationController?.pushViewController(detailImageViewController, animated: true)
     }
     
@@ -116,18 +133,7 @@ extension FriendViewController: PostTableViewCellDelegate {
     func showListComment(dataPost: Post) {
         let commentViewController = CommentViewController()
         commentViewController.dataPost = dataPost
-        commentViewController.commentDelegate = self
         self.present(commentViewController, animated: true, completion: nil)
-    }
-    
-}
-
-extension FriendViewController: CommentViewControllerDelegate {
-    
-    func reloadCountComment() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
     
 }

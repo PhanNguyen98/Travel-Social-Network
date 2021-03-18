@@ -15,6 +15,7 @@ class FriendCollectionViewCell: UICollectionViewCell {
      
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.dropShadow(color: UIColor.systemGray3, opacity: 0.3, offSet: .zero, radius: 10, scale: true)
     }
     
     override func prepareForReuse() {

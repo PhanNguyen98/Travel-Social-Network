@@ -8,11 +8,18 @@
 import UIKit
 import Kingfisher
 
+protocol CommentTableViewCellDelegate: class {
+    func showProfile(user: User)
+}
+
 class CommentTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameButton: UIButton!
+    @IBOutlet weak var avatarButton: UIButton!
+    
+    var dataComment = Comment()
+    weak var cellDelegate: CommentTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,27 +28,37 @@ class CommentTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        avatarImageView.image = nil
+        avatarButton.imageView?.image = nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    @IBAction func showProfile(_ sender: Any) {
+        if let idUser = dataComment.idUser {
+            DataManager.shared.getUserFromId(id: idUser) { result in
+                self.cellDelegate?.showProfile(user: result)
+            }
+        }
+    }
+    
     func setUI() {
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
-        avatarImageView.layer.borderWidth = 1
-        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
-        avatarImageView.layer.masksToBounds = true
+        avatarButton.imageView?.contentMode = .scaleAspectFill
+        avatarButton.imageView?.layer.cornerRadius = avatarButton.frame.height / 2
+        avatarButton.layer.cornerRadius = avatarButton.frame.height / 2
+        avatarButton.layer.borderWidth = 1
+        avatarButton.layer.borderColor = UIColor.systemGray3.cgColor
+        avatarButton.layer.masksToBounds = true
     }
     
     func setData(comment: Comment) {
         DataManager.shared.getUserFromId(id: comment.idUser!) { result in
             DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage!) { result in
-                self.avatarImageView.kf.indicatorType = .activity
-                self.avatarImageView.kf.setImage(with: result)
+                self.avatarButton.imageView?.kf.indicatorType = .activity
+                self.avatarButton.kf.setImage(with: result, for: .normal)
             }
-            self.nameLabel.text = result.name
+            self.nameButton.setTitle(result.name, for: .normal)
         }
         commentLabel.text = comment.content
     }

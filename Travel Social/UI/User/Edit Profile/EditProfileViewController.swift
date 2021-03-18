@@ -12,7 +12,6 @@ import Kingfisher
 
 protocol EditProfileViewControllerDelegate: class {
     func changeAvatarImage(image: UIImage?)
-    func changeBackgroundImage(image: UIImage?)
 }
 
 class EditProfileViewController: UIViewController {
@@ -83,8 +82,8 @@ class EditProfileViewController: UIViewController {
         placeTextField.layer.cornerRadius = 10
         jobTextField.layer.cornerRadius = 10
         birthdayDatePicker.preferredDatePickerStyle = .compact
+        birthdayDatePicker.maximumDate = Date()
         self.hideKeyboardWhenTappedAround()
-        
     }
     
     func setNavigation() {

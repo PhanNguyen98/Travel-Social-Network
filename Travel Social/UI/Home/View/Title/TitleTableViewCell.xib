@@ -4,85 +4,53 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="166" id="KGk-i7-Jjw" customClass="TitleTableViewCell" customModule="Travel_Social" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="486" height="166"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="55" id="KGk-i7-Jjw" customClass="TitleTableViewCell" customModule="Travel_Social" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="488" height="55"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="486" height="166"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="488" height="55"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KW3-nG-L9u">
-                        <rect key="frame" x="446" y="15" width="25" height="25"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSt-A0-93b">
+                        <rect key="frame" x="448" y="15" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="bdx-VH-Oux"/>
-                            <constraint firstAttribute="width" constant="25" id="v7x-UO-ryz"/>
+                            <constraint firstAttribute="height" constant="25" id="Z08-Iy-UGP"/>
+                            <constraint firstAttribute="width" constant="25" id="wuf-nx-9Q6"/>
                         </constraints>
-                        <state key="normal" title="Button" image="notify"/>
+                        <state key="normal" title="Button" image="search"/>
                         <connections>
-                            <action selector="showNotification:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nTe-7r-SfR"/>
+                            <action selector="presentSearchViewController:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nh5-hL-DNR"/>
                         </connections>
                     </button>
-                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Vn1-MN-Fmu">
-                        <rect key="frame" x="10" y="0.0" width="416" height="55"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </searchBar>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Kn4-Rw-o4A">
-                        <rect key="frame" x="15" y="80" width="45" height="45"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="45" id="04l-vB-VjG"/>
-                            <constraint firstAttribute="height" constant="45" id="JAf-cB-P3K"/>
-                        </constraints>
-                    </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyb-6U-1I8">
-                        <rect key="frame" x="70" y="87.5" width="386" height="30"/>
-                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="SaN-WB-b5z"/>
-                        </constraints>
-                        <state key="normal" title="What's on your mind">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                        <connections>
-                            <action selector="showCreatePost:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="b9d-A8-ECm"/>
-                        </connections>
-                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bm2-0G-xxl">
+                        <rect key="frame" x="10" y="14" width="143.5" height="27"/>
+                        <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="27"/>
+                        <color key="textColor" red="0.0" green="0.76078431372549016" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
-                <color key="backgroundColor" red="0.96123024922417155" green="0.96069485088114304" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="KW3-nG-L9u" firstAttribute="leading" secondItem="Vn1-MN-Fmu" secondAttribute="trailing" constant="20" id="DQm-yq-4as"/>
-                    <constraint firstItem="Vn1-MN-Fmu" firstAttribute="centerY" secondItem="KW3-nG-L9u" secondAttribute="centerY" id="Kel-8C-LuW"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="fyb-6U-1I8" secondAttribute="trailing" constant="10" id="MFg-V8-B7T"/>
-                    <constraint firstItem="fyb-6U-1I8" firstAttribute="centerY" secondItem="Kn4-Rw-o4A" secondAttribute="centerY" id="Ojz-83-Osb"/>
-                    <constraint firstItem="Kn4-Rw-o4A" firstAttribute="top" secondItem="Vn1-MN-Fmu" secondAttribute="bottom" constant="25" id="QZm-kz-7Hn"/>
-                    <constraint firstAttribute="bottom" secondItem="Kn4-Rw-o4A" secondAttribute="bottom" constant="20" id="UGD-25-4Jt"/>
-                    <constraint firstAttribute="trailing" secondItem="KW3-nG-L9u" secondAttribute="trailing" constant="15" id="bcd-Lb-Erh"/>
-                    <constraint firstItem="Vn1-MN-Fmu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="bfj-uo-XdS"/>
-                    <constraint firstItem="Vn1-MN-Fmu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cK5-t0-oGz"/>
-                    <constraint firstItem="fyb-6U-1I8" firstAttribute="leading" secondItem="Kn4-Rw-o4A" secondAttribute="trailing" constant="10" id="gd9-Ss-1m3"/>
-                    <constraint firstItem="KW3-nG-L9u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="pkM-B4-fMP"/>
-                    <constraint firstItem="Kn4-Rw-o4A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="tkV-5C-twu"/>
+                    <constraint firstItem="bm2-0G-xxl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4CX-ab-MZ0"/>
+                    <constraint firstAttribute="trailing" secondItem="YSt-A0-93b" secondAttribute="trailing" constant="15" id="eRU-5F-txn"/>
+                    <constraint firstItem="bm2-0G-xxl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="jpx-6K-yAb"/>
+                    <constraint firstItem="YSt-A0-93b" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="kaZ-Pu-P1Y"/>
+                    <constraint firstAttribute="bottom" secondItem="YSt-A0-93b" secondAttribute="bottom" constant="15" id="veA-K2-WOr"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="avatarImageView" destination="Kn4-Rw-o4A" id="i24-mv-di2"/>
-                <outlet property="createPostButton" destination="fyb-6U-1I8" id="KuM-kk-OVP"/>
-                <outlet property="searchBar" destination="Vn1-MN-Fmu" id="bjA-jx-XbN"/>
+                <outlet property="searchButton" destination="YSt-A0-93b" id="YvB-ra-G2c"/>
             </connections>
-            <point key="canvasLocation" x="-289.85507246376812" y="105.80357142857143"/>
+            <point key="canvasLocation" x="-288.40579710144931" y="68.638392857142847"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="avatar" width="128" height="128"/>
-        <image name="notify" width="128" height="128"/>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="search" width="128" height="128"/>
     </resources>
 </document>
