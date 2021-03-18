@@ -25,11 +25,9 @@ class FriendCollectionViewCell: UICollectionViewCell {
     
     func setData(data: User) {
         nameLabel.text = data.name
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: data.nameImage!) { result in
-            DispatchQueue.main.async {
-                self.imageView.kf.indicatorType = .activity
-                self.imageView.kf.setImage(with: result)
-            }
+        DispatchQueue.main.async {
+            self.imageView.kf.indicatorType = .activity
+            self.imageView.kf.setImage(with: URL(string: data.nameImage!))
         }
     }
 

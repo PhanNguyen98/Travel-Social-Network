@@ -24,24 +24,34 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAP-zk-ywd">
-                        <rect key="frame" x="80" y="25" width="329" height="26.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                        <rect key="frame" x="80" y="10" width="329" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igc-n6-Vjk">
+                        <rect key="frame" x="80" y="50" width="329" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="i31-1U-ihX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="4DI-9y-8Dk"/>
+                    <constraint firstItem="ZAP-zk-ywd" firstAttribute="top" secondItem="i31-1U-ihX" secondAttribute="top" id="9Ny-F4-co3"/>
                     <constraint firstAttribute="trailing" secondItem="ZAP-zk-ywd" secondAttribute="trailing" constant="10" id="Bq4-Dn-QYP"/>
+                    <constraint firstItem="Igc-n6-Vjk" firstAttribute="bottom" secondItem="i31-1U-ihX" secondAttribute="bottom" id="HVx-Zb-rgY"/>
+                    <constraint firstItem="Igc-n6-Vjk" firstAttribute="leading" secondItem="i31-1U-ihX" secondAttribute="trailing" constant="10" id="Jgf-fJ-nZb"/>
                     <constraint firstAttribute="bottom" secondItem="i31-1U-ihX" secondAttribute="bottom" constant="10" id="O1L-Yw-zCj"/>
                     <constraint firstItem="ZAP-zk-ywd" firstAttribute="leading" secondItem="i31-1U-ihX" secondAttribute="trailing" constant="10" id="PuC-K5-qhw"/>
                     <constraint firstItem="i31-1U-ihX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="VJW-Zh-tBA"/>
-                    <constraint firstItem="ZAP-zk-ywd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="uTW-an-l0M"/>
+                    <constraint firstAttribute="trailing" secondItem="Igc-n6-Vjk" secondAttribute="trailing" constant="10" id="auv-Uq-H8P"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImageView" destination="i31-1U-ihX" id="TIZ-Ft-dYF"/>
+                <outlet property="jobLabel" destination="Igc-n6-Vjk" id="GH7-Fv-hJu"/>
                 <outlet property="nameLabel" destination="ZAP-zk-ywd" id="gAz-hK-2vd"/>
             </connections>
             <point key="canvasLocation" x="-154" y="3"/>

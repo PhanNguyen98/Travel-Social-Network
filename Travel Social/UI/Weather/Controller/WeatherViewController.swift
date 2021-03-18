@@ -29,6 +29,11 @@ class WeatherViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        SVProgressHUD.dismiss()
+    }
+    
     func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self

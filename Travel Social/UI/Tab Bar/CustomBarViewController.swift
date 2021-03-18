@@ -21,20 +21,15 @@ class CustomBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabBar()
-        setNavigation()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        setNotification()
+        setNavigationBar()
     }
     
 //MARK: SetUI
     func setTabBar() {
         self.delegate = self
         homeViewController.tabBarItem.image = UIImage(systemName: "house.fill")
-        createPostViewController.tabBarItem.image = UIImage(systemName: "text.badge.plus")
+        createPostViewController.tabBarItem.image = UIImage(systemName: "plus.rectangle")
         profileUserViewController.tabBarItem.image = UIImage(systemName: "person.fill")
         notifyViewController.tabBarItem.image = UIImage(systemName: "bell.fill")
         weatherViewController.tabBarItem.image = UIImage(systemName: "cloud.sun.rain.fill")
@@ -45,13 +40,16 @@ class CustomBarViewController: UITabBarController {
         }   
     }
     
-    func setNavigation() {
-        let optionButton = UIBarButtonItem(image: UIImage(named: "option"), style: .plain, target: self, action: #selector(showOption))
-        self.navigationItem.leftBarButtonItem = optionButton
-    }
-    
-    @objc func showOption() {
-        self.navigationController?.present(setting(), animated: true, completion: nil)
+    func setNavigationBar(){
+        let menuBtn = UIButton(type: .custom)
+        menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 20, height: 20)
+        menuBtn.setImage(UIImage(named:"option"), for: .normal)
+        menuBtn.imageView?.contentMode = .scaleAspectFill
+        menuBtn.addTarget(self, action: #selector(showOption), for: UIControl.Event.touchUpInside)
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuBtn)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
     }
     
     func setting() -> UIAlertController {
@@ -64,7 +62,18 @@ class CustomBarViewController: UITabBarController {
         alertController.pruneNegativeWidthConstraints()
         return alertController
     }
+    
+    func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(getData(_:)), name: NSNotification.Name("Notify"), object: nil)
+    }
+    
+    @objc func showOption() {
+        self.navigationController?.present(setting(), animated: true, completion: nil)
+    }
 
+    @objc func getData(_ notification: Notification) {
+        notifyViewController.tabBarItem.image = notification.object as? UIImage
+    }
 }
 
 extension CustomBarViewController: UITabBarControllerDelegate {

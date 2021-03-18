@@ -24,11 +24,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(nameImage: String) {
-        DataImageManager.shared.downloadImage(path: "post", nameImage: nameImage) { result in
-            DispatchQueue.main.async {
-                self.imageView.kf.indicatorType = .activity
-                self.imageView.kf.setImage(with: result)
-            }
+        DispatchQueue.main.async {
+            self.imageView.kf.indicatorType = .activity
+            self.imageView.kf.setImage(with: URL(string: nameImage))
         }
     }
 

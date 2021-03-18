@@ -35,7 +35,11 @@ class WeatherTableViewCell: UITableViewCell {
         humidityLabel.text = String(data.temp?.humidity ?? 0) + " %"
         tempLabel.text = String(data.temp?.tempMin ?? 0) + " K - " + String(data.temp?.tempMax ?? 0) + " K"
         speedCloudLabel.text = String(data.wind?.speed ?? 0) + " m/s"
-        titleLabel.text = "Day " + String(index + 1) + " - " + (data.weather?[0].description)!
+        if index == 0 {
+            titleLabel.text = "Day " + String(index + 1) + " - " + (data.weather?[0].description)! + " " + Utilities.getCurrentDate()
+        } else {
+            titleLabel.text = "Day " + String(index + 1) + " - " + (data.weather?[0].description)!
+        }
     }
     
 }

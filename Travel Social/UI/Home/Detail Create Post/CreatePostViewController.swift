@@ -47,12 +47,11 @@ class CreatePostViewController: UIViewController {
     }
     
     func setUI() {
-        nameLabel.underline()
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.layer.borderWidth = 1
-        avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
+        avatarImageView.layer.borderColor = UIColor.systemGray2.cgColor
         
-        contentTextView.dropShadow(color: UIColor.systemGray3, opacity: 0.3, offSet: .zero, radius: 10, scale: true)
+        contentTextView.dropShadow(color: UIColor.systemGray2, opacity: 0.5, offSet: .zero, radius: 10, scale: true)
         contentTextView.delegate = self
         contentTextView.layer.cornerRadius = 10
         
@@ -62,33 +61,22 @@ class CreatePostViewController: UIViewController {
         placeTextField.placeholder = "Location"
         
         self.hideKeyboardWhenTappedAround()
-
-        collectionView.layer.cornerRadius = 5
+        
+        collectionView.layer.cornerRadius = 10
+        collectionView.layer.borderWidth = 0.5
+        collectionView.layer.borderColor = UIColor.systemGray2.cgColor
         collectionView.backgroundColor = .clear
+        
+        createPostButton.layer.cornerRadius = 15
     }
     
 //MARK: SetData
     func setDataUser() {
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: DataManager.shared.user.nameImage!) { result in
-            DispatchQueue.main.async() {
-                self.avatarImageView.kf.indicatorType = .activity
-                self.avatarImageView.kf.setImage(with: result)
-            }
+        DispatchQueue.main.async() {
+            self.avatarImageView.kf.indicatorType = .activity
+            self.avatarImageView.kf.setImage(with: URL(string: DataManager.shared.user.nameImage!))
         }
         nameLabel.text = DataManager.shared.user.name
-    }
-    
-    func getCurrentDate() -> String {
-        let currentDateTime = Date()
-        let userCalendar = Calendar.current
-        let requestedComponents: Set<Calendar.Component> = [
-            .year,
-            .month,
-            .day,
-        ]
-        let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
-        let result = String(dateTimeComponents.day!) + "-" + String(dateTimeComponents.month!) + "-" + String(dateTimeComponents.year!)
-        return result
     }
     
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
@@ -125,32 +113,52 @@ class CreatePostViewController: UIViewController {
     }
     
     @IBAction func createPost(_ sender: Any) {
-        var resultImage = [String]()
-        for asset in resultImagePicker {
-            let assetResources = PHAssetResource.assetResources(for: asset)
-            let nameImage = assetResources.first!.originalFilename
-            resultImage.append(nameImage)
-            DataImageManager.shared.uploadsImage(image: Utilities.getAssetThumbnail(asset: asset), place: "post", nameImage: nameImage) { result in
-            }
-        }
-        if contentTextView.text != "" && resultImage.count != 0 && placeTextField.text != "" {
-            SVProgressHUD.show()
-            dataPost.idUser = DataManager.shared.user.id!
-            dataPost.date = getCurrentDate()
-            dataPost.listImage = resultImage
-            dataPost.content = contentTextView.text
-            dataPost.place = placeTextField.text
-            DataManager.shared.getCountObject(nameCollection: "posts") { result in
-                self.dataPost.id = String(result + 1)
-                DataManager.shared.setDataPost(data: self.dataPost) { result in
-                    SVProgressHUD.dismiss()
-                    self.placeTextField.text = ""
-                    self.contentTextView.text = ""
-                    self.resultImagePicker = [PHAsset]()
-                    self.showAlert(message: result)
+        SVProgressHUD.show()
+        if contentTextView.text != "" && resultImagePicker.count != 0 && placeTextField.text != "" {
+            var resultImage = [String]()
+            let dispatchGroup = DispatchGroup()
+            for asset in resultImagePicker {
+                let assetResources = PHAssetResource.assetResources(for: asset)
+                let nameImage = assetResources.first!.originalFilename
+                dispatchGroup.enter()
+                DataImageManager.shared.uploadsImage(image: Utilities.getAssetThumbnail(asset: asset), place: "post", nameImage: nameImage) { result in
+                    switch result {
+                    case .success(let url):
+                        guard let url = url else { return }
+                        resultImage.append(url)
+                        dispatchGroup.leave()
+                    case .failure(let error):
+                        SVProgressHUD.dismiss()
+                        self.showAlert(message: error.localizedDescription)
+                    }
                 }
             }
-        } else {
+            dispatchGroup.notify(queue: .main) { [self] in
+                dataPost.idUser = DataManager.shared.user.id!
+                dataPost.date = Utilities.getCurrentDate()
+                dataPost.listImage = resultImage
+                dataPost.content = contentTextView.text
+                dataPost.place = placeTextField.text
+                DataManager.shared.getCountObject(nameCollection: "posts") { result in
+                    self.dataPost.id = String(result + 1)
+                    DataManager.shared.setDataPost(data: self.dataPost) { result in
+                        switch result {
+                        case .failure(let error):
+                            self.showAlert(message: error.localizedDescription)
+                        case .success(let success):
+                            self.placeTextField.text = ""
+                            self.contentTextView.text = ""
+                            self.resultImagePicker = [PHAsset]()
+                            self.collectionView.reloadData()
+                            self.showAlert(message: success)
+                        }
+                        SVProgressHUD.dismiss()
+                    }
+                }
+            }
+        }
+        else {
+            SVProgressHUD.dismiss()
             showAlert(message: "please fill in all fields and select image")
         }
     }
@@ -198,7 +206,7 @@ extension CreatePostViewController: UICollectionViewDataSource {
 extension CreatePostViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: (collectionView.bounds.width - 20)*3/2, height: collectionView.bounds.height - 20)
+            return CGSize(width: (collectionView.bounds.width - 20)*2/3, height: collectionView.bounds.height - 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

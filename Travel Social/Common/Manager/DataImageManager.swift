@@ -17,26 +17,23 @@ class DataImageManager {
     private init(){
     }
     
-    func uploadsImage(image: UIImage, place: String, nameImage: String, completion: @escaping (_ result: String) -> ()) {
+    func uploadsImage(image: UIImage, place: String, nameImage: String, completion: @escaping (_ result: Result<String?, Error>) -> ()) {
         let imageRef = storageRef.child(place).child(nameImage)
         guard let data = image.jpegData(compressionQuality: 1.0) else { return }
         _ = imageRef.putData(data, metadata: nil) { (metadata, error) in
             if let error = error {
-                completion(error.localizedDescription)
+                completion(.failure(error))
             } else {
-                completion("Upload Success")
+                imageRef.downloadURL { url, error in
+                    if let url = url {
+                        completion(.success(String(url.absoluteString)))
+                    } else {
+                        guard let error = error else { return }
+                        completion(.failure(error))
+                    }
+                }
             }
         }
     }
     
-    func downloadImage(path: String, nameImage: String, completionHandler: @escaping (_ result: URL) -> ()) {
-        let imageRef = storageRef.child(path).child(nameImage)
-        imageRef.downloadURL { url, error in
-            if let error = error {
-                print(error)
-            } else {
-                completionHandler((url ?? URL(string: ""))!)
-            }
-        }
-    }
 }

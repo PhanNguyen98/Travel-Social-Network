@@ -22,7 +22,6 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var jobLabel: UILabel!
-    @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     weak var cellDelegate: InfoUserCollectionViewCellDelegate?
@@ -71,9 +70,6 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
         self.layer.borderWidth = 0.5
         self.layer.borderColor = UIColor.systemGray2.cgColor
         
-        profileView.layer.cornerRadius = 15
-        profileView.layer.masksToBounds = true
-        
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2 - 3
         avatarImageView.layer.borderColor = UIColor.systemGray2.cgColor
         avatarImageView.layer.borderWidth = 1.5
@@ -89,11 +85,9 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
         birthdayLabel.text = item.birthday
         placeLabel.text = item.place
         jobLabel.text = item.job
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: item.nameImage!) { result in
-            DispatchQueue.main.async() {
-                self.avatarImageView.kf.indicatorType = .activity
-                self.avatarImageView.kf.setImage(with: result)
-            }
+        DispatchQueue.main.async() {
+            self.avatarImageView.kf.indicatorType = .activity
+            self.avatarImageView.kf.setImage(with: URL(string: item.nameImage!))
         }
     }
     

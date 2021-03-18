@@ -54,25 +54,19 @@ class PostTableViewCell: UITableViewCell {
 //MARK: SetData
     func setdata(data: Post) {
         DataManager.shared.getUserFromId(id: data.idUser!) { result in
-            DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage!) { resultImage in
-                DispatchQueue.main.async {
-                    self.avatarButton.imageView?.kf.indicatorType = .activity
-                    self.avatarButton.kf.setImage(with: resultImage, for: .normal)
-                }
+            DispatchQueue.main.async {
+                self.avatarButton.imageView?.kf.indicatorType = .activity
+                self.avatarButton.kf.setImage(with: URL(string: result.nameImage!), for: .normal)
             }
             self.nameButton.setTitle(result.name, for: .normal)
         }
-        heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
-        if data.listIdHeart?.count != 0 {
-            for item in data.listIdHeart! {
-                if item == DataManager.shared.user.id {
-                    heartButton.setImage(UIImage(named: "heart fill"), for: .normal)
-                    isActive = false
-                    break
-                }
-            }
+        if data.listIdHeart?.first(where: { $0 == DataManager.shared.user.id}) != nil {
+            heartButton.setImage(UIImage(named: "heart fill"), for: .normal)
+            isActive = false
+        } else {
+            heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
         }
-        timeLabel.text = data.place ?? "Ha Noi"
+        timeLabel.text = data.place ?? ""
         timeLabel.text?.append("  ")
         timeLabel.text?.append(data.date!)
         contentPostLabel.text = data.content

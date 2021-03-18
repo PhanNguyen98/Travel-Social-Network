@@ -33,11 +33,6 @@ class CommentViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
 //MARK: SetData
     func setTableView() {
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine

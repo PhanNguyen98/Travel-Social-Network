@@ -12,7 +12,7 @@ import FirebaseFirestore
 class DataManager {
     static let shared = DataManager()
     private let db = Firestore.firestore()
-    var user = User(id: "", nameImage: "user.png", name: nil, birthday: nil, place: nil, listIdFollowers: nil, listIdFollowing: nil, job: nil)
+    var user = User(id: "", nameImage: AccessKey.urlAvatar, name: nil, birthday: nil, place: nil, listIdFollowers: nil, listIdFollowing: nil, job: nil)
     
     private init(){
     }
@@ -20,7 +20,7 @@ class DataManager {
     func setDataUser() {
         db.collection("users").document(user.id!).setData([
             "id": user.id ?? "",
-            "avatar": user.nameImage ?? "user.png",
+            "avatar": user.nameImage ?? AccessKey.urlAvatar,
             "name": user.name ?? "",
             "birthday": user.birthday ?? "",
             "place": user.place ?? "",
@@ -48,7 +48,7 @@ class DataManager {
         ], merge: true)
     }
     
-    func setDataPost(data: Post, completionHandler: @escaping (_ result: String) -> ()) {
+    func setDataPost(data: Post, completionHandler: @escaping (_ result: Result<String, Error>) -> ()) {
         db.collection("posts").document(data.id!).setData([
             "id": data.id!,
             "idUser": data.idUser ?? "",
@@ -59,10 +59,9 @@ class DataManager {
             "place": data.place ?? ""
         ]) { err in
             if let err = err {
-                print(err.localizedDescription)
-                completionHandler("Error Create Post")
+                completionHandler(.failure(err))
             } else {
-                completionHandler("Create Post Successfully")
+                completionHandler(.success("Create Post Success"))
             }
         }
     }

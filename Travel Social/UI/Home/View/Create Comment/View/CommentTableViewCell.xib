@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comment" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kX-Fr-tyb">
-                        <rect key="frame" x="30" y="55" width="416" height="27"/>
+                        <rect key="frame" x="30" y="55" width="416" height="32"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                     <constraint firstItem="7kX-Fr-tyb" firstAttribute="top" secondItem="D8v-IC-iGN" secondAttribute="bottom" constant="10" id="ReG-3k-tOG"/>
                     <constraint firstItem="CWe-Ax-LJU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="S2Q-hZ-PpF"/>
                     <constraint firstItem="D8v-IC-iGN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="XkM-gC-Nqs"/>
-                    <constraint firstAttribute="bottom" secondItem="7kX-Fr-tyb" secondAttribute="bottom" constant="15" id="hie-FX-w2Y"/>
+                    <constraint firstAttribute="bottom" secondItem="7kX-Fr-tyb" secondAttribute="bottom" constant="10" id="hie-FX-w2Y"/>
                     <constraint firstItem="D8v-IC-iGN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="vj2-gx-phg"/>
                 </constraints>
             </tableViewCellContentView>
