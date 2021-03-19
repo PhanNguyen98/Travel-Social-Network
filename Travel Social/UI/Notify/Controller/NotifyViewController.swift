@@ -23,6 +23,7 @@ class NotifyViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.tabBarItem.image = UIImage(systemName: "bell.fill")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,7 +56,7 @@ class NotifyViewController: UIViewController {
                     let newNotify = Notify()
                     newNotify.setData(withData: diff.document)
                     self.dataSources.append(newNotify)
-                    //self.tabBarItem.image = UIImage(systemName: "bell.badge.fill")
+                    NotificationCenter.default.post(name: NSNotification.Name("Notify"), object: UIImage(systemName: "bell.badge.fill"))
                 }
                 if (diff.type == .modified) {
                     let docId = diff.document.documentID

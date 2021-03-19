@@ -10,6 +10,12 @@ import Photos
 
 class Utilities {
     
+    static func showAlert(message: String) -> UIAlertController {
+        let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        return alert
+    }
+    
     static func isValidPassword(_ password : String) -> Bool{
         let predicate = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")
         return predicate.evaluate(with: password)
@@ -30,6 +36,19 @@ class Utilities {
             thumbnail = result!
         })
         return thumbnail
+    }
+    
+    static func getCurrentDate() -> String {
+        let currentDateTime = Date()
+        let userCalendar = Calendar.current
+        let requestedComponents: Set<Calendar.Component> = [
+            .year,
+            .month,
+            .day,
+        ]
+        let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+        let result = String(dateTimeComponents.day!) + "-" + String(dateTimeComponents.month!) + "-" + String(dateTimeComponents.year!)
+        return result
     }
     
     static func checkPhotoLibrary() {

@@ -17,7 +17,7 @@ class UserDefaultManager {
     func setData(text: String) {
         var arrayData = [String]()
         arrayData = getData()
-        if arrayData.first{ $0 == text } == nil && text != "" {
+        if arrayData.first(where: { $0 == text }) == nil && text != "" {
             arrayData.append(text)
             userManager.setValue(arrayData, forKey: "ListKeySearch")
         }

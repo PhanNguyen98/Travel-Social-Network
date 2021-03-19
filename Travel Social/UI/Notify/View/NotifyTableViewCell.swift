@@ -35,9 +35,9 @@ class NotifyTableViewCell: UITableViewCell {
     
     func setData(data: Notify) {
         DataManager.shared.getUserFromId(id: data.idFriend) { result in
-            DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage!) { [self] resultImage in
-                avatarImageView.kf.indicatorType = .activity
-                avatarImageView.kf.setImage(with: resultImage)
+            DispatchQueue.main.async {
+                self.avatarImageView.kf.indicatorType = .activity
+                self.avatarImageView.kf.setImage(with: URL(string: result.nameImage!))
             }
             switch data.type {
             case "comment":

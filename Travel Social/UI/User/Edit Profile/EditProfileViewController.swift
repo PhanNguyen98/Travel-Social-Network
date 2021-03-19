@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import OpalImagePicker
 import Photos
 import Kingfisher
+import SVProgressHUD
 
 protocol EditProfileViewControllerDelegate: class {
     func changeAvatarImage(image: UIImage?)
@@ -52,11 +52,9 @@ class EditProfileViewController: UIViewController {
     
 //MARK: SetUI
     func setData() {
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: DataManager.shared.user.nameImage!) { result in
-            DispatchQueue.main.async {
-                self.avatarImageView.kf.indicatorType = .activity
-                self.avatarImageView.kf.setImage(with: result)
-            }
+        DispatchQueue.main.async {
+            self.avatarImageView.kf.indicatorType = .activity
+            self.avatarImageView.kf.setImage(with: URL(string: DataManager.shared.user.nameImage!))
         }
         self.nameTextField.text = DataManager.shared.user.name
         let dateFormatter = DateFormatter()
@@ -125,6 +123,7 @@ class EditProfileViewController: UIViewController {
     }
     
     @objc func saveProfile() {
+        SVProgressHUD.show()
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         DataManager.shared.user.birthday = formatter.string(from: birthdayDatePicker.date)
@@ -135,12 +134,19 @@ class EditProfileViewController: UIViewController {
         DataManager.shared.user.job = jobTextField.text
         DataManager.shared.user.place = placeTextField.text
         DataImageManager.shared.uploadsImage(image: avatarImageView.image!, place: "avatar", nameImage: fileNameAvatar ?? "") { result in
-            print(result)
+            switch result {
+            case .success(let url):
+                SVProgressHUD.dismiss()
+                DataManager.shared.user.nameImage = url
+                DataManager.shared.setDataUser()
+                DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            case .failure(let error):
+                SVProgressHUD.dismiss()
+                self.present(Utilities.showAlert(message: error.localizedDescription), animated: true, completion: nil)
+            }
         }
-        DataManager.shared.setDataUser()
-        DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-        }
-        self.navigationController?.popViewController(animated: true)
     }
     
 }

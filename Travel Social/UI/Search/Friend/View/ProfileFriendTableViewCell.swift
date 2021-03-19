@@ -95,11 +95,9 @@ class ProfileFriendTableViewCell: UITableViewCell {
         nameLabel.text = user.name
         birthdayLabel.text = user.birthday
         placeLabel.text = user.place
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: user.nameImage!) { result in
-            DispatchQueue.main.async() {
-                self.avatarImageView.kf.indicatorType = .activity
-                self.avatarImageView.kf.setImage(with: result)
-            }
+        DispatchQueue.main.async() {
+            self.avatarImageView.kf.indicatorType = .activity
+            self.avatarImageView.kf.setImage(with: URL(string: user.nameImage!))
         }
     }
 }

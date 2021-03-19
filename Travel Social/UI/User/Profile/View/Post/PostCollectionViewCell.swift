@@ -34,9 +34,9 @@ class PostCollectionViewCell: UICollectionViewCell {
     func setData(data: Post) {
         if let idUser = data.idUser {
             DataManager.shared.getUserFromId(id: idUser) { result in
-                DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage ?? "") { resultUrl in
+                DispatchQueue.main.async {
                     self.avatarImageView.kf.indicatorType = .activity
-                    self.avatarImageView.kf.setImage(with: resultUrl)
+                    self.avatarImageView.kf.setImage(with: URL(string: result.nameImage!))
                 }
                 self.nameLabel.text = result.name
             }

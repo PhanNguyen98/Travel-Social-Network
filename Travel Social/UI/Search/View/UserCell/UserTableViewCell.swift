@@ -12,6 +12,7 @@ class UserTableViewCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var jobLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,11 +28,12 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func setData(item: User) {
-        DataImageManager.shared.downloadImage(path: "avatar", nameImage: item.nameImage!) { result in
+        DispatchQueue.main.async {
             self.avatarImageView.kf.indicatorType = .activity
-            self.avatarImageView.kf.setImage(with: result)
+            self.avatarImageView.kf.setImage(with: URL(string: item.nameImage!))
         }
         nameLabel.text = item.name
+        jobLabel.text = item.job
     }
     
 }

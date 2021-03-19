@@ -26,6 +26,7 @@ class DetailImageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.barTintColor = .black
         self.navigationController?.navigationBar.tintColor = .white
     }
@@ -38,11 +39,9 @@ class DetailImageViewController: UIViewController {
     
 //MARK: SetData
     func setData() {
-        DataImageManager.shared.downloadImage(path: "post", nameImage: nameImage) { result in
-            DispatchQueue.main.async {
-                self.imageView.kf.indicatorType = .activity
-                self.imageView.kf.setImage(with: result)
-            }
+        DispatchQueue.main.async {
+            self.imageView.kf.indicatorType = .activity
+            self.imageView.kf.setImage(with: URL(string: self.nameImage))
         }
     }
     

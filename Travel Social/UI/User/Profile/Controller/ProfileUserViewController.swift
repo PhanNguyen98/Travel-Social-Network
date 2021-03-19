@@ -79,7 +79,10 @@ extension ProfileUserViewController: UICollectionViewDelegate {
         case 2:
             let friendViewController = FriendViewController()
             friendViewController.dataUser = dataFriend[indexPath.row]
-            navigationController?.pushViewController(friendViewController, animated: true)
+            DataManager.shared.getPostFromId(idUser: dataFriend[indexPath.row].id ?? "") { result in
+                friendViewController.dataPost = result
+                self.navigationController?.pushViewController(friendViewController, animated: true)
+            }
         default:
             break
         }
@@ -131,9 +134,9 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
-            return CGSize(width: collectionView.bounds.width, height: 295)
+            return CGSize(width: collectionView.bounds.width, height: 390)
         case 1:
-            return CGSize(width: collectionView.bounds.width - 20, height: 140)
+            return CGSize(width: collectionView.bounds.width - 20, height: 125)
         default:
             return CGSize(width: collectionView.bounds.width/2 - 30, height: collectionView.bounds.width/2)
         }

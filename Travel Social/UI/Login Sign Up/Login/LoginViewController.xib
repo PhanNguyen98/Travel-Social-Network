@@ -53,7 +53,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="8Mv-3k-4RJ"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <state key="normal" title="Sign Up">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -67,7 +67,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="0gN-0t-5cW"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <state key="normal" title="Log In">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>

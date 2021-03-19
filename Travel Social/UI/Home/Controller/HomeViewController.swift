@@ -20,20 +20,17 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setUpTableView()
         self.tabBarController?.delegate = self
-        handlePostChanges {
-            self.tableView.reloadData()
-        }
+        setData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        setData()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     //MARK: SetData
@@ -48,23 +45,27 @@ class HomeViewController: UIViewController {
     
     func setData() {
         DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-            var data = DataManager.shared.user.listIdFollowers ?? []
+            var data = DataManager.shared.user.listIdFollowing ?? []
             data.append(DataManager.shared.user.id!)
             DataManager.shared.getPostFromListId(listId: data) { result in
                 self.dataSources = result
                 self.tableView.reloadData()
             }
         }
+        handlePostChanges() { result in
+            let indexSet: IndexSet = [self.dataSources.count - result]
+            self.tableView.reloadSections(indexSet, with: .automatic)
+        }
     }
     
-    func handlePostChanges(completed: @escaping () -> ()) {
+    func handlePostChanges(completed: @escaping (_ result: Int) -> ()) {
         let db = Firestore.firestore()
         var data = DataManager.shared.user.listIdFollowers ?? []
         data.append(DataManager.shared.user.id!)
         db.collection("posts").whereField("idUser", in: data).addSnapshotListener { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 print("Error fetching snapshots: \(error!)")
-                return completed()
+                return
             }
             
             snapshot.documentChanges.forEach { diff in
@@ -73,10 +74,10 @@ class HomeViewController: UIViewController {
                     if let indexOfPostToModify = self.dataSources.firstIndex(where: { $0.id == docId} ) {
                         let postToModify = self.dataSources[indexOfPostToModify]
                         postToModify.updatePost(withData: diff.document)
+                        completed(indexOfPostToModify)
                     }
                 }
             }
-            completed()
         }
     }
     
@@ -200,8 +201,10 @@ extension HomeViewController: UITabBarControllerDelegate {
                 var data = DataManager.shared.user.listIdFollowing ?? []
                 data.append(DataManager.shared.user.id!)
                 DataManager.shared.getPostFromListId(listId: data) { result in
-                    self.dataSources = result
-                    self.tableView.reloadData()
+                    if result.count != self.dataSources.count {
+                        self.dataSources = result
+                        self.tableView.reloadData()
+                    }
                 }
             }
         case 4:

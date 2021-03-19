@@ -54,9 +54,9 @@ class CommentTableViewCell: UITableViewCell {
     
     func setData(comment: Comment) {
         DataManager.shared.getUserFromId(id: comment.idUser!) { result in
-            DataImageManager.shared.downloadImage(path: "avatar", nameImage: result.nameImage!) { result in
+            DispatchQueue.main.async {
                 self.avatarButton.imageView?.kf.indicatorType = .activity
-                self.avatarButton.kf.setImage(with: result, for: .normal)
+                self.avatarButton.kf.setImage(with: URL(string: result.nameImage!), for: .normal)
             }
             self.nameButton.setTitle(result.name, for: .normal)
         }
