@@ -12,10 +12,12 @@
             <connections>
                 <outlet property="avatarImageView" destination="Hpk-0B-egR" id="5co-nv-AuD"/>
                 <outlet property="collectionView" destination="Gbh-fQ-bSq" id="kAO-sF-mhL"/>
+                <outlet property="collectionViewHeightConstraint" destination="EaT-Kc-0s6" id="gvs-UP-ZjZ"/>
                 <outlet property="contentTextView" destination="lCy-OS-b4B" id="otz-m0-LCE"/>
                 <outlet property="createPostButton" destination="f6H-uX-iUh" id="viT-8S-5Ge"/>
                 <outlet property="nameLabel" destination="c4P-ot-KYT" id="NvY-Ub-uZK"/>
                 <outlet property="placeTextField" destination="2pL-l1-cms" id="gK7-xj-Cz3"/>
+                <outlet property="postBottomConstraint" destination="w8F-Gb-9lA" id="fRH-xo-617"/>
                 <outlet property="selectImageButton" destination="lQW-Mg-Ncz" id="dpE-3o-bSk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -61,13 +63,14 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQW-Mg-Ncz">
-                                    <rect key="frame" x="45" y="332" width="359" height="35"/>
+                                    <rect key="frame" x="20" y="332" width="35" height="35"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="XJK-9w-hpF"/>
+                                        <constraint firstAttribute="width" constant="35" id="hLf-8N-CaT"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="18"/>
-                                    <state key="normal" title="Import Photo From Library">
+                                    <state key="normal" image="gallery">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
@@ -100,20 +103,13 @@
                                     <rect key="frame" x="50" y="670" width="314" height="30"/>
                                     <color key="backgroundColor" red="0.0" green="0.76078431369999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <state key="normal" title="Create Post">
+                                    <state key="normal" title="Post">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
                                         <action selector="createPost:" destination="-1" eventType="touchUpInside" id="NFa-Pe-YMw"/>
                                     </connections>
                                 </button>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gallery" translatesAutoresizingMaskIntoConstraints="NO" id="Pme-Vf-mgc">
-                                    <rect key="frame" x="10" y="332" width="35" height="35"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="35" id="9g2-u2-pBn"/>
-                                        <constraint firstAttribute="height" constant="35" id="a91-wF-QGO"/>
-                                    </constraints>
-                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -126,19 +122,16 @@
                                 <constraint firstItem="f6H-uX-iUh" firstAttribute="centerX" secondItem="O2a-5k-K8E" secondAttribute="centerX" id="Gj9-Ic-KCp"/>
                                 <constraint firstItem="2pL-l1-cms" firstAttribute="centerY" secondItem="8jM-Ps-hgE" secondAttribute="centerY" id="HUq-lB-38g"/>
                                 <constraint firstAttribute="trailing" secondItem="c4P-ot-KYT" secondAttribute="trailing" constant="20" id="OsW-Ov-awX"/>
-                                <constraint firstItem="Pme-Vf-mgc" firstAttribute="top" secondItem="lCy-OS-b4B" secondAttribute="bottom" constant="25" id="VpB-7b-vxu"/>
                                 <constraint firstAttribute="trailing" secondItem="lCy-OS-b4B" secondAttribute="trailing" constant="10" id="WLa-de-E2H"/>
                                 <constraint firstItem="c4P-ot-KYT" firstAttribute="leading" secondItem="Hpk-0B-egR" secondAttribute="trailing" constant="17" id="ZKF-xS-Usd"/>
                                 <constraint firstItem="f6H-uX-iUh" firstAttribute="top" secondItem="Gbh-fQ-bSq" secondAttribute="bottom" constant="30" id="hMh-mi-oFs"/>
                                 <constraint firstAttribute="trailing" secondItem="2pL-l1-cms" secondAttribute="trailing" constant="10" id="ifu-gm-9pb"/>
                                 <constraint firstItem="c4P-ot-KYT" firstAttribute="top" secondItem="O2a-5k-K8E" secondAttribute="top" constant="25" id="jbr-de-zGv"/>
                                 <constraint firstItem="8jM-Ps-hgE" firstAttribute="leading" secondItem="Hpk-0B-egR" secondAttribute="trailing" constant="15" id="jhw-Rx-kPq"/>
+                                <constraint firstItem="lQW-Mg-Ncz" firstAttribute="leading" secondItem="O2a-5k-K8E" secondAttribute="leading" constant="20" id="ji6-04-eMz"/>
                                 <constraint firstAttribute="height" constant="730" id="lyy-xe-FF0"/>
                                 <constraint firstItem="2pL-l1-cms" firstAttribute="leading" secondItem="8jM-Ps-hgE" secondAttribute="trailing" constant="5" id="mjb-aQ-ipt"/>
-                                <constraint firstItem="lQW-Mg-Ncz" firstAttribute="leading" secondItem="Pme-Vf-mgc" secondAttribute="trailing" id="oDc-9C-Ktp"/>
                                 <constraint firstItem="Gbh-fQ-bSq" firstAttribute="top" secondItem="lQW-Mg-Ncz" secondAttribute="bottom" constant="23" id="oUQ-oO-9pg"/>
-                                <constraint firstItem="Pme-Vf-mgc" firstAttribute="leading" secondItem="O2a-5k-K8E" secondAttribute="leading" constant="10" id="rIx-BI-R2C"/>
-                                <constraint firstAttribute="trailing" secondItem="lQW-Mg-Ncz" secondAttribute="trailing" constant="10" id="uA1-vg-jeh"/>
                                 <constraint firstItem="lCy-OS-b4B" firstAttribute="top" secondItem="2pL-l1-cms" secondAttribute="bottom" constant="20" id="vLy-OI-kkF"/>
                                 <constraint firstAttribute="bottom" secondItem="f6H-uX-iUh" secondAttribute="bottom" constant="30" id="w8F-Gb-9lA"/>
                                 <constraint firstItem="Gbh-fQ-bSq" firstAttribute="leading" secondItem="O2a-5k-K8E" secondAttribute="leading" constant="10" id="wd4-cq-cRp"/>
@@ -146,6 +139,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="O2a-5k-K8E" secondAttribute="trailing" id="4pp-KK-Lcc"/>
                         <constraint firstAttribute="bottom" secondItem="O2a-5k-K8E" secondAttribute="bottom" id="7zt-sH-ytx"/>

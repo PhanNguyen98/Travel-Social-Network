@@ -21,6 +21,8 @@ class CreatePostViewController: UIViewController {
     @IBOutlet weak var placeTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var createPostButton: UIButton!
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var postBottomConstraint: NSLayoutConstraint!
     
     var resultImagePicker = [PHAsset]()
     var dataPost = Post()
@@ -36,10 +38,16 @@ class CreatePostViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        setConstraint()
         setDataUser()
     }
     
 //MARK: SetUI
+    func setConstraint() {
+        postBottomConstraint.constant = 280
+        collectionViewHeightConstraint.constant = 0
+    }
+    
     func setCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -51,12 +59,11 @@ class CreatePostViewController: UIViewController {
         avatarImageView.layer.borderWidth = 1
         avatarImageView.layer.borderColor = UIColor.systemGray2.cgColor
         
-        contentTextView.dropShadow(color: UIColor.systemGray2, opacity: 0.5, offSet: .zero, radius: 10, scale: true)
+        contentTextView.dropShadow(color: UIColor.gray, opacity: 0.5, offSet: .zero, radius: 10, scale: true)
         contentTextView.delegate = self
         contentTextView.layer.cornerRadius = 10
         
-        selectImageButton.layer.cornerRadius = 15
-        selectImageButton.layer.masksToBounds = true
+        selectImageButton.dropShadow(color: UIColor.gray, opacity: 0.5, offSet: .zero, radius: 10, scale: true)
         
         placeTextField.placeholder = "Location"
         
@@ -150,6 +157,7 @@ class CreatePostViewController: UIViewController {
                             self.contentTextView.text = ""
                             self.resultImagePicker = [PHAsset]()
                             self.collectionView.reloadData()
+                            setConstraint()
                             self.showAlert(message: success)
                         }
                         SVProgressHUD.dismiss()
@@ -162,7 +170,7 @@ class CreatePostViewController: UIViewController {
             showAlert(message: "please fill in all fields and select image")
         }
     }
-
+    
 }
 
 extension CreatePostViewController: UITextViewDelegate {
@@ -172,6 +180,8 @@ extension CreatePostViewController: UITextViewDelegate {
 extension CreatePostViewController: OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
         resultImagePicker = assets
+        collectionViewHeightConstraint.constant = 250
+        postBottomConstraint.constant = 30
         self.collectionView.reloadData()
         presentedViewController?.dismiss(animated: true, completion: nil)
     }
@@ -206,7 +216,11 @@ extension CreatePostViewController: UICollectionViewDataSource {
 extension CreatePostViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if resultImagePicker.count == 1 {
+            return CGSize(width: collectionView.bounds.width - 20, height: collectionView.bounds.height - 20)
+        } else {
             return CGSize(width: (collectionView.bounds.width - 20)*2/3, height: collectionView.bounds.height - 20)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -19,7 +19,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        self.tabBarController?.delegate = self
         setData()
     }
     
@@ -98,7 +97,11 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if indexPath.section == 0 {
+            return UITableView.automaticDimension
+        } else {
+            return 430
+        }
     }
 }
 
@@ -169,10 +172,10 @@ extension HomeViewController: PostTableViewCellDelegate {
         }
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String) {
-        let detailImageViewController = DetailImageViewController()
-        detailImageViewController.nameImage = nameImage
-        self.navigationController?.pushViewController(detailImageViewController, animated: true)
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, dataPost: Post) {
+        let detailPostViewController = DetailPostViewController()
+        detailPostViewController.dataPost = dataPost
+        self.navigationController?.pushViewController(detailPostViewController, animated: true)
     }
     
     func showListUser(listUser: [String]) {
@@ -187,37 +190,6 @@ extension HomeViewController: PostTableViewCellDelegate {
         let commentViewController = CommentViewController()
         commentViewController.dataPost = dataPost
         self.navigationController?.pushViewController(commentViewController, animated: true)
-    }
-    
-}
-
-//MARK: UITabBarControllerDelegate
-extension HomeViewController: UITabBarControllerDelegate {
-    
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        switch tabBarController.selectedIndex {
-        case 0:
-            DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-                var data = DataManager.shared.user.listIdFollowing ?? []
-                data.append(DataManager.shared.user.id!)
-                DataManager.shared.getPostFromListId(listId: data) { result in
-                    if result.count != self.dataSources.count {
-                        self.dataSources = result
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        case 4:
-            let profileUserViewController = viewController as? ProfileUserViewController
-            DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-                profileUserViewController?.dataPost = result
-                DataManager.shared.setDataUser()
-                profileUserViewController?.dataUser = DataManager.shared.user
-                profileUserViewController?.collectionView.reloadData()
-            }
-        default:
-            break
-        }
     }
     
 }

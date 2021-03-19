@@ -15,12 +15,18 @@ class FriendCollectionViewCell: UICollectionViewCell {
      
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.dropShadow(color: UIColor.systemGray3, opacity: 0.3, offSet: .zero, radius: 10, scale: true)
+        setUI()
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+    }
+    
+    func setUI(){
+        self.layer.cornerRadius = 5
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 1
     }
     
     func setData(data: User) {
