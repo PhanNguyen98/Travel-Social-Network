@@ -21,7 +21,7 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        dataSources = UserDefaultManager.shared.getData()
+        dataSources = UserDefaultManager.shared.getData(keyData: "")
         tableView.reloadData()
     }
     
@@ -95,7 +95,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if editingStyle == .delete {
-                UserDefaultManager.shared.deleteItem(key: dataSources[indexPath.row])
+                UserDefaultManager.shared.deleteItem(key: dataSources[indexPath.row], keyData: "")
                 dataSources.remove(at: indexPath.row)
                 self.tableView.beginUpdates()
                 self.tableView.deleteRows(at: [indexPath], with: .middle)

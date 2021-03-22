@@ -23,7 +23,7 @@
                         </constraints>
                         <segments>
                             <segment title="Post"/>
-                            <segment title="Follower"/>
+                            <segment title="Followers"/>
                             <segment title="Following"/>
                         </segments>
                         <connections>

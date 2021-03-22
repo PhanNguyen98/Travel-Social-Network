@@ -99,7 +99,7 @@ extension KeySearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         if let keySearch = searchBar.text {
-            UserDefaultManager.shared.setData(text: keySearch)
+            UserDefaultManager.shared.setData(text: keySearch, keyData: "")
             DataManager.shared.getUserFromName(name: keySearch) { result in
                 self.dataSources = result
                 self.tableView.reloadData()

@@ -65,6 +65,7 @@ class PostCollectionViewCell: UICollectionViewCell {
             heartButton.setImage(UIImage(named: "heart fill"), for: .normal)
             isActive = false
         } else {
+            isActive = true
             heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
         }
         self.listNameImage = data.listImage!
@@ -95,12 +96,9 @@ class PostCollectionViewCell: UICollectionViewCell {
         } else {
             isActive = true
             heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
-            for index in 0..<(dataPost?.listIdHeart!.count)! {
-                if DataManager.shared.user.id == dataPost?.listIdHeart?[index] {
-                    dataPost?.listIdHeart?.remove(at: index)
-                    DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: (dataPost?.listIdHeart)!)
-                    break
-                }
+            if let index = dataPost?.listIdHeart?.firstIndex(of: DataManager.shared.user.id ?? "") {
+                dataPost?.listIdHeart?.remove(at: index)
+                DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: (dataPost?.listIdHeart)!)
             }
             countHeartLabel.text = String((dataPost?.listIdHeart!.count)!)
         }

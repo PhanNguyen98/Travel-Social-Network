@@ -66,6 +66,7 @@ class CreatePostViewController: UIViewController {
         selectImageButton.dropShadow(color: UIColor.gray, opacity: 0.5, offSet: .zero, radius: 10, scale: true)
         
         placeTextField.placeholder = "Location"
+        placeTextField.delegate = self
         
         self.hideKeyboardWhenTappedAround()
         
@@ -75,6 +76,9 @@ class CreatePostViewController: UIViewController {
         collectionView.backgroundColor = .clear
         
         createPostButton.layer.cornerRadius = 15
+        
+        contentTextView.text = "Write Something"
+        contentTextView.textColor = UIColor.lightGray
     }
     
 //MARK: SetData
@@ -173,7 +177,31 @@ class CreatePostViewController: UIViewController {
     
 }
 
+//MARK: UITextViewDelegate
 extension CreatePostViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if contentTextView.textColor == UIColor.lightGray {
+            contentTextView.text = nil
+            contentTextView.textColor = UIColor.black
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if contentTextView.text.isEmpty {
+            contentTextView.text = "Write Something"
+            contentTextView.textColor = UIColor.lightGray
+        }
+    }
+}
+
+//MARK: UITextFieldDelegate
+extension CreatePostViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let mapViewController = MapViewController()
+        let mapNavigationController = UINavigationController(rootViewController: mapViewController)
+        mapNavigationController.modalPresentationStyle = .overFullScreen
+        self.present(mapNavigationController, animated: true, completion: nil)
+    }
 }
 
 //MARK: OpalImagePickerControllerDelegate

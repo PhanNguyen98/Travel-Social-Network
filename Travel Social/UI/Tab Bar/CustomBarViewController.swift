@@ -42,6 +42,8 @@ class CustomBarViewController: UITabBarController {
     }
     
     func setNotification() {
+        DatabaseManager.shared.handleNotifyChanges() {
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(showNotify(_:)), name: NSNotification.Name("Notify"), object: nil)
     }
 
