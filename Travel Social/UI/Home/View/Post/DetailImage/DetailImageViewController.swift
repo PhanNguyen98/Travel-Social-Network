@@ -11,7 +11,6 @@ import Kingfisher
 class DetailImageViewController: UIViewController {
 
 //MARK: Properties
-    @IBOutlet weak var downLoadButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
     var nameImage = String()
@@ -21,7 +20,7 @@ class DetailImageViewController: UIViewController {
         super.viewDidLoad()
         setData()
         zoomImage()
-        setNavigation()
+        setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +55,37 @@ class DetailImageViewController: UIViewController {
         imageView.addGestureRecognizer(pinchGesture)
     }
     
+    func setNavigationBar(){
+        let menuBtn = UIButton(type: .custom)
+        menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 20, height: 20)
+        menuBtn.setImage(UIImage(named:"option"), for: .normal)
+        menuBtn.imageView?.contentMode = .scaleAspectFill
+        menuBtn.addTarget(self, action: #selector(showOption), for: UIControl.Event.touchUpInside)
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuBtn)
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(popViewController))
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    func setting() -> UIAlertController {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let logoutAction = UIAlertAction(title: "Save Image", style: .default) { _ in
+            if let image = self.imageView.image {
+                self.showAlert(message: "Save Image Successfully")
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            }
+        }
+        alertController.addAction(logoutAction)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.pruneNegativeWidthConstraints()
+        return alertController
+    }
+    
+//MARK: @objc func
+    @objc func showOption() {
+        self.navigationController?.present(setting(), animated: true, completion: nil)
+    }
+    
     @objc func handlePinch(gesture: UIPinchGestureRecognizer) {
         if gesture.state == UIGestureRecognizer.State.changed {
             let transform = CGAffineTransform(scaleX: gesture.scale, y: gesture.scale)
@@ -63,21 +93,8 @@ class DetailImageViewController: UIViewController {
         }
     }
     
-    func setNavigation() {
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(popViewController))
-        self.navigationItem.leftBarButtonItem = backButton
-    }
-    
     @objc func popViewController() {
         self.navigationController?.popViewController(animated: true)
-    }
-
-//MARK: IBAction
-    @IBAction func downLoadImage(_ sender: Any) {
-        if let image = imageView.image {
-            showAlert(message: "Save Image Successfully")
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        }
     }
     
 }

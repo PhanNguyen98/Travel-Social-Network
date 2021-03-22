@@ -31,6 +31,7 @@ class CommentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        commentTextField.becomeFirstResponder()
     }
     
 //MARK: SetData
@@ -100,7 +101,8 @@ class CommentViewController: UIViewController {
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
-        contentViewBottomConstraint.constant = 0
+        guard let heightTabbar = self.tabBarController?.tabBar.frame.height else { return }
+        contentViewBottomConstraint.constant = 0 + heightTabbar
     }
     
     @objc func popViewController() {
@@ -140,7 +142,11 @@ class CommentViewController: UIViewController {
 //MARK: UITableViewDelegate
 extension CommentViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if indexPath.section == 0 {
+            return 430
+        } else {
+            return 100
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -196,6 +202,9 @@ extension CommentViewController: UITableViewDataSource {
 
 //MARK: PostTableViewCellDelegate
 extension CommentViewController: PostTableViewCellDelegate {
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, dataPost: Post) {
+    }
+    
     func showProfile(user: User) {
         DataManager.shared.getPostFromId(idUser: user.id!) { result in
             DataManager.shared.setDataUser()
@@ -211,12 +220,6 @@ extension CommentViewController: PostTableViewCellDelegate {
                 self.navigationController?.pushViewController(friendViewController, animated: true)
             }
         }
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String) {
-        let detailImageViewController = DetailImageViewController()
-        detailImageViewController.nameImage = nameImage
-        self.navigationController?.pushViewController(detailImageViewController, animated: true)
     }
     
     func showListUser(listUser: [String]) {

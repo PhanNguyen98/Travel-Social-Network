@@ -98,6 +98,9 @@ extension FriendViewController: UITableViewDataSource {
 }
 
 extension FriendViewController: PostTableViewCellDelegate {
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, dataPost: Post) {
+    }
+    
     func showProfile(user: User) {
         DataManager.shared.getPostFromId(idUser: user.id!) { result in
             DataManager.shared.setDataUser()
@@ -113,13 +116,6 @@ extension FriendViewController: PostTableViewCellDelegate {
                 self.navigationController?.pushViewController(friendViewController, animated: true)
             }
         }
-    }
-    
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String) {
-        let detailImageViewController = DetailImageViewController()
-        detailImageViewController.nameImage = nameImage
-        self.navigationController?.pushViewController(detailImageViewController, animated: true)
     }
     
     func showListUser(listUser: [String]) {

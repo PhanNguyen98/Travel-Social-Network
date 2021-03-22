@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 protocol InfoUserCollectionViewCellDelegate: class {
-    func pushViewController(viewController: UIViewController)
+    func presentViewController(viewController: UIViewController)
     func sendDataPost(dataPost: [Post])
     func sendDataUser(dataFriend: [User])
 }
@@ -63,7 +63,7 @@ class InfoUserCollectionViewCell: UICollectionViewCell {
     @IBAction func editProfile(_ sender: Any) {
         let editProfileViewController = EditProfileViewController()
         editProfileViewController.editVCDelegate = self
-        self.cellDelegate?.pushViewController(viewController: editProfileViewController)
+        self.cellDelegate?.presentViewController(viewController: editProfileViewController)
     }
     
     func setUI() {

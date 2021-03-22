@@ -105,7 +105,8 @@ class LoginViewController: UIViewController {
                 DataManager.shared.getUserFromId(id: (result!.user.uid)) {
                     SVProgressHUD.dismiss()
                     let customBarViewController = CustomBarViewController()
-                    self.navigationController?.pushViewController(customBarViewController, animated: false)
+                    customBarViewController.modalPresentationStyle = .overFullScreen
+                    self.present(customBarViewController, animated: false, completion: nil)
                 }
             }
         }

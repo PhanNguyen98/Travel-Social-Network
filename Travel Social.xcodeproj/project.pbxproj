@@ -34,6 +34,12 @@
 		D565AF7425B6C7860090FA5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D565AF7325B6C7860090FA5B /* Assets.xcassets */; };
 		D565AF7725B6C7860090FA5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D565AF7525B6C7860090FA5B /* LaunchScreen.storyboard */; };
 		D571B1B325F1D7A40093785C /* UIAlertController+pruneNegativeWidthConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571B1B225F1D7A40093785C /* UIAlertController+pruneNegativeWidthConstraints.swift */; };
+		D57C5B2B2604648B00C53DE8 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57C5B292604648B00C53DE8 /* DetailPostViewController.swift */; };
+		D57C5B2C2604648B00C53DE8 /* DetailPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D57C5B2A2604648B00C53DE8 /* DetailPostViewController.xib */; };
+		D57C5B372604660400C53DE8 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57C5B352604660400C53DE8 /* ImageTableViewCell.swift */; };
+		D57C5B382604660400C53DE8 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D57C5B362604660400C53DE8 /* ImageTableViewCell.xib */; };
+		D57C5B3D2604668500C53DE8 /* TitlePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57C5B3B2604668500C53DE8 /* TitlePostTableViewCell.swift */; };
+		D57C5B3E2604668500C53DE8 /* TitlePostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D57C5B3C2604668500C53DE8 /* TitlePostTableViewCell.xib */; };
 		D585826025BD5966003BE66C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D585825F25BD5966003BE66C /* DataManager.swift */; };
 		D585826425BDA9ED003BE66C /* DataImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D585826325BDA9ED003BE66C /* DataImageManager.swift */; };
 		D5889B6F25F235F7008F1B97 /* UIViewController+hideKeyboardWhenTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5889B6E25F235F7008F1B97 /* UIViewController+hideKeyboardWhenTappedAround.swift */; };
@@ -124,6 +130,12 @@
 		D565AF7625B6C7860090FA5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D565AF7825B6C7860090FA5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D571B1B225F1D7A40093785C /* UIAlertController+pruneNegativeWidthConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+pruneNegativeWidthConstraints.swift"; sourceTree = "<group>"; };
+		D57C5B292604648B00C53DE8 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
+		D57C5B2A2604648B00C53DE8 /* DetailPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPostViewController.xib; sourceTree = "<group>"; };
+		D57C5B352604660400C53DE8 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		D57C5B362604660400C53DE8 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableViewCell.xib; sourceTree = "<group>"; };
+		D57C5B3B2604668500C53DE8 /* TitlePostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePostTableViewCell.swift; sourceTree = "<group>"; };
+		D57C5B3C2604668500C53DE8 /* TitlePostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitlePostTableViewCell.xib; sourceTree = "<group>"; };
 		D585825F25BD5966003BE66C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D585826325BDA9ED003BE66C /* DataImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImageManager.swift; sourceTree = "<group>"; };
 		D5889B6E25F235F7008F1B97 /* UIViewController+hideKeyboardWhenTappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+hideKeyboardWhenTappedAround.swift"; sourceTree = "<group>"; };
@@ -362,6 +374,51 @@
 			path = "Travel Social";
 			sourceTree = "<group>";
 		};
+		D57C5B262604640700C53DE8 /* Detail Post */ = {
+			isa = PBXGroup;
+			children = (
+				D57C5B282604646000C53DE8 /* View */,
+				D57C5B272604645700C53DE8 /* Controller */,
+			);
+			path = "Detail Post";
+			sourceTree = "<group>";
+		};
+		D57C5B272604645700C53DE8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D57C5B292604648B00C53DE8 /* DetailPostViewController.swift */,
+				D57C5B2A2604648B00C53DE8 /* DetailPostViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D57C5B282604646000C53DE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D57C5B2F260465A400C53DE8 /* Image */,
+				D57C5B2E2604659A00C53DE8 /* Title */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D57C5B2E2604659A00C53DE8 /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				D57C5B3B2604668500C53DE8 /* TitlePostTableViewCell.swift */,
+				D57C5B3C2604668500C53DE8 /* TitlePostTableViewCell.xib */,
+			);
+			path = Title;
+			sourceTree = "<group>";
+		};
+		D57C5B2F260465A400C53DE8 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				D57C5B352604660400C53DE8 /* ImageTableViewCell.swift */,
+				D57C5B362604660400C53DE8 /* ImageTableViewCell.xib */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		D5921E6B25BD24A2009F9D17 /* Edit Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +458,7 @@
 		D59ECEF225BA7B2C0078DC87 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				D57C5B262604640700C53DE8 /* Detail Post */,
 				D5F4116725C7A8D400EAFEF1 /* Detail Create Post */,
 				D59ECF0D25BA87D00078DC87 /* View */,
 				D59ECF0C25BA87C40078DC87 /* Controller */,
@@ -791,6 +849,8 @@
 				D5C34B6825EDCDA0009E4260 /* NotifyTableViewCell.xib in Resources */,
 				D59ECEF025BA7B220078DC87 /* CustomBarViewController.xib in Resources */,
 				D5D1B5C625B7C8DB0041C30C /* SignUpViewController.xib in Resources */,
+				D57C5B2C2604648B00C53DE8 /* DetailPostViewController.xib in Resources */,
+				D57C5B382604660400C53DE8 /* ImageTableViewCell.xib in Resources */,
 				D5A208F325C1187300BE9473 /* ProfileFriendTableViewCell.xib in Resources */,
 				D565AF7725B6C7860090FA5B /* LaunchScreen.storyboard in Resources */,
 				D565AF7425B6C7860090FA5B /* Assets.xcassets in Resources */,
@@ -806,6 +866,7 @@
 				D54CC6C125F879EF00CDD99C /* ProfileUserViewController.xib in Resources */,
 				D599137A25F9AFEC00D3B0E1 /* PostCollectionViewCell.xib in Resources */,
 				D564899825E74D6300A34CB6 /* CommentViewController.xib in Resources */,
+				D57C5B3E2604668500C53DE8 /* TitlePostTableViewCell.xib in Resources */,
 				D54CC6C825F87CA200CDD99C /* InfoUserCollectionViewCell.xib in Resources */,
 				D5E78FA525C7F1A50066C71B /* KeySearchTableViewCell.xib in Resources */,
 				D5D1B5C925B7E1EF0041C30C /* GoogleService-Info.plist in Resources */,
@@ -875,6 +936,7 @@
 				D5DFBDC425BEC1D000C7AC50 /* UserTableViewCell.swift in Sources */,
 				D59EF59725F06D8F003DC267 /* WeatherTableViewCell.swift in Sources */,
 				D5D1B60825B819D50041C30C /* Utilities.swift in Sources */,
+				D57C5B3D2604668500C53DE8 /* TitlePostTableViewCell.swift in Sources */,
 				D5D1B5B525B7C32D0041C30C /* LoginViewController.swift in Sources */,
 				D54BCCFB25EF42310025EFEA /* Weather.swift in Sources */,
 				D5F410FA25BAAC33007F8E03 /* CreatePostViewController.swift in Sources */,
@@ -890,6 +952,7 @@
 				D599137F25F9BEC700D3B0E1 /* FriendCollectionViewCell.swift in Sources */,
 				D5F410FF25BAB37D007F8E03 /* User.swift in Sources */,
 				D59ECEEF25BA7B220078DC87 /* CustomBarViewController.swift in Sources */,
+				D57C5B372604660400C53DE8 /* ImageTableViewCell.swift in Sources */,
 				D54BCCEC25EF2A390025EFEA /* WeatherAPI.swift in Sources */,
 				D5C34B6725EDCDA0009E4260 /* NotifyTableViewCell.swift in Sources */,
 				D53BB37625BE6C5C001BEC4C /* Post.swift in Sources */,
@@ -906,6 +969,7 @@
 				D55BABCE25C291AE00567C22 /* UIView+SetBackgroundImage.swift in Sources */,
 				D5C34B6C25EDD38D009E4260 /* Notify.swift in Sources */,
 				D599137925F9AFEC00D3B0E1 /* PostCollectionViewCell.swift in Sources */,
+				D57C5B2B2604648B00C53DE8 /* DetailPostViewController.swift in Sources */,
 				D585826025BD5966003BE66C /* DataManager.swift in Sources */,
 				D5E78F9A25C7EE620066C71B /* KeySearchViewController.swift in Sources */,
 				D5F4115B25C79FCF00EAFEF1 /* ImageCollectionViewCell.swift in Sources */,

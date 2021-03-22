@@ -21,6 +21,7 @@ class ProfileUserViewController: UIViewController {
         super.viewDidLoad()
         setCollectionView()
         setNavigationBar()
+        setData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,12 +39,35 @@ class ProfileUserViewController: UIViewController {
     
 //MARK: Set Navigationbar
     func setNavigationBar() {
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(popVC))
-        self.navigationItem.leftBarButtonItem = backButton
+        let menuBtn = UIButton(type: .custom)
+        menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 20, height: 20)
+        menuBtn.setImage(UIImage(named:"option"), for: .normal)
+        menuBtn.imageView?.contentMode = .scaleAspectFill
+        menuBtn.addTarget(self, action: #selector(showOption), for: UIControl.Event.touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuBtn)
     }
     
-    @objc func popVC() {
-        self.navigationController?.popViewController(animated: true)
+//MARK: SetData
+    func setData() {
+        DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
+            self.dataPost = result
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func setting() -> UIAlertController {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let logoutAction = UIAlertAction(title: "Logout", style: .default) { _ in
+            self.dismiss(animated: false, completion: nil)
+        }
+        alertController.addAction(logoutAction)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.pruneNegativeWidthConstraints()
+        return alertController
+    }
+    
+    @objc func showOption() {
+        self.navigationController?.present(setting(), animated: true, completion: nil)
     }
     
 //MARK: SetCollectionView
@@ -136,7 +160,7 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
         case 0:
             return CGSize(width: collectionView.bounds.width, height: 390)
         case 1:
-            return CGSize(width: collectionView.bounds.width - 20, height: 125)
+            return CGSize(width: collectionView.bounds.width - 20, height: 420)
         default:
             return CGSize(width: collectionView.bounds.width/2 - 30, height: collectionView.bounds.width/2)
         }
@@ -181,7 +205,9 @@ extension ProfileUserViewController: InfoUserCollectionViewCellDelegate {
         }
     }
     
-    func pushViewController(viewController: UIViewController) {
-        self.navigationController?.pushViewController(viewController, animated: true)
+    func presentViewController(viewController: UIViewController) {
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .overFullScreen
+        self.present(navigationController, animated: true, completion: nil)
     }
 }

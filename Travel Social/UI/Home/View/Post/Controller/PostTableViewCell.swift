@@ -10,7 +10,7 @@ import Kingfisher
 
 //MARK: PostTableViewCellDelegate
 protocol PostTableViewCellDelegate: class {
-    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, nameImage: String)
+    func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, dataPost: Post)
     func showListUser(listUser: [String])
     func showListComment(dataPost: Post)
     func showProfile(user: User)
@@ -153,7 +153,7 @@ class PostTableViewCell: UITableViewCell {
 //MARK: UICollectionViewDelegate
 extension PostTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.cellDelegate?.collectionView(collectionView: collectionView, didSelectItemAt: indexPath, nameImage: listNameImage[indexPath.row])
+        self.cellDelegate?.collectionView(collectionView: collectionView, didSelectItemAt: indexPath, dataPost: dataPost ?? Post())
     }
 }
 

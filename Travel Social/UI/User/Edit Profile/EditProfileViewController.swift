@@ -119,7 +119,7 @@ class EditProfileViewController: UIViewController {
     }
     
     @objc func popViewController() {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func saveProfile() {
@@ -128,9 +128,6 @@ class EditProfileViewController: UIViewController {
         formatter.dateFormat = "dd/MM/yyyy"
         DataManager.shared.user.birthday = formatter.string(from: birthdayDatePicker.date)
         DataManager.shared.user.name = nameTextField.text
-        if let nameImage = fileNameAvatar {
-            DataManager.shared.user.nameImage = nameImage
-        }
         DataManager.shared.user.job = jobTextField.text
         DataManager.shared.user.place = placeTextField.text
         DataImageManager.shared.uploadsImage(image: avatarImageView.image!, place: "avatar", nameImage: fileNameAvatar ?? "") { result in
@@ -140,7 +137,7 @@ class EditProfileViewController: UIViewController {
                 DataManager.shared.user.nameImage = url
                 DataManager.shared.setDataUser()
                 DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
                 }
             case .failure(let error):
                 SVProgressHUD.dismiss()
