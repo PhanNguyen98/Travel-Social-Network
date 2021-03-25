@@ -43,12 +43,14 @@ class NotifyTableViewCell: UITableViewCell {
             switch data.type {
             case "comment":
                 self.contentLabel.text = result.name ?? ""
-                self.contentLabel.text?.append(" was comment: " + data.content)
+                self.contentLabel.text?.append(" was commented " + data.content)
+                self.contentLabel.text?.append(" in your post")
             case "follow":
                 self.contentLabel.text = result.name ?? ""
-                self.contentLabel.text?.append(" was follow you")
+                self.contentLabel.text?.append(" was followed you")
             default:
-                self.contentLabel.text = result.name ?? "" + "was "
+                self.contentLabel.text = result.name ?? ""
+                self.contentLabel.text?.append(" was added heart in your post")
             }
         }
     }

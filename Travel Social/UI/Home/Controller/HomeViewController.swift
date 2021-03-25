@@ -20,12 +20,12 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setUpTableView()
         setData()
+        self.tabBarController?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        setData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -216,30 +216,32 @@ extension HomeViewController: TitleTableViewCellDelegate {
 }
 
 //MARK: UITabBarControllerDelegate
-//extension HomeViewController: UITabBarControllerDelegate {
-//    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-//        switch tabBarController.selectedIndex {
-//        case 0:
-//            DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-//                var data = DataManager.shared.user.listIdFollowing ?? []
-//                data.append(DataManager.shared.user.id!)
-//                DataManager.shared.getPostFromListId(listId: data) { result in
-//                    if self.dataSources.count != result.count {
-//                        self.dataSources = result
-//                        self.tableView.reloadData()
-//                    }
-//                }
-//            }
-//        case 4:
-//            let profileUserViewController = viewController as? ProfileUserViewController
-//            DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-//                profileUserViewController?.dataPost = result
-//                DataManager.shared.setDataUser()
-//                profileUserViewController?.dataUser = DataManager.shared.user
-//                profileUserViewController?.collectionView.reloadData()
-//            }
-//        default:
-//            break
-//        }
-//    }
-//}
+extension HomeViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        switch tabBarController.selectedIndex {
+        case 0:
+            DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
+                var data = DataManager.shared.user.listIdFollowing ?? []
+                data.append(DataManager.shared.user.id!)
+                DataManager.shared.getPostFromListId(listId: data) { result in
+                    if self.dataSources.count != result.count {
+                        self.dataSources = result
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        case 3:
+            NotificationCenter.default.post(name: Notification.Name("defaultNotify"), object: nil)
+        case 4:
+            let profileUserViewController = viewController as? ProfileUserViewController
+            DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
+                profileUserViewController?.dataPost = result
+                DataManager.shared.setDataUser()
+                profileUserViewController?.dataUser = DataManager.shared.user
+                profileUserViewController?.collectionView.reloadData()
+            }
+        default:
+            break
+        }
+    }
+}
