@@ -99,5 +99,12 @@ extension InfoUserCollectionViewCell: EditProfileViewControllerDelegate {
         avatarImageView.image = image
     }
     
+    func changeInfo(fullName: String, birthday: String, place: String, job: String) {
+        nameLabel.text = fullName
+        birthdayLabel.text = birthday
+        placeLabel.text = place
+        jobLabel.text = job
+    }
+    
 }
     

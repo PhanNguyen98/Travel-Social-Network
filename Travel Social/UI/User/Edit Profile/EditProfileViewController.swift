@@ -12,6 +12,7 @@ import SVProgressHUD
 
 protocol EditProfileViewControllerDelegate: class {
     func changeAvatarImage(image: UIImage?)
+    func changeInfo(fullName: String, birthday: String, place: String, job: String)
 }
 
 class EditProfileViewController: UIViewController {
@@ -130,6 +131,7 @@ class EditProfileViewController: UIViewController {
         DataManager.shared.user.name = nameTextField.text
         DataManager.shared.user.job = jobTextField.text
         DataManager.shared.user.place = placeTextField.text
+        self.editVCDelegate?.changeInfo(fullName: nameTextField.text ?? "", birthday: formatter.string(from: birthdayDatePicker.date), place: placeTextField.text ?? "", job: jobTextField.text ?? "")
         DataImageManager.shared.uploadsImage(image: avatarImageView.image!, place: "avatar", nameImage: fileNameAvatar ?? "") { result in
             switch result {
             case .success(let url):
