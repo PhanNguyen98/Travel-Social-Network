@@ -31,9 +31,8 @@ class CustomBarViewController: UITabBarController {
     
 //MARK: SetUI
     func setTabBar() {
-        self.delegate = self
         homeNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house.fill"), tag: 0)
-        createPostNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.rectangle"), tag: 2)
+        createPostNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.square.fill"), tag: 2)
         weatherNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "cloud.sun.rain.fill"), tag: 1)
         notifyNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "bell.fill"), tag: 3)
         profileUserNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "person.fill"), tag: 4)
@@ -43,41 +42,15 @@ class CustomBarViewController: UITabBarController {
     
     func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(showNotify(_:)), name: NSNotification.Name("Notify"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setDefaultNotify(_:)), name: NSNotification.Name("defaultNotify"), object: nil)
     }
 
     @objc func showNotify(_ notification: Notification) {
         notifyNavigationController.tabBarItem.image = UIImage(systemName: "bell.badge.fill")
     }
     
-}
-
-extension CustomBarViewController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        switch tabBarController.selectedIndex {
-        case 0:
-            let homeViewController = viewController as? HomeViewController
-            DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
-                var data = DataManager.shared.user.listIdFollowing ?? []
-                data.append(DataManager.shared.user.id!)
-                DataManager.shared.getPostFromListId(listId: data) { result in
-                    if result.count != homeViewController?.dataSources.count {
-                        homeViewController?.dataSources = result
-                        homeViewController?.tableView.reloadData()
-                    }
-                }
-            }
-        case 3:
-            self.notifyNavigationController.tabBarItem.image = UIImage(systemName: "bell.fill")
-        case 4:
-            let profileUserViewController = viewController as? ProfileUserViewController
-            DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
-                profileUserViewController?.dataPost = result
-                DataManager.shared.setDataUser()
-                profileUserViewController?.dataUser = DataManager.shared.user
-                profileUserViewController?.collectionView.reloadData()
-            }
-        default:
-            break
-        }
+    @objc func setDefaultNotify(_ notification: Notification) {
+        notifyNavigationController.tabBarItem.image = UIImage(systemName: "bell.fill")
     }
+    
 }

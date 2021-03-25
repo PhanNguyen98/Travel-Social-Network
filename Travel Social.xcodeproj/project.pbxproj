@@ -33,6 +33,8 @@
 		D565AF6D25B6C7830090FA5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D565AF6C25B6C7830090FA5B /* SceneDelegate.swift */; };
 		D565AF7425B6C7860090FA5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D565AF7325B6C7860090FA5B /* Assets.xcassets */; };
 		D565AF7725B6C7860090FA5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D565AF7525B6C7860090FA5B /* LaunchScreen.storyboard */; };
+		D56A96BA2608EBF800DAE993 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A96B82608EBF800DAE993 /* LocationSearchViewController.swift */; };
+		D56A96BB2608EBF800DAE993 /* LocationSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D56A96B92608EBF800DAE993 /* LocationSearchViewController.xib */; };
 		D571B1B325F1D7A40093785C /* UIAlertController+pruneNegativeWidthConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D571B1B225F1D7A40093785C /* UIAlertController+pruneNegativeWidthConstraints.swift */; };
 		D57C5B2B2604648B00C53DE8 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57C5B292604648B00C53DE8 /* DetailPostViewController.swift */; };
 		D57C5B2C2604648B00C53DE8 /* DetailPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D57C5B2A2604648B00C53DE8 /* DetailPostViewController.xib */; };
@@ -43,6 +45,7 @@
 		D585826025BD5966003BE66C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D585825F25BD5966003BE66C /* DataManager.swift */; };
 		D585826425BDA9ED003BE66C /* DataImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D585826325BDA9ED003BE66C /* DataImageManager.swift */; };
 		D5889B6F25F235F7008F1B97 /* UIViewController+hideKeyboardWhenTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5889B6E25F235F7008F1B97 /* UIViewController+hideKeyboardWhenTappedAround.swift */; };
+		D58B60A226087B6E007164FD /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B60A126087B6E007164FD /* DatabaseManager.swift */; };
 		D5921E6E25BD24CC009F9D17 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5921E6C25BD24CC009F9D17 /* EditProfileViewController.swift */; };
 		D5921E6F25BD24CC009F9D17 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5921E6D25BD24CC009F9D17 /* EditProfileViewController.xib */; };
 		D599137925F9AFEC00D3B0E1 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D599137725F9AFEC00D3B0E1 /* PostCollectionViewCell.swift */; };
@@ -52,8 +55,6 @@
 		D599138325F9C73600D3B0E1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D599138225F9C73600D3B0E1 /* Colors.swift */; };
 		D59ECEEF25BA7B220078DC87 /* CustomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECEED25BA7B220078DC87 /* CustomBarViewController.swift */; };
 		D59ECEF025BA7B220078DC87 /* CustomBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECEEE25BA7B220078DC87 /* CustomBarViewController.xib */; };
-		D59ECEFC25BA7BB30078DC87 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECEFA25BA7BB30078DC87 /* SearchViewController.swift */; };
-		D59ECEFD25BA7BB30078DC87 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECEFB25BA7BB30078DC87 /* SearchViewController.xib */; };
 		D59ECF1725BA8A620078DC87 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECF1525BA8A620078DC87 /* HomeViewController.swift */; };
 		D59ECF1825BA8A620078DC87 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECF1625BA8A620078DC87 /* HomeViewController.xib */; };
 		D59ECF2625BA8B9C0078DC87 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECF2425BA8B9C0078DC87 /* PostTableViewCell.swift */; };
@@ -66,6 +67,10 @@
 		D5A208EB25C1179400BE9473 /* FriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5A208E925C1179400BE9473 /* FriendViewController.xib */; };
 		D5A208F225C1187300BE9473 /* ProfileFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A208F025C1187300BE9473 /* ProfileFriendTableViewCell.swift */; };
 		D5A208F325C1187300BE9473 /* ProfileFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5A208F125C1187300BE9473 /* ProfileFriendTableViewCell.xib */; };
+		D5ABCBA026083C4F00A1ADD6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ABCB9E26083C4F00A1ADD6 /* MapViewController.swift */; };
+		D5ABCBA126083C4F00A1ADD6 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5ABCB9F26083C4F00A1ADD6 /* MapViewController.xib */; };
+		D5ABCBAF2608406F00A1ADD6 /* LocationSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ABCBAD2608406F00A1ADD6 /* LocationSearchTableViewCell.swift */; };
+		D5ABCBB02608406F00A1ADD6 /* LocationSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5ABCBAE2608406F00A1ADD6 /* LocationSearchTableViewCell.xib */; };
 		D5BD75D626006675006BF275 /* UIView+DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD75D526006675006BF275 /* UIView+DropShadow.swift */; };
 		D5C34B5E25EDCBE4009E4260 /* NotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C34B5C25EDCBE4009E4260 /* NotifyViewController.swift */; };
 		D5C34B5F25EDCBE4009E4260 /* NotifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C34B5D25EDCBE4009E4260 /* NotifyViewController.xib */; };
@@ -129,6 +134,8 @@
 		D565AF7325B6C7860090FA5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D565AF7625B6C7860090FA5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D565AF7825B6C7860090FA5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D56A96B82608EBF800DAE993 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
+		D56A96B92608EBF800DAE993 /* LocationSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationSearchViewController.xib; sourceTree = "<group>"; };
 		D571B1B225F1D7A40093785C /* UIAlertController+pruneNegativeWidthConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+pruneNegativeWidthConstraints.swift"; sourceTree = "<group>"; };
 		D57C5B292604648B00C53DE8 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		D57C5B2A2604648B00C53DE8 /* DetailPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPostViewController.xib; sourceTree = "<group>"; };
@@ -139,6 +146,7 @@
 		D585825F25BD5966003BE66C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D585826325BDA9ED003BE66C /* DataImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImageManager.swift; sourceTree = "<group>"; };
 		D5889B6E25F235F7008F1B97 /* UIViewController+hideKeyboardWhenTappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+hideKeyboardWhenTappedAround.swift"; sourceTree = "<group>"; };
+		D58B60A126087B6E007164FD /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		D5921E6C25BD24CC009F9D17 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		D5921E6D25BD24CC009F9D17 /* EditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
 		D599137725F9AFEC00D3B0E1 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -148,8 +156,6 @@
 		D599138225F9C73600D3B0E1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D59ECEED25BA7B220078DC87 /* CustomBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBarViewController.swift; sourceTree = "<group>"; };
 		D59ECEEE25BA7B220078DC87 /* CustomBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomBarViewController.xib; sourceTree = "<group>"; };
-		D59ECEFA25BA7BB30078DC87 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		D59ECEFB25BA7BB30078DC87 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		D59ECF1525BA8A620078DC87 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D59ECF1625BA8A620078DC87 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		D59ECF2425BA8B9C0078DC87 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,6 +168,10 @@
 		D5A208E925C1179400BE9473 /* FriendViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendViewController.xib; sourceTree = "<group>"; };
 		D5A208F025C1187300BE9473 /* ProfileFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendTableViewCell.swift; sourceTree = "<group>"; };
 		D5A208F125C1187300BE9473 /* ProfileFriendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileFriendTableViewCell.xib; sourceTree = "<group>"; };
+		D5ABCB9E26083C4F00A1ADD6 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D5ABCB9F26083C4F00A1ADD6 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		D5ABCBAD2608406F00A1ADD6 /* LocationSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewCell.swift; sourceTree = "<group>"; };
+		D5ABCBAE2608406F00A1ADD6 /* LocationSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationSearchTableViewCell.xib; sourceTree = "<group>"; };
 		D5BD75D526006675006BF275 /* UIView+DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+DropShadow.swift"; sourceTree = "<group>"; };
 		D5C34B5C25EDCBE4009E4260 /* NotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyViewController.swift; sourceTree = "<group>"; };
 		D5C34B5D25EDCBE4009E4260 /* NotifyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotifyViewController.xib; sourceTree = "<group>"; };
@@ -469,10 +479,10 @@
 		D59ECEF925BA7B9C0078DC87 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				D5ABCB9C26083A6D00A1ADD6 /* Map */,
 				D5E78F9725C7EDE80066C71B /* Key Search */,
 				D5A208E725C1176A00BE9473 /* Friend */,
 				D5DFBDC125BEC19E00C7AC50 /* View */,
-				D5DFBDC025BEC18100C7AC50 /* Controller */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -579,6 +589,51 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D5ABCB9C26083A6D00A1ADD6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D5ABCBA526083FD200A1ADD6 /* MapView */,
+				D5ABCBA426083FB800A1ADD6 /* LoactionSearch */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		D5ABCBA426083FB800A1ADD6 /* LoactionSearch */ = {
+			isa = PBXGroup;
+			children = (
+				D5ABCBAC2608405100A1ADD6 /* View */,
+				D5ABCBAB2608404700A1ADD6 /* Controller */,
+			);
+			path = LoactionSearch;
+			sourceTree = "<group>";
+		};
+		D5ABCBA526083FD200A1ADD6 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				D5ABCB9E26083C4F00A1ADD6 /* MapViewController.swift */,
+				D5ABCB9F26083C4F00A1ADD6 /* MapViewController.xib */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		D5ABCBAB2608404700A1ADD6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D56A96B82608EBF800DAE993 /* LocationSearchViewController.swift */,
+				D56A96B92608EBF800DAE993 /* LocationSearchViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D5ABCBAC2608405100A1ADD6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D5ABCBAD2608406F00A1ADD6 /* LocationSearchTableViewCell.swift */,
+				D5ABCBAE2608406F00A1ADD6 /* LocationSearchTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D5C34B5B25EDCBBC009E4260 /* Notify */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,6 +721,7 @@
 				D585826325BDA9ED003BE66C /* DataImageManager.swift */,
 				D5E78F9D25C7F0560066C71B /* UserDefaultManager.swift */,
 				D54BCCFD25EF45B90025EFEA /* WeatherManager.swift */,
+				D58B60A126087B6E007164FD /* DatabaseManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -680,15 +736,6 @@
 				D5BD75D526006675006BF275 /* UIView+DropShadow.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		D5DFBDC025BEC18100C7AC50 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D59ECEFA25BA7BB30078DC87 /* SearchViewController.swift */,
-				D59ECEFB25BA7BB30078DC87 /* SearchViewController.xib */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		D5DFBDC125BEC19E00C7AC50 /* View */ = {
@@ -854,6 +901,7 @@
 				D5A208F325C1187300BE9473 /* ProfileFriendTableViewCell.xib in Resources */,
 				D565AF7725B6C7860090FA5B /* LaunchScreen.storyboard in Resources */,
 				D565AF7425B6C7860090FA5B /* Assets.xcassets in Resources */,
+				D56A96BB2608EBF800DAE993 /* LocationSearchViewController.xib in Resources */,
 				D564899D25E74D8600A34CB6 /* CommentTableViewCell.xib in Resources */,
 				D5C34B5F25EDCBE4009E4260 /* NotifyViewController.xib in Resources */,
 				D50A537225E6897E009D2C74 /* ListUserViewController.xib in Resources */,
@@ -862,9 +910,10 @@
 				D5D1B5B625B7C32D0041C30C /* LoginViewController.xib in Resources */,
 				D5E78F9B25C7EE620066C71B /* KeySearchViewController.xib in Resources */,
 				D5A208E325C1118300BE9473 /* SearchTableViewCell.xib in Resources */,
-				D59ECEFD25BA7BB30078DC87 /* SearchViewController.xib in Resources */,
+				D5ABCBA126083C4F00A1ADD6 /* MapViewController.xib in Resources */,
 				D54CC6C125F879EF00CDD99C /* ProfileUserViewController.xib in Resources */,
 				D599137A25F9AFEC00D3B0E1 /* PostCollectionViewCell.xib in Resources */,
+				D5ABCBB02608406F00A1ADD6 /* LocationSearchTableViewCell.xib in Resources */,
 				D564899825E74D6300A34CB6 /* CommentViewController.xib in Resources */,
 				D57C5B3E2604668500C53DE8 /* TitlePostTableViewCell.xib in Resources */,
 				D54CC6C825F87CA200CDD99C /* InfoUserCollectionViewCell.xib in Resources */,
@@ -944,10 +993,10 @@
 				D54CC6C725F87CA200CDD99C /* InfoUserCollectionViewCell.swift in Sources */,
 				D59ECF2625BA8B9C0078DC87 /* PostTableViewCell.swift in Sources */,
 				D5C34B5E25EDCBE4009E4260 /* NotifyViewController.swift in Sources */,
+				D5ABCBAF2608406F00A1ADD6 /* LocationSearchTableViewCell.swift in Sources */,
 				D565AF6B25B6C7830090FA5B /* AppDelegate.swift in Sources */,
 				D564899725E74D6300A34CB6 /* CommentViewController.swift in Sources */,
 				D54CC6C025F879EF00CDD99C /* ProfileUserViewController.swift in Sources */,
-				D59ECEFC25BA7BB30078DC87 /* SearchViewController.swift in Sources */,
 				D5A208E225C1118300BE9473 /* SearchTableViewCell.swift in Sources */,
 				D599137F25F9BEC700D3B0E1 /* FriendCollectionViewCell.swift in Sources */,
 				D5F410FF25BAB37D007F8E03 /* User.swift in Sources */,
@@ -963,6 +1012,7 @@
 				D54BCCCB25EF277A0025EFEA /* WeatherViewController.swift in Sources */,
 				D5E78F9E25C7F0560066C71B /* UserDefaultManager.swift in Sources */,
 				D571B1B325F1D7A40093785C /* UIAlertController+pruneNegativeWidthConstraints.swift in Sources */,
+				D5ABCBA026083C4F00A1ADD6 /* MapViewController.swift in Sources */,
 				D565AF6D25B6C7830090FA5B /* SceneDelegate.swift in Sources */,
 				D5BD75D626006675006BF275 /* UIView+DropShadow.swift in Sources */,
 				D54BCCFE25EF45B90025EFEA /* WeatherManager.swift in Sources */,
@@ -971,6 +1021,7 @@
 				D599137925F9AFEC00D3B0E1 /* PostCollectionViewCell.swift in Sources */,
 				D57C5B2B2604648B00C53DE8 /* DetailPostViewController.swift in Sources */,
 				D585826025BD5966003BE66C /* DataManager.swift in Sources */,
+				D56A96BA2608EBF800DAE993 /* LocationSearchViewController.swift in Sources */,
 				D5E78F9A25C7EE620066C71B /* KeySearchViewController.swift in Sources */,
 				D5F4115B25C79FCF00EAFEF1 /* ImageCollectionViewCell.swift in Sources */,
 				D5F4110325BAC50A007F8E03 /* ImagePicker.swift in Sources */,
@@ -983,6 +1034,7 @@
 				D56489A025E780EB00A34CB6 /* Comment.swift in Sources */,
 				D54BCCE925EF29EF0025EFEA /* APIManager.swift in Sources */,
 				D5D1B5C525B7C8DB0041C30C /* SignUpViewController.swift in Sources */,
+				D58B60A226087B6E007164FD /* DatabaseManager.swift in Sources */,
 				D564899C25E74D8600A34CB6 /* CommentTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

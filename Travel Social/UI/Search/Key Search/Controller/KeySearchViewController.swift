@@ -28,10 +28,10 @@ class KeySearchViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-      super.viewDidAppear(animated)
-      DispatchQueue.main.async {
-        self.searchController.searchBar.becomeFirstResponder()
-      }
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+            self.searchController.searchBar.becomeFirstResponder()
+        }
     }
     
     func setSearchController() {
@@ -99,7 +99,6 @@ extension KeySearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         if let keySearch = searchBar.text {
-            UserDefaultManager.shared.setData(text: keySearch)
             DataManager.shared.getUserFromName(name: keySearch) { result in
                 self.dataSources = result
                 self.tableView.reloadData()

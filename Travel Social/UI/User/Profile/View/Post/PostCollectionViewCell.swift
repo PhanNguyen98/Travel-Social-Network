@@ -18,6 +18,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var countCommentLabel: UILabel!
     @IBOutlet weak var countHeartLabel: UILabel!
+    @IBOutlet weak var commentButton: UIButton!
     
     var listNameImage = [String]()
     var dataPost: Post?
@@ -31,6 +32,8 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.collectionView.reloadData()
+        self.avatarImageView.image = nil
     }
     
 //MARK: SetCollectionView
@@ -45,6 +48,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
         avatarImageView.layer.borderWidth = 0.5
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
+        
     }
     
     func setData(data: Post) {
@@ -65,6 +69,7 @@ class PostCollectionViewCell: UICollectionViewCell {
             heartButton.setImage(UIImage(named: "heart fill"), for: .normal)
             isActive = false
         } else {
+            isActive = true
             heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
         }
         self.listNameImage = data.listImage!
@@ -80,8 +85,8 @@ class PostCollectionViewCell: UICollectionViewCell {
             heartButton.setImage(UIImage(named: "heart fill"), for: .normal)
             if dataPost?.listIdHeart!.first(where: { $0 == DataManager.shared.user.id }) == nil {
                 dataPost?.listIdHeart?.append(DataManager.shared.user.id!)
-                DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: (dataPost?.listIdHeart)!)
-                countHeartLabel.text = String((dataPost?.listIdHeart!.count)!)
+                DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: dataPost?.listIdHeart ?? [])
+                countHeartLabel.text = String(dataPost?.listIdHeart!.count ?? 0)
             }
             if dataPost?.idUser != DataManager.shared.user.id {
                 let notify = Notify()
@@ -95,14 +100,11 @@ class PostCollectionViewCell: UICollectionViewCell {
         } else {
             isActive = true
             heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
-            for index in 0..<(dataPost?.listIdHeart!.count)! {
-                if DataManager.shared.user.id == dataPost?.listIdHeart?[index] {
-                    dataPost?.listIdHeart?.remove(at: index)
-                    DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: (dataPost?.listIdHeart)!)
-                    break
-                }
+            if let index = dataPost?.listIdHeart?.firstIndex(of: DataManager.shared.user.id ?? "") {
+                dataPost?.listIdHeart?.remove(at: index)
+                DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: dataPost?.listIdHeart ?? [])
             }
-            countHeartLabel.text = String((dataPost?.listIdHeart!.count)!)
+            countHeartLabel.text = String(dataPost?.listIdHeart!.count ?? 0)
         }
     }
     

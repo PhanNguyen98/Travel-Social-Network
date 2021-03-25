@@ -37,7 +37,7 @@
                             <constraint firstAttribute="height" constant="20" id="sVB-Vj-0rZ"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llf-BW-d53">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llf-BW-d53">
                         <rect key="frame" x="110" y="46" width="295" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" systemColor="systemGray2Color"/>
@@ -49,7 +49,7 @@
                         <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lei-7P-D56">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lei-7P-D56">
                         <rect key="frame" x="10" y="103" width="405" height="250"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -79,6 +79,7 @@
                             <constraint firstAttribute="width" constant="30" id="0OK-Dx-WJN"/>
                             <constraint firstAttribute="height" constant="30" id="Tjb-3k-MPE"/>
                         </constraints>
+                        <color key="tintColor" red="0.0" green="0.76078431369999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <state key="normal" image="comment">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -88,8 +89,8 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="RHD-Co-sQC"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msl-E1-aXf">
@@ -97,7 +98,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="yw6-Nw-GiL"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -117,12 +118,12 @@
                 <constraint firstItem="cCN-4u-EOU" firstAttribute="leading" secondItem="iNJ-28-b3y" secondAttribute="trailing" constant="5" id="RP2-j4-Rnh"/>
                 <constraint firstItem="lei-7P-D56" firstAttribute="top" secondItem="WCV-L5-5ay" secondAttribute="bottom" constant="5" id="U1g-cO-86b"/>
                 <constraint firstItem="msl-E1-aXf" firstAttribute="leading" secondItem="uIl-fk-wGX" secondAttribute="trailing" constant="5" id="USZ-xR-O8r"/>
-                <constraint firstItem="llf-BW-d53" firstAttribute="top" secondItem="Rqr-ch-T2z" secondAttribute="bottom" constant="5" id="V8e-Jb-DxQ"/>
                 <constraint firstItem="WCV-L5-5ay" firstAttribute="top" secondItem="llf-BW-d53" secondAttribute="bottom" constant="16" id="WFj-xS-inh"/>
                 <constraint firstAttribute="trailing" secondItem="WCV-L5-5ay" secondAttribute="trailing" constant="20" id="YB7-ip-Kyc"/>
                 <constraint firstItem="Ljt-Lx-rKy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="awZ-oI-e1F"/>
                 <constraint firstAttribute="trailing" secondItem="lei-7P-D56" secondAttribute="trailing" constant="10" id="e2d-4N-2AH"/>
                 <constraint firstItem="Rqr-ch-T2z" firstAttribute="leading" secondItem="Ljt-Lx-rKy" secondAttribute="trailing" constant="15" id="fGB-p9-4nr"/>
+                <constraint firstItem="llf-BW-d53" firstAttribute="top" secondItem="E9R-Ac-VN2" secondAttribute="top" id="faa-Y1-bqb"/>
                 <constraint firstItem="uIl-fk-wGX" firstAttribute="centerY" secondItem="cCN-4u-EOU" secondAttribute="centerY" id="gGy-0g-Z2N"/>
                 <constraint firstItem="WCV-L5-5ay" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="ggh-dp-YNp"/>
                 <constraint firstItem="uIl-fk-wGX" firstAttribute="leading" secondItem="cCN-4u-EOU" secondAttribute="trailing" constant="20" id="ihn-Iz-nka"/>
@@ -135,6 +136,7 @@
             <connections>
                 <outlet property="avatarImageView" destination="Ljt-Lx-rKy" id="YNP-fd-l8E"/>
                 <outlet property="collectionView" destination="lei-7P-D56" id="MvY-Il-AuL"/>
+                <outlet property="commentButton" destination="uIl-fk-wGX" id="Yfc-9S-aNz"/>
                 <outlet property="contentLabel" destination="WCV-L5-5ay" id="EQU-GZ-YYM"/>
                 <outlet property="countCommentLabel" destination="msl-E1-aXf" id="wM6-0j-SBk"/>
                 <outlet property="countHeartLabel" destination="cCN-4u-EOU" id="gfS-Ye-9Ir"/>

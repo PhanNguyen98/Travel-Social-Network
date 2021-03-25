@@ -64,6 +64,7 @@ class PostTableViewCell: UITableViewCell {
             heartButton.setImage(UIImage(named: "heart fill"), for: .normal)
             isActive = false
         } else {
+            isActive = true
             heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
         }
         timeLabel.text = data.place ?? ""
@@ -71,7 +72,7 @@ class PostTableViewCell: UITableViewCell {
         timeLabel.text?.append(data.date!)
         contentPostLabel.text = data.content
         listNameImage = data.listImage ?? [""]
-        countHeartButton.setTitle(String(data.listIdHeart!.count), for: .normal)
+        countHeartButton.setTitle(String(data.listIdHeart?.count ?? 0), for: .normal)
         DataManager.shared.getCountComment(idPost: data.id!) { result in
             self.countCommentButton.setTitle("\(result)", for: .normal)
         }
@@ -116,9 +117,9 @@ class PostTableViewCell: UITableViewCell {
         if isActive {
             isActive = false
             heartButton.setImage(UIImage(named: "heart fill"), for: .normal)
-            if dataPost?.listIdHeart!.first(where: { $0 == DataManager.shared.user.id }) == nil {
+            if dataPost?.listIdHeart?.first(where: { $0 == DataManager.shared.user.id }) == nil {
                 dataPost?.listIdHeart?.append(DataManager.shared.user.id!)
-                DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: (dataPost?.listIdHeart)!)
+                DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: dataPost?.listIdHeart ?? [])
                 countHeartButton.setTitle(String((dataPost?.listIdHeart!.count)!), for: .normal)
             }
             if dataPost?.idUser != DataManager.shared.user.id {
@@ -133,12 +134,9 @@ class PostTableViewCell: UITableViewCell {
         } else {
             isActive = true
             heartButton.setImage(UIImage(named: "heart empty"), for: .normal)
-            for index in 0..<(dataPost?.listIdHeart!.count)! {
-                if DataManager.shared.user.id == dataPost?.listIdHeart?[index] {
-                    dataPost?.listIdHeart?.remove(at: index)
-                    DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: (dataPost?.listIdHeart)!)
-                    break
-                }
+            if let index = dataPost?.listIdHeart?.firstIndex(of: DataManager.shared.user.id ?? "") {
+                dataPost?.listIdHeart?.remove(at: index)
+                DataManager.shared.setDataListIdHeart(id: (dataPost?.id!)!, listIdHeart: dataPost?.listIdHeart ?? [])
             }
             countHeartButton.setTitle(String((dataPost?.listIdHeart!.count)!), for: .normal)
         }

@@ -19,9 +19,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
-        searchweather(city: "Ho Chi Minh")
-        searchBar.delegate = self
-        self.hideKeyboardWhenTappedAround()
+        setSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +36,13 @@ class WeatherViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "WeatherTableViewCell", bundle: nil), forCellReuseIdentifier: "WeatherTableViewCell")
+    }
+    
+    func setSearchBar() {
+        searchBar.placeholder = "Search Place"
+        searchweather(city: "Ho Chi Minh")
+        searchBar.delegate = self
+        self.hideKeyboardWhenTappedAround()
     }
     
     func searchweather(city: String) {

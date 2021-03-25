@@ -8,6 +8,10 @@
 import UIKit
 import FirebaseFirestore
 
+protocol CommentViewControllerDelegate: class {
+    func reloadComment(count: Int, post: Post)
+}
+
 class CommentViewController: UIViewController {
 
 //MARK: Properties
@@ -16,6 +20,7 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
+    weak var commentDelegate: CommentViewControllerDelegate?
     var dataSources = [Comment]()
     var dataPost = Post()
     
@@ -50,8 +55,9 @@ class CommentViewController: UIViewController {
     }
     
     func setData() {
-        handleCommentChanges {
-            self.tableView.reloadData()
+        handleCommentChanges { [self] in
+            tableView.reloadData()
+            commentDelegate?.reloadComment(count: dataSources.count, post: dataPost)
         }
     }
     
@@ -226,7 +232,7 @@ extension CommentViewController: PostTableViewCellDelegate {
         let listUserViewController = ListUserViewController()
         DataManager.shared.getListUser(listId: listUser) { result in
             listUserViewController.dataSources = result
-            self.present(listUserViewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(listUserViewController, animated: true)
         }
     }
     

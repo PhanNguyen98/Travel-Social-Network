@@ -142,6 +142,8 @@ extension ProfileUserViewController: UICollectionViewDataSource {
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionViewCell", for: indexPath) as? PostCollectionViewCell else { return PostCollectionViewCell() }
             cell.setData(data: dataPost[dataPost.count - indexPath.row - 1])
+            cell.dataPost = dataPost[dataPost.count - indexPath.row - 1]
+            cell.commentButton.isUserInteractionEnabled = false
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCollectionViewCell", for: indexPath) as? FriendCollectionViewCell else { return FriendCollectionViewCell() }
@@ -160,7 +162,7 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
         case 0:
             return CGSize(width: collectionView.bounds.width, height: 390)
         case 1:
-            return CGSize(width: collectionView.bounds.width - 20, height: 420)
+            return CGSize(width: collectionView.bounds.width, height: 435)
         default:
             return CGSize(width: collectionView.bounds.width/2 - 30, height: collectionView.bounds.width/2)
         }
@@ -171,7 +173,7 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
         case 0:
             return UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         case 1:
-            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+            return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         default:
             return UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         }

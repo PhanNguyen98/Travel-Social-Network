@@ -53,19 +53,13 @@ class ProfileFriendTableViewCell: UITableViewCell {
             DataManager.shared.setDataUser()
             isActive = true
             addFriendButton.setTitle("Follow", for: .normal)
-            for index in 0..<dataUser.listIdFollowers!.count {
-                if dataUser.listIdFollowers![index] == DataManager.shared.user.id {
-                    dataUser.listIdFollowers?.remove(at: index)
-                    DataManager.shared.setDataFollowers(id: dataUser.id!, listIdFollowers: dataUser.listIdFollowers!)
-                    break
-                }
+            if let index = dataUser.listIdFollowers?.firstIndex(of: DataManager.shared.user.id!) {
+                dataUser.listIdFollowers?.remove(at: index)
+                DataManager.shared.setDataFollowers(id: dataUser.id!, listIdFollowers: dataUser.listIdFollowers!)
             }
-            for index in 0..<DataManager.shared.user.listIdFollowing!.count {
-                if DataManager.shared.user.listIdFollowing?[index] == dataUser.id {
-                    DataManager.shared.user.listIdFollowing?.remove(at: index)
-                    DataManager.shared.setDataFollowing(id: DataManager.shared.user.id!, listIdFollowing: DataManager.shared.user.listIdFollowing!)
-                    break
-                }
+            if let index = DataManager.shared.user.listIdFollowing?.firstIndex(of: dataUser.id!) {
+                DataManager.shared.user.listIdFollowing?.remove(at: index)
+                DataManager.shared.setDataFollowing(id: DataManager.shared.user.id!, listIdFollowing: DataManager.shared.user.listIdFollowing!)
             }
         }
         DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {

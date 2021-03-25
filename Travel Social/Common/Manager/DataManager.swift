@@ -27,12 +27,7 @@ class DataManager {
             "listIdFollowers": user.listIdFollowers ?? [],
             "listIdFollowing": user.listIdFollowing ?? [],
             "job": user.job ?? ""
-        ]) { err in
-            if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
-            }
+        ]) { _ in
         }
     }
     

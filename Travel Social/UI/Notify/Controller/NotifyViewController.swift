@@ -33,40 +33,9 @@ class NotifyViewController: UIViewController {
     }
     
     func setData() {
-        handleNotifyChanges() {
+        DatabaseManager.shared.handleNotifyChanges() {
+            self.dataSources = DatabaseManager.shared.dataNotify
             self.tableView.reloadData()
-        }
-    }
-    
-    func handleNotifyChanges(completed: @escaping () -> ()) {
-        let db = Firestore.firestore()
-        db.collection("notifies").whereField("id", isEqualTo: DataManager.shared.user.id!).addSnapshotListener { (querySnapshot, error) in
-            guard let snapshot = querySnapshot else {
-                return completed()
-            }
-            
-            snapshot.documentChanges.forEach { diff in
-                if (diff.type == .added) {
-                    let newNotify = Notify()
-                    newNotify.setData(withData: diff.document)
-                    self.dataSources.append(newNotify)
-                    NotificationCenter.default.post(name: NSNotification.Name("Notify"), object: nil)
-                }
-                if (diff.type == .modified) {
-                    let docId = diff.document.documentID
-                    if let indexOfNotifyToModify = self.dataSources.firstIndex(where: { $0.idNotify == docId} ) {
-                        let notifyToModify = self.dataSources[indexOfNotifyToModify]
-                        notifyToModify.updateNotify(withData: diff.document)
-                    }
-                }
-                if (diff.type == .removed) {
-                    let docId = diff.document.documentID
-                    if let indexOfNotifyToRemove = self.dataSources.firstIndex(where: { $0.idNotify == docId} ) {
-                        self.dataSources.remove(at: indexOfNotifyToRemove)
-                    }
-                }
-            }
-            completed()
         }
     }
     
@@ -107,8 +76,8 @@ extension NotifyViewController: UITableViewDelegate {
         let label = UILabel()
         label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
         label.text = "  Notifications"
-        label.font = .boldSystemFont(ofSize: 30)
-        label.textColor = .black
+        label.font = .boldSystemFont(ofSize: 25)
+        label.textColor = UIColor(red: 0/255.0, green: 194/255, blue: 166/255, alpha: 1)
         headerView.addSubview(label)
         
         return headerView

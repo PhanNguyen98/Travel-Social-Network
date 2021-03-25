@@ -14,30 +14,26 @@ class UserDefaultManager {
     private init() {
     }
     
-    func setData(text: String) {
-        var arrayData = [String]()
-        arrayData = getData()
-        if arrayData.first(where: { $0 == text }) == nil && text != "" {
-            arrayData.append(text)
-            userManager.setValue(arrayData, forKey: "ListKeySearch")
-        }
+    func setDataNotify(data: Int, keyData: String) {
+        userManager.setValue(data, forKey: keyData)
     }
     
-    func getData() -> [String] {
-        guard let data: [String] = userManager.array(forKey: "ListKeySearch") as? [String] else {
-            return [String]()
+    func getDataNotify(keyData: String) -> Int {
+        guard let data: Int = userManager.integer(forKey: keyData) as? Int else {
+            return 0
         }
         return data
     }
     
-    func deleteItem(key: String) {
-        var arrData = [String]()
-        arrData = getData()
-        for index in 0..<arrData.count {
-            if arrData[index] == key {
-                arrData.remove(at: index)
-            }
-        }
-        userManager.setValue(arrData, forKey: "ListKeySearch")
+    func setDataUser(data: String, keyData: String) {
+        userManager.setValue(data, forKey: keyData)
     }
+    
+    func getData(keyData: String) -> String {
+        guard let data = userManager.string(forKey: keyData) else {
+            return ""
+        }
+        return data
+    }
+    
 }

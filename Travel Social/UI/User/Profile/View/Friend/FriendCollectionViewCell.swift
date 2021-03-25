@@ -24,9 +24,9 @@ class FriendCollectionViewCell: UICollectionViewCell {
     }
     
     func setUI(){
-        self.layer.cornerRadius = 5
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.borderWidth = 1
+        self.layer.cornerRadius = 10
+        self.layer.borderColor = UIColor.systemGray2.cgColor
+        self.layer.borderWidth = 0.5
     }
     
     func setData(data: User) {

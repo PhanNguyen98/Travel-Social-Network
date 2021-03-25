@@ -18,6 +18,7 @@ class ListUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
+        setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,9 +33,19 @@ class ListUserViewController: UIViewController {
     
 //MARK: SetTableView
     func setTableView() {
+        tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserTableViewCell")
+    }
+    
+    func setNavigationBar() {
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(popViewController))
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc func popViewController() {
+        self.navigationController?.popViewController(animated: true)
     }
 
 }
@@ -59,7 +70,7 @@ extension ListUserViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 80
     }
     
 }

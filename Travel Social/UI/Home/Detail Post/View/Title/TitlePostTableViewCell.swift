@@ -40,6 +40,7 @@ class TitlePostTableViewCell: UITableViewCell {
         avatarButton.layer.cornerRadius = avatarButton.frame.height/2
         avatarButton.layer.borderWidth = 0.5
         avatarButton.layer.borderColor = UIColor.gray.cgColor
+        avatarButton.layer.masksToBounds = true
     }
     
     func setData(data: Post) {

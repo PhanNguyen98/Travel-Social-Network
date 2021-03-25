@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wte-zT-8k1">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="650"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="dcO-ut-lsP">
                                     <rect key="frame" x="138" y="51.5" width="138" height="138"/>
@@ -130,7 +130,7 @@
                                 <constraint firstItem="dcO-ut-lsP" firstAttribute="top" secondItem="krb-v4-8KV" secondAttribute="bottom" constant="10" id="JDq-dH-aAr"/>
                                 <constraint firstAttribute="trailing" secondItem="CB2-ZZ-7gd" secondAttribute="trailing" constant="20" id="M8J-Se-URc"/>
                                 <constraint firstItem="gvW-Tg-NvX" firstAttribute="top" secondItem="R4J-nE-swh" secondAttribute="bottom" constant="20" id="MBg-jq-LNO"/>
-                                <constraint firstAttribute="height" constant="800" id="T0D-8T-hHL"/>
+                                <constraint firstAttribute="height" constant="650" id="T0D-8T-hHL"/>
                                 <constraint firstItem="acx-5P-gg5" firstAttribute="top" secondItem="Wte-zT-8k1" secondAttribute="top" constant="15" id="T66-Lh-Mig"/>
                                 <constraint firstItem="dcO-ut-lsP" firstAttribute="centerX" secondItem="Wte-zT-8k1" secondAttribute="centerX" id="WdI-i6-fZq"/>
                                 <constraint firstItem="hON-7l-qnz" firstAttribute="leading" secondItem="Wte-zT-8k1" secondAttribute="leading" constant="30" id="YRM-31-z75"/>
