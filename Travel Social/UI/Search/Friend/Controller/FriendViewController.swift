@@ -59,7 +59,12 @@ extension FriendViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        switch indexPath.section {
+        case 0:
+            return UITableView.automaticDimension
+        default:
+            return 435
+        }
     }
     
 }
@@ -122,14 +127,14 @@ extension FriendViewController: PostTableViewCellDelegate {
         let listUserViewController = ListUserViewController()
         DataManager.shared.getListUser(listId: listUser) { result in
             listUserViewController.dataSources = result
-            self.present(listUserViewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(listUserViewController, animated: true)
         }
     }
     
     func showListComment(dataPost: Post) {
         let commentViewController = CommentViewController()
         commentViewController.dataPost = dataPost
-        self.present(commentViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(commentViewController, animated: true)
     }
     
 }

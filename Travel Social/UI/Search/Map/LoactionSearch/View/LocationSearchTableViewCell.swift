@@ -21,26 +21,9 @@ class LocationSearchTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func parseAddress(selectedItem:MKPlacemark) -> String {
-        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
-        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
-        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
-        let addressLine = String(
-            format:"%@%@%@%@%@%@%@",
-            selectedItem.subThoroughfare ?? "",
-            firstSpace,
-            selectedItem.thoroughfare ?? "",
-            comma,
-            selectedItem.locality ?? "",
-            secondSpace,
-            selectedItem.administrativeArea ?? ""
-        )
-        return addressLine
-    }
-    
     func setData(data: MKMapItem) {
         self.placeLabel.text = data.placemark.name
-        self.detailPlaceLabel.text = parseAddress(selectedItem: data.placemark)
+        self.detailPlaceLabel.text = Utilities.parseAddress(selectedItem: data.placemark)
     }
     
 }

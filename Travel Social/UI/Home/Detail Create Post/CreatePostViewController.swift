@@ -42,6 +42,13 @@ class CreatePostViewController: UIViewController {
         setDataUser()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.placeTextField.text = ""
+        self.contentTextView.text = ""
+        self.resultImagePicker = [PHAsset]()
+    }
+    
 //MARK: SetUI
     func setConstraint() {
         postBottomConstraint.constant = 280
@@ -124,8 +131,8 @@ class CreatePostViewController: UIViewController {
     }
     
     @IBAction func createPost(_ sender: Any) {
-        SVProgressHUD.show()
         if contentTextView.text != "" && resultImagePicker.count != 0 && placeTextField.text != "" {
+            SVProgressHUD.show()
             var resultImage = [String]()
             let dispatchGroup = DispatchGroup()
             for asset in resultImagePicker {
@@ -170,7 +177,6 @@ class CreatePostViewController: UIViewController {
             }
         }
         else {
-            SVProgressHUD.dismiss()
             showAlert(message: "please fill in all fields and select image")
         }
     }
@@ -198,9 +204,18 @@ extension CreatePostViewController: UITextViewDelegate {
 extension CreatePostViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let mapViewController = MapViewController()
+        mapViewController.mapDelegate = self
         let mapNavigationController = UINavigationController(rootViewController: mapViewController)
         mapNavigationController.modalPresentationStyle = .overFullScreen
         self.present(mapNavigationController, animated: true, completion: nil)
+    }
+}
+
+//MARK:
+extension CreatePostViewController: MapViewControllerDelegate {
+    func getLocation(location: String) {
+        self.placeTextField.text = ""
+        self.placeTextField.text = location
     }
 }
 

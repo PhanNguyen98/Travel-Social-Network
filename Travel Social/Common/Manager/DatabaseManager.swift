@@ -27,7 +27,10 @@ class DatabaseManager {
                     let newNotify = Notify()
                     newNotify.setData(withData: diff.document)
                     self.dataNotify.append(newNotify)
-                    NotificationCenter.default.post(name: NSNotification.Name("Notify"), object: nil)
+                    if self.dataNotify.count > UserDefaultManager.shared.getDataNotify(keyData: DataManager.shared.user.id ?? "") {
+                        NotificationCenter.default.post(name: NSNotification.Name("Notify"), object: nil)
+                        UserDefaultManager.shared.setDataNotify(data: DatabaseManager.shared.dataNotify.count, keyData: DataManager.shared.user.id ?? "")
+                    }
                 }
                 if (diff.type == .modified) {
                     let docId = diff.document.documentID

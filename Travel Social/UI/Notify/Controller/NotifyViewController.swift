@@ -33,8 +33,10 @@ class NotifyViewController: UIViewController {
     }
     
     func setData() {
-        self.dataSources = DatabaseManager.shared.dataNotify
-        self.tableView.reloadData()
+        DatabaseManager.shared.handleNotifyChanges() {
+            self.dataSources = DatabaseManager.shared.dataNotify
+            self.tableView.reloadData()
+        }
     }
     
 }
@@ -74,8 +76,8 @@ extension NotifyViewController: UITableViewDelegate {
         let label = UILabel()
         label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
         label.text = "  Notifications"
-        label.font = .boldSystemFont(ofSize: 30)
-        label.textColor = .black
+        label.font = .boldSystemFont(ofSize: 25)
+        label.textColor = UIColor(red: 0/255.0, green: 194/255, blue: 166/255, alpha: 1)
         headerView.addSubview(label)
         
         return headerView

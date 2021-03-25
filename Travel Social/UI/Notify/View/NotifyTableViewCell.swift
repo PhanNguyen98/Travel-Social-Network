@@ -31,6 +31,7 @@ class NotifyTableViewCell: UITableViewCell {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.layer.borderWidth = 1
         avatarImageView.layer.borderColor = UIColor.systemGray3.cgColor
+        avatarImageView.layer.masksToBounds = true
     }
     
     func setData(data: Notify) {
@@ -41,9 +42,11 @@ class NotifyTableViewCell: UITableViewCell {
             }
             switch data.type {
             case "comment":
-                self.contentLabel.text = result.name ?? "" + " was comment: " + data.content
+                self.contentLabel.text = result.name ?? ""
+                self.contentLabel.text?.append(" was comment: " + data.content)
             case "follow":
-                self.contentLabel.text = result.name ?? "" + " was follow you"
+                self.contentLabel.text = result.name ?? ""
+                self.contentLabel.text?.append(" was follow you")
             default:
                 self.contentLabel.text = result.name ?? "" + "was "
             }

@@ -49,7 +49,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="place" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRR-59-q4D">
-                        <rect key="frame" x="110" y="51" width="317" height="18"/>
+                        <rect key="frame" x="110" y="50" width="317" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>
@@ -92,10 +92,10 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNV-nx-2k3">
-                        <rect key="frame" x="50" y="376.5" width="30" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="50" y="375" width="30" height="33"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                         <state key="normal">
-                            <color key="titleColor" systemColor="systemGrayColor"/>
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                         <connections>
                             <action selector="showListHeart:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XbF-mE-zb3"/>
@@ -107,24 +107,24 @@
                             <constraint firstAttribute="width" constant="30" id="QQB-gS-VVd"/>
                             <constraint firstAttribute="height" constant="30" id="pLR-W5-Y5q"/>
                         </constraints>
-                        <state key="normal" image="comment">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
+                        <color key="tintColor" red="0.0" green="0.76078431369999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" image="comment"/>
                         <connections>
                             <action selector="addComment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MeR-ut-J1k"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bb-Zd-U1D">
-                        <rect key="frame" x="140" y="376.5" width="30" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="140" y="375" width="30" height="33"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                         <state key="normal">
-                            <color key="titleColor" systemColor="systemGrayColor"/>
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="9bb-Zd-U1D" firstAttribute="centerY" secondItem="3Uh-Zb-9jy" secondAttribute="centerY" id="0DC-JK-rg5"/>
                     <constraint firstItem="3Uh-Zb-9jy" firstAttribute="leading" secondItem="cNV-nx-2k3" secondAttribute="trailing" constant="30" id="4CQ-ky-mUn"/>
+                    <constraint firstItem="eQm-Zi-RBt" firstAttribute="top" secondItem="cRR-59-q4D" secondAttribute="bottom" constant="12" id="646-yq-8VU"/>
                     <constraint firstItem="SZQ-sy-m6Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6Ms-zJ-Q2c"/>
                     <constraint firstItem="SyD-27-3K7" firstAttribute="leading" secondItem="yVi-Gl-xAS" secondAttribute="leading" id="7RO-24-UJ7"/>
                     <constraint firstItem="cNV-nx-2k3" firstAttribute="centerY" secondItem="gbE-LW-kd3" secondAttribute="centerY" id="7cf-Ro-7GB"/>
@@ -133,22 +133,20 @@
                     <constraint firstItem="gbE-LW-kd3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Ar2-GN-H5X"/>
                     <constraint firstItem="3Uh-Zb-9jy" firstAttribute="centerY" secondItem="cNV-nx-2k3" secondAttribute="centerY" id="FOf-KM-GyU"/>
                     <constraint firstItem="SyD-27-3K7" firstAttribute="top" secondItem="yVi-Gl-xAS" secondAttribute="bottom" constant="5" id="IXa-Ja-N2x"/>
-                    <constraint firstItem="eQm-Zi-RBt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tcp-rh-Sc2" secondAttribute="bottom" constant="10" id="JjO-Aw-BY9"/>
                     <constraint firstItem="tcp-rh-Sc2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Lou-FY-ZLr"/>
                     <constraint firstItem="F0Z-Ty-UEv" firstAttribute="top" secondItem="SZQ-sy-m6Q" secondAttribute="bottom" id="N3G-Xu-q7d"/>
                     <constraint firstAttribute="trailing" secondItem="cRR-59-q4D" secondAttribute="trailing" constant="10" id="Q7l-Hw-wtk"/>
                     <constraint firstAttribute="trailing" secondItem="SZQ-sy-m6Q" secondAttribute="trailing" constant="10" id="SUg-1n-KGC"/>
                     <constraint firstItem="eQm-Zi-RBt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="UPz-zk-kzC"/>
+                    <constraint firstItem="cRR-59-q4D" firstAttribute="top" secondItem="SyD-27-3K7" secondAttribute="top" id="WxT-Bj-8YC"/>
                     <constraint firstItem="9bb-Zd-U1D" firstAttribute="leading" secondItem="3Uh-Zb-9jy" secondAttribute="trailing" id="ZdT-VC-vsd"/>
                     <constraint firstItem="gbE-LW-kd3" firstAttribute="top" secondItem="F0Z-Ty-UEv" secondAttribute="bottom" constant="15" id="bkl-uz-S2b"/>
                     <constraint firstItem="tcp-rh-Sc2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="dFw-PW-YPE"/>
-                    <constraint firstItem="eQm-Zi-RBt" firstAttribute="top" secondItem="SyD-27-3K7" secondAttribute="bottom" constant="10" id="gXK-CF-yLn"/>
                     <constraint firstItem="cRR-59-q4D" firstAttribute="leading" secondItem="SyD-27-3K7" secondAttribute="trailing" constant="5" id="gul-TI-tTL"/>
                     <constraint firstAttribute="trailing" secondItem="F0Z-Ty-UEv" secondAttribute="trailing" constant="10" id="iMU-cS-8Gv"/>
                     <constraint firstItem="yVi-Gl-xAS" firstAttribute="leading" secondItem="tcp-rh-Sc2" secondAttribute="trailing" constant="20" id="krV-fb-zcM"/>
                     <constraint firstItem="yVi-Gl-xAS" firstAttribute="top" secondItem="tcp-rh-Sc2" secondAttribute="top" id="mFe-WQ-IO8"/>
                     <constraint firstItem="cNV-nx-2k3" firstAttribute="leading" secondItem="gbE-LW-kd3" secondAttribute="trailing" id="tEl-6K-DGd"/>
-                    <constraint firstItem="cRR-59-q4D" firstAttribute="centerY" secondItem="SyD-27-3K7" secondAttribute="centerY" id="vhr-dB-YCz"/>
                     <constraint firstAttribute="trailing" secondItem="eQm-Zi-RBt" secondAttribute="trailing" constant="20" id="xCv-bE-VXo"/>
                 </constraints>
             </tableViewCellContentView>

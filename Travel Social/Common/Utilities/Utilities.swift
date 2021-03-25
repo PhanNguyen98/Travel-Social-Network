@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import MapKit
 
 class Utilities {
     
@@ -66,5 +67,21 @@ class Utilities {
             })
         } else if photos == .authorized {
         }
+    }
+    
+    static func parseAddress(selectedItem:MKPlacemark) -> String {
+        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
+        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
+        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
+        let addressLine = String(
+            format:"%@%@%@%@%@%@",
+            selectedItem.subThoroughfare ?? "",
+            firstSpace,
+            selectedItem.thoroughfare ?? "",
+            comma,
+            secondSpace,
+            selectedItem.administrativeArea ?? ""
+        )
+        return addressLine
     }
 }

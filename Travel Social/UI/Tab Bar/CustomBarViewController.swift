@@ -33,7 +33,7 @@ class CustomBarViewController: UITabBarController {
     func setTabBar() {
         self.delegate = self
         homeNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house.fill"), tag: 0)
-        createPostNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.rectangle"), tag: 2)
+        createPostNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.square.fill"), tag: 2)
         weatherNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "cloud.sun.rain.fill"), tag: 1)
         notifyNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "bell.fill"), tag: 3)
         profileUserNavigationController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "person.fill"), tag: 4)
@@ -42,8 +42,6 @@ class CustomBarViewController: UITabBarController {
     }
     
     func setNotification() {
-        DatabaseManager.shared.handleNotifyChanges() {
-        }
         NotificationCenter.default.addObserver(self, selector: #selector(showNotify(_:)), name: NSNotification.Name("Notify"), object: nil)
     }
 
@@ -62,7 +60,7 @@ extension CustomBarViewController: UITabBarControllerDelegate {
                 var data = DataManager.shared.user.listIdFollowing ?? []
                 data.append(DataManager.shared.user.id!)
                 DataManager.shared.getPostFromListId(listId: data) { result in
-                    if result.count != homeViewController?.dataSources.count {
+                    if homeViewController?.dataSources.count != result.count {
                         homeViewController?.dataSources = result
                         homeViewController?.tableView.reloadData()
                     }

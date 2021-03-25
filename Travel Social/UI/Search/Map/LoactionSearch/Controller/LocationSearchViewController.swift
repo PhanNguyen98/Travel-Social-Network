@@ -8,17 +8,25 @@
 import UIKit
 import MapKit
 
+protocol LocationSearchDelegate: class {
+    func dropPinZoomIn(placemark:MKPlacemark)
+}
+
 class LocationSearchViewController: UIViewController {
 
+//MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     var matchingItems = [MKMapItem]()
     var mapView: MKMapView?
+    weak var locationDelegate: LocationSearchDelegate?
 
+//MARK: ViewCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
     }
 
+//MARK: SetData
     func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -31,6 +39,11 @@ class LocationSearchViewController: UIViewController {
 extension LocationSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        locationDelegate?.dropPinZoomIn(placemark: matchingItems[indexPath.row].placemark)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

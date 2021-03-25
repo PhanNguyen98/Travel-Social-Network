@@ -55,8 +55,6 @@
 		D599138325F9C73600D3B0E1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D599138225F9C73600D3B0E1 /* Colors.swift */; };
 		D59ECEEF25BA7B220078DC87 /* CustomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECEED25BA7B220078DC87 /* CustomBarViewController.swift */; };
 		D59ECEF025BA7B220078DC87 /* CustomBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECEEE25BA7B220078DC87 /* CustomBarViewController.xib */; };
-		D59ECEFC25BA7BB30078DC87 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECEFA25BA7BB30078DC87 /* SearchViewController.swift */; };
-		D59ECEFD25BA7BB30078DC87 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECEFB25BA7BB30078DC87 /* SearchViewController.xib */; };
 		D59ECF1725BA8A620078DC87 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECF1525BA8A620078DC87 /* HomeViewController.swift */; };
 		D59ECF1825BA8A620078DC87 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECF1625BA8A620078DC87 /* HomeViewController.xib */; };
 		D59ECF2625BA8B9C0078DC87 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59ECF2425BA8B9C0078DC87 /* PostTableViewCell.swift */; };
@@ -158,8 +156,6 @@
 		D599138225F9C73600D3B0E1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D59ECEED25BA7B220078DC87 /* CustomBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBarViewController.swift; sourceTree = "<group>"; };
 		D59ECEEE25BA7B220078DC87 /* CustomBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomBarViewController.xib; sourceTree = "<group>"; };
-		D59ECEFA25BA7BB30078DC87 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		D59ECEFB25BA7BB30078DC87 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		D59ECF1525BA8A620078DC87 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D59ECF1625BA8A620078DC87 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		D59ECF2425BA8B9C0078DC87 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -487,7 +483,6 @@
 				D5E78F9725C7EDE80066C71B /* Key Search */,
 				D5A208E725C1176A00BE9473 /* Friend */,
 				D5DFBDC125BEC19E00C7AC50 /* View */,
-				D5DFBDC025BEC18100C7AC50 /* Controller */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -743,15 +738,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		D5DFBDC025BEC18100C7AC50 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D59ECEFA25BA7BB30078DC87 /* SearchViewController.swift */,
-				D59ECEFB25BA7BB30078DC87 /* SearchViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		D5DFBDC125BEC19E00C7AC50 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -925,7 +911,6 @@
 				D5E78F9B25C7EE620066C71B /* KeySearchViewController.xib in Resources */,
 				D5A208E325C1118300BE9473 /* SearchTableViewCell.xib in Resources */,
 				D5ABCBA126083C4F00A1ADD6 /* MapViewController.xib in Resources */,
-				D59ECEFD25BA7BB30078DC87 /* SearchViewController.xib in Resources */,
 				D54CC6C125F879EF00CDD99C /* ProfileUserViewController.xib in Resources */,
 				D599137A25F9AFEC00D3B0E1 /* PostCollectionViewCell.xib in Resources */,
 				D5ABCBB02608406F00A1ADD6 /* LocationSearchTableViewCell.xib in Resources */,
@@ -1012,7 +997,6 @@
 				D565AF6B25B6C7830090FA5B /* AppDelegate.swift in Sources */,
 				D564899725E74D6300A34CB6 /* CommentViewController.swift in Sources */,
 				D54CC6C025F879EF00CDD99C /* ProfileUserViewController.swift in Sources */,
-				D59ECEFC25BA7BB30078DC87 /* SearchViewController.swift in Sources */,
 				D5A208E225C1118300BE9473 /* SearchTableViewCell.swift in Sources */,
 				D599137F25F9BEC700D3B0E1 /* FriendCollectionViewCell.swift in Sources */,
 				D5F410FF25BAB37D007F8E03 /* User.swift in Sources */,

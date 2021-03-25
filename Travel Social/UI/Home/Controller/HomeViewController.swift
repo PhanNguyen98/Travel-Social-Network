@@ -25,6 +25,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        setData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,12 +53,13 @@ class HomeViewController: UIViewController {
             }
         }
         handlePostChanges() { result in
-            let indexSet: IndexSet = [self.dataSources.count - result]
-            self.tableView.reloadSections(indexSet, with: .automatic)
+            let indexPath = IndexPath(row: 0, section: self.dataSources.count - result)
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            self.tableView.reloadData()
         }
     }
     
-    func handlePostChanges(completed: @escaping (_ result: Int) -> ()) {
+    func handlePostChanges(completed: @escaping (_ pos: Int) -> ()) {
         let db = Firestore.firestore()
         var data = DataManager.shared.user.listIdFollowers ?? []
         data.append(DataManager.shared.user.id!)
@@ -100,7 +102,7 @@ extension HomeViewController: UITableViewDelegate {
         if indexPath.section == 0 {
             return UITableView.automaticDimension
         } else {
-            return 430
+            return 435
         }
     }
 }
@@ -182,16 +184,28 @@ extension HomeViewController: PostTableViewCellDelegate {
         let listUserViewController = ListUserViewController()
         DataManager.shared.getListUser(listId: listUser) { result in
             listUserViewController.dataSources = result
-            self.present(listUserViewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(listUserViewController, animated: true)
         }
     }
     
     func showListComment(dataPost: Post) {
         let commentViewController = CommentViewController()
         commentViewController.dataPost = dataPost
+        commentViewController.commentDelegate = self
         self.navigationController?.pushViewController(commentViewController, animated: true)
     }
     
+}
+
+//MARK: CommentViewControllerDelegate
+extension HomeViewController: CommentViewControllerDelegate {
+    func reloadComment(count: Int, post: Post) {
+        guard let positionPost = Int(post.id!) else { return }
+        let indexPath = IndexPath(row: 1, section: dataSources.count - positionPost)
+        let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell
+        cell?.countCommentButton.setTitle(String(count), for: .normal)
+        self.tableView.reloadData()
+    }
 }
 
 //MARK: TitleTableViewCellDelegate
@@ -200,3 +214,32 @@ extension HomeViewController: TitleTableViewCellDelegate {
         self.present(viewController, animated: true, completion: nil)
     }
 }
+
+//MARK: UITabBarControllerDelegate
+//extension HomeViewController: UITabBarControllerDelegate {
+//    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+//        switch tabBarController.selectedIndex {
+//        case 0:
+//            DataManager.shared.getUserFromId(id: DataManager.shared.user.id!) {
+//                var data = DataManager.shared.user.listIdFollowing ?? []
+//                data.append(DataManager.shared.user.id!)
+//                DataManager.shared.getPostFromListId(listId: data) { result in
+//                    if self.dataSources.count != result.count {
+//                        self.dataSources = result
+//                        self.tableView.reloadData()
+//                    }
+//                }
+//            }
+//        case 4:
+//            let profileUserViewController = viewController as? ProfileUserViewController
+//            DataManager.shared.getPostFromId(idUser: DataManager.shared.user.id!) { result in
+//                profileUserViewController?.dataPost = result
+//                DataManager.shared.setDataUser()
+//                profileUserViewController?.dataUser = DataManager.shared.user
+//                profileUserViewController?.collectionView.reloadData()
+//            }
+//        default:
+//            break
+//        }
+//    }
+//}
