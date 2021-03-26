@@ -76,8 +76,9 @@
                             <constraint firstAttribute="height" constant="30" id="eUa-L8-KbY"/>
                             <constraint firstAttribute="width" constant="30" id="p78-Ei-wNN"/>
                         </constraints>
+                        <color key="tintColor" red="0.0" green="0.76078431369999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <state key="normal" image="comment">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleColor" red="0.0" green="0.76078431369999999" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
                             <action selector="showComment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vUl-QN-RmR"/>

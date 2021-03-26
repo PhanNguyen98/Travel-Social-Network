@@ -52,16 +52,16 @@ class HomeViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        handlePostChanges() { result in
-            let indexPath = IndexPath(row: 0, section: self.dataSources.count - result)
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
-            self.tableView.reloadData()
+        handlePostChanges() {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
-    func handlePostChanges(completed: @escaping (_ pos: Int) -> ()) {
+    func handlePostChanges(completed: @escaping () -> ()) {
         let db = Firestore.firestore()
-        var data = DataManager.shared.user.listIdFollowers ?? []
+        var data = DataManager.shared.user.listIdFollowing ?? []
         data.append(DataManager.shared.user.id!)
         db.collection("posts").whereField("idUser", in: data).addSnapshotListener { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
@@ -75,7 +75,7 @@ class HomeViewController: UIViewController {
                     if let indexOfPostToModify = self.dataSources.firstIndex(where: { $0.id == docId} ) {
                         let postToModify = self.dataSources[indexOfPostToModify]
                         postToModify.updatePost(withData: diff.document)
-                        completed(indexOfPostToModify)
+                        completed()
                     }
                 }
             }
@@ -224,10 +224,8 @@ extension HomeViewController: UITabBarControllerDelegate {
                 var data = DataManager.shared.user.listIdFollowing ?? []
                 data.append(DataManager.shared.user.id!)
                 DataManager.shared.getPostFromListId(listId: data) { result in
-                    if self.dataSources.count != result.count {
-                        self.dataSources = result
-                        self.tableView.reloadData()
-                    }
+                    self.dataSources = result
+                    self.tableView.reloadData()
                 }
             }
         case 3:

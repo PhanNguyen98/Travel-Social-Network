@@ -209,6 +209,9 @@ extension CommentViewController: UITableViewDataSource {
 //MARK: PostTableViewCellDelegate
 extension CommentViewController: PostTableViewCellDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, dataPost: Post) {
+        let detailPostViewController = DetailPostViewController()
+        detailPostViewController.dataPost = dataPost
+        self.navigationController?.pushViewController(detailPostViewController, animated: true)
     }
     
     func showProfile(user: User) {
