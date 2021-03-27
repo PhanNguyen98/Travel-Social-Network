@@ -61,8 +61,6 @@
 		D59ECF2725BA8B9C0078DC87 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59ECF2525BA8B9C0078DC87 /* PostTableViewCell.xib */; };
 		D59EF59725F06D8F003DC267 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59EF59525F06D8F003DC267 /* WeatherTableViewCell.swift */; };
 		D59EF59825F06D8F003DC267 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59EF59625F06D8F003DC267 /* WeatherTableViewCell.xib */; };
-		D5A208E225C1118300BE9473 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A208E025C1118300BE9473 /* SearchTableViewCell.swift */; };
-		D5A208E325C1118300BE9473 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5A208E125C1118300BE9473 /* SearchTableViewCell.xib */; };
 		D5A208EA25C1179400BE9473 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A208E825C1179400BE9473 /* FriendViewController.swift */; };
 		D5A208EB25C1179400BE9473 /* FriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5A208E925C1179400BE9473 /* FriendViewController.xib */; };
 		D5A208F225C1187300BE9473 /* ProfileFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A208F025C1187300BE9473 /* ProfileFriendTableViewCell.swift */; };
@@ -90,8 +88,6 @@
 		D5E78F9A25C7EE620066C71B /* KeySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E78F9825C7EE620066C71B /* KeySearchViewController.swift */; };
 		D5E78F9B25C7EE620066C71B /* KeySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E78F9925C7EE620066C71B /* KeySearchViewController.xib */; };
 		D5E78F9E25C7F0560066C71B /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E78F9D25C7F0560066C71B /* UserDefaultManager.swift */; };
-		D5E78FA425C7F1A50066C71B /* KeySearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E78FA225C7F1A50066C71B /* KeySearchTableViewCell.swift */; };
-		D5E78FA525C7F1A50066C71B /* KeySearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E78FA325C7F1A50066C71B /* KeySearchTableViewCell.xib */; };
 		D5F410FA25BAAC33007F8E03 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F410F825BAAC33007F8E03 /* CreatePostViewController.swift */; };
 		D5F410FB25BAAC33007F8E03 /* CreatePostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F410F925BAAC33007F8E03 /* CreatePostViewController.xib */; };
 		D5F410FF25BAB37D007F8E03 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F410FE25BAB37D007F8E03 /* User.swift */; };
@@ -162,8 +158,6 @@
 		D59ECF2525BA8B9C0078DC87 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		D59EF59525F06D8F003DC267 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		D59EF59625F06D8F003DC267 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
-		D5A208E025C1118300BE9473 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		D5A208E125C1118300BE9473 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		D5A208E825C1179400BE9473 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		D5A208E925C1179400BE9473 /* FriendViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendViewController.xib; sourceTree = "<group>"; };
 		D5A208F025C1187300BE9473 /* ProfileFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -191,8 +185,6 @@
 		D5E78F9825C7EE620066C71B /* KeySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeySearchViewController.swift; sourceTree = "<group>"; };
 		D5E78F9925C7EE620066C71B /* KeySearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeySearchViewController.xib; sourceTree = "<group>"; };
 		D5E78F9D25C7F0560066C71B /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
-		D5E78FA225C7F1A50066C71B /* KeySearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeySearchTableViewCell.swift; sourceTree = "<group>"; };
-		D5E78FA325C7F1A50066C71B /* KeySearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeySearchTableViewCell.xib; sourceTree = "<group>"; };
 		D5F410F825BAAC33007F8E03 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		D5F410F925BAAC33007F8E03 /* CreatePostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatePostViewController.xib; sourceTree = "<group>"; };
 		D5F410FE25BAB37D007F8E03 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -233,70 +225,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D50A535F25E68887009D2C74 /* ListUserHeart */ = {
-			isa = PBXGroup;
-			children = (
-				D50A536F25E6897E009D2C74 /* ListUserViewController.swift */,
-				D50A537025E6897E009D2C74 /* ListUserViewController.xib */,
-			);
-			name = ListUserHeart;
-			sourceTree = "<group>";
-		};
-		D53B4A7725BFC15D007D9604 /* Login Sign Up */ = {
-			isa = PBXGroup;
-			children = (
-				D5D1B5B225B7C30F0041C30C /* Login */,
-				D5D1B5BB25B7C62C0041C30C /* SignUp */,
-			);
-			path = "Login Sign Up";
-			sourceTree = "<group>";
-		};
-		D53B4A7825BFC245007D9604 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				D53B4A7D25BFC788007D9604 /* View */,
-				D53B4A7B25BFC772007D9604 /* Controller */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		D53B4A7B25BFC772007D9604 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D54CC6BE25F879EF00CDD99C /* ProfileUserViewController.swift */,
-				D54CC6BF25F879EF00CDD99C /* ProfileUserViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D53B4A7D25BFC788007D9604 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D599137C25F9BEAA00D3B0E1 /* Friend */,
-				D599137625F9AFC500D3B0E1 /* Post */,
-				D53B4A8925BFCD38007D9604 /* InfoUser */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D53B4A8925BFCD38007D9604 /* InfoUser */ = {
-			isa = PBXGroup;
-			children = (
-				D54CC6C525F87CA200CDD99C /* InfoUserCollectionViewCell.swift */,
-				D54CC6C625F87CA200CDD99C /* InfoUserCollectionViewCell.xib */,
-			);
-			path = InfoUser;
-			sourceTree = "<group>";
-		};
-		D54BCCC625EF22A70025EFEA /* Weather */ = {
-			isa = PBXGroup;
-			children = (
-				D59EF59425F06D6F003DC267 /* View */,
-				D59EF59325F06D59003DC267 /* Controller */,
-			);
-			path = Weather;
-			sourceTree = "<group>";
-		};
 		D54BCCE725EF29D50025EFEA /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +243,178 @@
 			path = Constant;
 			sourceTree = "<group>";
 		};
+		D54D139D260EDD7F00357DF1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D54D13A0260EDDB900357DF1 /* Login Sign Up */,
+				D54D13A1260EDDF600357DF1 /* Tab Bar */,
+				D54D139F260EDD9900357DF1 /* Home */,
+				D54D13A6260EE03400357DF1 /* Weather */,
+				D54D13A8260EE06C00357DF1 /* Create Post */,
+				D54D13A9260EE09900357DF1 /* Notify */,
+				D54D13AD260EE0EE00357DF1 /* Profile User */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D54D139E260EDD8A00357DF1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D54D13A2260EDE1E00357DF1 /* Home */,
+				D54D13A7260EE04C00357DF1 /* Weather */,
+				D54D13B3260EE1CA00357DF1 /* Create Post */,
+				D54D13AA260EE0A200357DF1 /* Notify */,
+				D54D13AC260EE0C600357DF1 /* Profile User */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D54D139F260EDD9900357DF1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D5A208E825C1179400BE9473 /* FriendViewController.swift */,
+				D5A208E925C1179400BE9473 /* FriendViewController.xib */,
+				D57C5B292604648B00C53DE8 /* DetailPostViewController.swift */,
+				D57C5B2A2604648B00C53DE8 /* DetailPostViewController.xib */,
+				D564899525E74D6300A34CB6 /* CommentViewController.swift */,
+				D564899625E74D6300A34CB6 /* CommentViewController.xib */,
+				D50A536F25E6897E009D2C74 /* ListUserViewController.swift */,
+				D50A537025E6897E009D2C74 /* ListUserViewController.xib */,
+				D53DAF8E25FF646300A94839 /* DetailImageViewController.swift */,
+				D53DAF8F25FF646300A94839 /* DetailImageViewController.xib */,
+				D59ECF1525BA8A620078DC87 /* HomeViewController.swift */,
+				D59ECF1625BA8A620078DC87 /* HomeViewController.xib */,
+				D5E78F9825C7EE620066C71B /* KeySearchViewController.swift */,
+				D5E78F9925C7EE620066C71B /* KeySearchViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D54D13A0260EDDB900357DF1 /* Login Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				D5D1B5B325B7C32D0041C30C /* LoginViewController.swift */,
+				D5D1B5B425B7C32D0041C30C /* LoginViewController.xib */,
+				D5D1B5C325B7C8DB0041C30C /* SignUpViewController.swift */,
+				D5D1B5C425B7C8DB0041C30C /* SignUpViewController.xib */,
+			);
+			path = "Login Sign Up";
+			sourceTree = "<group>";
+		};
+		D54D13A1260EDDF600357DF1 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				D59ECEED25BA7B220078DC87 /* CustomBarViewController.swift */,
+				D59ECEEE25BA7B220078DC87 /* CustomBarViewController.xib */,
+			);
+			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		D54D13A2260EDE1E00357DF1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D5A208F025C1187300BE9473 /* ProfileFriendTableViewCell.swift */,
+				D5A208F125C1187300BE9473 /* ProfileFriendTableViewCell.xib */,
+				D5FA609025F5B13C004121F0 /* TitleTableViewCell.swift */,
+				D5FA609125F5B13C004121F0 /* TitleTableViewCell.xib */,
+				D57C5B352604660400C53DE8 /* ImageTableViewCell.swift */,
+				D57C5B362604660400C53DE8 /* ImageTableViewCell.xib */,
+				D57C5B3B2604668500C53DE8 /* TitlePostTableViewCell.swift */,
+				D57C5B3C2604668500C53DE8 /* TitlePostTableViewCell.xib */,
+				D564899A25E74D8600A34CB6 /* CommentTableViewCell.swift */,
+				D564899B25E74D8600A34CB6 /* CommentTableViewCell.xib */,
+				D5F4115925C79FCF00EAFEF1 /* ImageCollectionViewCell.swift */,
+				D5F4115A25C79FCF00EAFEF1 /* ImageCollectionViewCell.xib */,
+				D59ECF2425BA8B9C0078DC87 /* PostTableViewCell.swift */,
+				D59ECF2525BA8B9C0078DC87 /* PostTableViewCell.xib */,
+				D5DFBDC225BEC1D000C7AC50 /* UserTableViewCell.swift */,
+				D5DFBDC325BEC1D000C7AC50 /* UserTableViewCell.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D54D13A6260EE03400357DF1 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				D54BCCC925EF277A0025EFEA /* WeatherViewController.swift */,
+				D54BCCCA25EF277A0025EFEA /* WeatherViewController.xib */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		D54D13A7260EE04C00357DF1 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				D59EF59525F06D8F003DC267 /* WeatherTableViewCell.swift */,
+				D59EF59625F06D8F003DC267 /* WeatherTableViewCell.xib */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		D54D13A8260EE06C00357DF1 /* Create Post */ = {
+			isa = PBXGroup;
+			children = (
+				D5F410F825BAAC33007F8E03 /* CreatePostViewController.swift */,
+				D5F410F925BAAC33007F8E03 /* CreatePostViewController.xib */,
+				D5ABCB9E26083C4F00A1ADD6 /* MapViewController.swift */,
+				D5ABCB9F26083C4F00A1ADD6 /* MapViewController.xib */,
+				D56A96B82608EBF800DAE993 /* LocationSearchViewController.swift */,
+				D56A96B92608EBF800DAE993 /* LocationSearchViewController.xib */,
+			);
+			path = "Create Post";
+			sourceTree = "<group>";
+		};
+		D54D13A9260EE09900357DF1 /* Notify */ = {
+			isa = PBXGroup;
+			children = (
+				D5C34B5C25EDCBE4009E4260 /* NotifyViewController.swift */,
+				D5C34B5D25EDCBE4009E4260 /* NotifyViewController.xib */,
+			);
+			path = Notify;
+			sourceTree = "<group>";
+		};
+		D54D13AA260EE0A200357DF1 /* Notify */ = {
+			isa = PBXGroup;
+			children = (
+				D5C34B6525EDCDA0009E4260 /* NotifyTableViewCell.swift */,
+				D5C34B6625EDCDA0009E4260 /* NotifyTableViewCell.xib */,
+			);
+			path = Notify;
+			sourceTree = "<group>";
+		};
+		D54D13AC260EE0C600357DF1 /* Profile User */ = {
+			isa = PBXGroup;
+			children = (
+				D599137D25F9BEC700D3B0E1 /* FriendCollectionViewCell.swift */,
+				D599137E25F9BEC700D3B0E1 /* FriendCollectionViewCell.xib */,
+				D599137725F9AFEC00D3B0E1 /* PostCollectionViewCell.swift */,
+				D599137825F9AFEC00D3B0E1 /* PostCollectionViewCell.xib */,
+				D54CC6C525F87CA200CDD99C /* InfoUserCollectionViewCell.swift */,
+				D54CC6C625F87CA200CDD99C /* InfoUserCollectionViewCell.xib */,
+			);
+			path = "Profile User";
+			sourceTree = "<group>";
+		};
+		D54D13AD260EE0EE00357DF1 /* Profile User */ = {
+			isa = PBXGroup;
+			children = (
+				D5921E6C25BD24CC009F9D17 /* EditProfileViewController.swift */,
+				D5921E6D25BD24CC009F9D17 /* EditProfileViewController.xib */,
+				D54CC6BE25F879EF00CDD99C /* ProfileUserViewController.swift */,
+				D54CC6BF25F879EF00CDD99C /* ProfileUserViewController.xib */,
+			);
+			path = "Profile User";
+			sourceTree = "<group>";
+		};
+		D54D13B3260EE1CA00357DF1 /* Create Post */ = {
+			isa = PBXGroup;
+			children = (
+				D5ABCBAD2608406F00A1ADD6 /* LocationSearchTableViewCell.swift */,
+				D5ABCBAE2608406F00A1ADD6 /* LocationSearchTableViewCell.xib */,
+			);
+			path = "Create Post";
+			sourceTree = "<group>";
+		};
 		D554C2F625C05F43009506EA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,33 +422,6 @@
 				D5F4110225BAC50A007F8E03 /* ImagePicker.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		D564899225E74D1B00A34CB6 /* Create Comment */ = {
-			isa = PBXGroup;
-			children = (
-				D564899425E74D3E00A34CB6 /* View */,
-				D564899325E74D3100A34CB6 /* Controller */,
-			);
-			path = "Create Comment";
-			sourceTree = "<group>";
-		};
-		D564899325E74D3100A34CB6 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D564899525E74D6300A34CB6 /* CommentViewController.swift */,
-				D564899625E74D6300A34CB6 /* CommentViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D564899425E74D3E00A34CB6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D564899A25E74D8600A34CB6 /* CommentTableViewCell.swift */,
-				D564899B25E74D8600A34CB6 /* CommentTableViewCell.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		D565AF5E25B6C7830090FA5B = {
@@ -375,304 +448,14 @@
 				D5D1B5B125B7C2F90041C30C /* AppDelegate */,
 				D5F410FD25BAB363007F8E03 /* Model */,
 				D5D1B5E125B80CAE0041C30C /* Common */,
-				D5D1B5B025B7C2E00041C30C /* UI */,
+				D54D139D260EDD7F00357DF1 /* Controller */,
+				D54D139E260EDD8A00357DF1 /* View */,
 				D565AF7325B6C7860090FA5B /* Assets.xcassets */,
 				D565AF7525B6C7860090FA5B /* LaunchScreen.storyboard */,
 				D5D1B5C825B7E1EF0041C30C /* GoogleService-Info.plist */,
 				D565AF7825B6C7860090FA5B /* Info.plist */,
 			);
 			path = "Travel Social";
-			sourceTree = "<group>";
-		};
-		D57C5B262604640700C53DE8 /* Detail Post */ = {
-			isa = PBXGroup;
-			children = (
-				D57C5B282604646000C53DE8 /* View */,
-				D57C5B272604645700C53DE8 /* Controller */,
-			);
-			path = "Detail Post";
-			sourceTree = "<group>";
-		};
-		D57C5B272604645700C53DE8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D57C5B292604648B00C53DE8 /* DetailPostViewController.swift */,
-				D57C5B2A2604648B00C53DE8 /* DetailPostViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D57C5B282604646000C53DE8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D57C5B2F260465A400C53DE8 /* Image */,
-				D57C5B2E2604659A00C53DE8 /* Title */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D57C5B2E2604659A00C53DE8 /* Title */ = {
-			isa = PBXGroup;
-			children = (
-				D57C5B3B2604668500C53DE8 /* TitlePostTableViewCell.swift */,
-				D57C5B3C2604668500C53DE8 /* TitlePostTableViewCell.xib */,
-			);
-			path = Title;
-			sourceTree = "<group>";
-		};
-		D57C5B2F260465A400C53DE8 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				D57C5B352604660400C53DE8 /* ImageTableViewCell.swift */,
-				D57C5B362604660400C53DE8 /* ImageTableViewCell.xib */,
-			);
-			path = Image;
-			sourceTree = "<group>";
-		};
-		D5921E6B25BD24A2009F9D17 /* Edit Profile */ = {
-			isa = PBXGroup;
-			children = (
-				D5921E6C25BD24CC009F9D17 /* EditProfileViewController.swift */,
-				D5921E6D25BD24CC009F9D17 /* EditProfileViewController.xib */,
-			);
-			path = "Edit Profile";
-			sourceTree = "<group>";
-		};
-		D599137625F9AFC500D3B0E1 /* Post */ = {
-			isa = PBXGroup;
-			children = (
-				D599137725F9AFEC00D3B0E1 /* PostCollectionViewCell.swift */,
-				D599137825F9AFEC00D3B0E1 /* PostCollectionViewCell.xib */,
-			);
-			path = Post;
-			sourceTree = "<group>";
-		};
-		D599137C25F9BEAA00D3B0E1 /* Friend */ = {
-			isa = PBXGroup;
-			children = (
-				D599137D25F9BEC700D3B0E1 /* FriendCollectionViewCell.swift */,
-				D599137E25F9BEC700D3B0E1 /* FriendCollectionViewCell.xib */,
-			);
-			path = Friend;
-			sourceTree = "<group>";
-		};
-		D59ECECC25BA60F80078DC87 /* Tab Bar */ = {
-			isa = PBXGroup;
-			children = (
-				D59ECEED25BA7B220078DC87 /* CustomBarViewController.swift */,
-				D59ECEEE25BA7B220078DC87 /* CustomBarViewController.xib */,
-			);
-			path = "Tab Bar";
-			sourceTree = "<group>";
-		};
-		D59ECEF225BA7B2C0078DC87 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				D57C5B262604640700C53DE8 /* Detail Post */,
-				D5F4116725C7A8D400EAFEF1 /* Detail Create Post */,
-				D59ECF0D25BA87D00078DC87 /* View */,
-				D59ECF0C25BA87C40078DC87 /* Controller */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		D59ECEF925BA7B9C0078DC87 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				D5ABCB9C26083A6D00A1ADD6 /* Map */,
-				D5E78F9725C7EDE80066C71B /* Key Search */,
-				D5A208E725C1176A00BE9473 /* Friend */,
-				D5DFBDC125BEC19E00C7AC50 /* View */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
-		D59ECF0625BA7BD60078DC87 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				D5921E6B25BD24A2009F9D17 /* Edit Profile */,
-				D53B4A7825BFC245007D9604 /* Profile */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		D59ECF0C25BA87C40078DC87 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D59ECF1525BA8A620078DC87 /* HomeViewController.swift */,
-				D59ECF1625BA8A620078DC87 /* HomeViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D59ECF0D25BA87D00078DC87 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D5FA609525F5B191004121F0 /* Title */,
-				D564899225E74D1B00A34CB6 /* Create Comment */,
-				D50A535F25E68887009D2C74 /* ListUserHeart */,
-				D59ECF1D25BA8B5E0078DC87 /* Post */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D59ECF1D25BA8B5E0078DC87 /* Post */ = {
-			isa = PBXGroup;
-			children = (
-				D5F4116525C7A6BF00EAFEF1 /* DetailImage */,
-				D5F4115825C79FA000EAFEF1 /* View */,
-				D5F4115725C79F9300EAFEF1 /* Controller */,
-			);
-			path = Post;
-			sourceTree = "<group>";
-		};
-		D59EF59325F06D59003DC267 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D54BCCC925EF277A0025EFEA /* WeatherViewController.swift */,
-				D54BCCCA25EF277A0025EFEA /* WeatherViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D59EF59425F06D6F003DC267 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D59EF59525F06D8F003DC267 /* WeatherTableViewCell.swift */,
-				D59EF59625F06D8F003DC267 /* WeatherTableViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D5A208DF25C1114900BE9473 /* SearchCell */ = {
-			isa = PBXGroup;
-			children = (
-				D5A208E025C1118300BE9473 /* SearchTableViewCell.swift */,
-				D5A208E125C1118300BE9473 /* SearchTableViewCell.xib */,
-			);
-			path = SearchCell;
-			sourceTree = "<group>";
-		};
-		D5A208E525C116FF00BE9473 /* UserCell */ = {
-			isa = PBXGroup;
-			children = (
-				D5DFBDC225BEC1D000C7AC50 /* UserTableViewCell.swift */,
-				D5DFBDC325BEC1D000C7AC50 /* UserTableViewCell.xib */,
-			);
-			path = UserCell;
-			sourceTree = "<group>";
-		};
-		D5A208E725C1176A00BE9473 /* Friend */ = {
-			isa = PBXGroup;
-			children = (
-				D5A208EE25C1181600BE9473 /* View */,
-				D5A208ED25C1180700BE9473 /* Controller */,
-			);
-			path = Friend;
-			sourceTree = "<group>";
-		};
-		D5A208ED25C1180700BE9473 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D5A208E825C1179400BE9473 /* FriendViewController.swift */,
-				D5A208E925C1179400BE9473 /* FriendViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D5A208EE25C1181600BE9473 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D5A208F025C1187300BE9473 /* ProfileFriendTableViewCell.swift */,
-				D5A208F125C1187300BE9473 /* ProfileFriendTableViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D5ABCB9C26083A6D00A1ADD6 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				D5ABCBA526083FD200A1ADD6 /* MapView */,
-				D5ABCBA426083FB800A1ADD6 /* LoactionSearch */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
-		D5ABCBA426083FB800A1ADD6 /* LoactionSearch */ = {
-			isa = PBXGroup;
-			children = (
-				D5ABCBAC2608405100A1ADD6 /* View */,
-				D5ABCBAB2608404700A1ADD6 /* Controller */,
-			);
-			path = LoactionSearch;
-			sourceTree = "<group>";
-		};
-		D5ABCBA526083FD200A1ADD6 /* MapView */ = {
-			isa = PBXGroup;
-			children = (
-				D5ABCB9E26083C4F00A1ADD6 /* MapViewController.swift */,
-				D5ABCB9F26083C4F00A1ADD6 /* MapViewController.xib */,
-			);
-			path = MapView;
-			sourceTree = "<group>";
-		};
-		D5ABCBAB2608404700A1ADD6 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D56A96B82608EBF800DAE993 /* LocationSearchViewController.swift */,
-				D56A96B92608EBF800DAE993 /* LocationSearchViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D5ABCBAC2608405100A1ADD6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D5ABCBAD2608406F00A1ADD6 /* LocationSearchTableViewCell.swift */,
-				D5ABCBAE2608406F00A1ADD6 /* LocationSearchTableViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D5C34B5B25EDCBBC009E4260 /* Notify */ = {
-			isa = PBXGroup;
-			children = (
-				D5C34B6425EDCD75009E4260 /* View */,
-				D5C34B6125EDCBE9009E4260 /* Controller */,
-			);
-			path = Notify;
-			sourceTree = "<group>";
-		};
-		D5C34B6125EDCBE9009E4260 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D5C34B5C25EDCBE4009E4260 /* NotifyViewController.swift */,
-				D5C34B5D25EDCBE4009E4260 /* NotifyViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D5C34B6425EDCD75009E4260 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D5C34B6525EDCDA0009E4260 /* NotifyTableViewCell.swift */,
-				D5C34B6625EDCDA0009E4260 /* NotifyTableViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D5D1B5B025B7C2E00041C30C /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				D53B4A7725BFC15D007D9604 /* Login Sign Up */,
-				D59ECECC25BA60F80078DC87 /* Tab Bar */,
-				D59ECEF225BA7B2C0078DC87 /* Home */,
-				D59ECEF925BA7B9C0078DC87 /* Search */,
-				D54BCCC625EF22A70025EFEA /* Weather */,
-				D5C34B5B25EDCBBC009E4260 /* Notify */,
-				D59ECF0625BA7BD60078DC87 /* User */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		D5D1B5B125B7C2F90041C30C /* AppDelegate */ = {
@@ -682,24 +465,6 @@
 				D565AF6C25B6C7830090FA5B /* SceneDelegate.swift */,
 			);
 			path = AppDelegate;
-			sourceTree = "<group>";
-		};
-		D5D1B5B225B7C30F0041C30C /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				D5D1B5B325B7C32D0041C30C /* LoginViewController.swift */,
-				D5D1B5B425B7C32D0041C30C /* LoginViewController.xib */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		D5D1B5BB25B7C62C0041C30C /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				D5D1B5C325B7C8DB0041C30C /* SignUpViewController.swift */,
-				D5D1B5C425B7C8DB0041C30C /* SignUpViewController.xib */,
-			);
-			path = SignUp;
 			sourceTree = "<group>";
 		};
 		D5D1B5E125B80CAE0041C30C /* Common */ = {
@@ -738,42 +503,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		D5DFBDC125BEC19E00C7AC50 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D5A208E525C116FF00BE9473 /* UserCell */,
-				D5A208DF25C1114900BE9473 /* SearchCell */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D5E78F9725C7EDE80066C71B /* Key Search */ = {
-			isa = PBXGroup;
-			children = (
-				D5E78FA125C7F1730066C71B /* View */,
-				D5E78FA025C7F1660066C71B /* Controller */,
-			);
-			path = "Key Search";
-			sourceTree = "<group>";
-		};
-		D5E78FA025C7F1660066C71B /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D5E78F9825C7EE620066C71B /* KeySearchViewController.swift */,
-				D5E78F9925C7EE620066C71B /* KeySearchViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D5E78FA125C7F1730066C71B /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D5E78FA225C7F1A50066C71B /* KeySearchTableViewCell.swift */,
-				D5E78FA325C7F1A50066C71B /* KeySearchTableViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		D5F410FD25BAB363007F8E03 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,51 +514,6 @@
 				D599138225F9C73600D3B0E1 /* Colors.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		D5F4115725C79F9300EAFEF1 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D59ECF2425BA8B9C0078DC87 /* PostTableViewCell.swift */,
-				D59ECF2525BA8B9C0078DC87 /* PostTableViewCell.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D5F4115825C79FA000EAFEF1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D5F4115925C79FCF00EAFEF1 /* ImageCollectionViewCell.swift */,
-				D5F4115A25C79FCF00EAFEF1 /* ImageCollectionViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D5F4116525C7A6BF00EAFEF1 /* DetailImage */ = {
-			isa = PBXGroup;
-			children = (
-				D53DAF8E25FF646300A94839 /* DetailImageViewController.swift */,
-				D53DAF8F25FF646300A94839 /* DetailImageViewController.xib */,
-			);
-			path = DetailImage;
-			sourceTree = "<group>";
-		};
-		D5F4116725C7A8D400EAFEF1 /* Detail Create Post */ = {
-			isa = PBXGroup;
-			children = (
-				D5F410F825BAAC33007F8E03 /* CreatePostViewController.swift */,
-				D5F410F925BAAC33007F8E03 /* CreatePostViewController.xib */,
-			);
-			path = "Detail Create Post";
-			sourceTree = "<group>";
-		};
-		D5FA609525F5B191004121F0 /* Title */ = {
-			isa = PBXGroup;
-			children = (
-				D5FA609025F5B13C004121F0 /* TitleTableViewCell.swift */,
-				D5FA609125F5B13C004121F0 /* TitleTableViewCell.xib */,
-			);
-			path = Title;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -909,7 +593,6 @@
 				D5F410FB25BAAC33007F8E03 /* CreatePostViewController.xib in Resources */,
 				D5D1B5B625B7C32D0041C30C /* LoginViewController.xib in Resources */,
 				D5E78F9B25C7EE620066C71B /* KeySearchViewController.xib in Resources */,
-				D5A208E325C1118300BE9473 /* SearchTableViewCell.xib in Resources */,
 				D5ABCBA126083C4F00A1ADD6 /* MapViewController.xib in Resources */,
 				D54CC6C125F879EF00CDD99C /* ProfileUserViewController.xib in Resources */,
 				D599137A25F9AFEC00D3B0E1 /* PostCollectionViewCell.xib in Resources */,
@@ -917,7 +600,6 @@
 				D564899825E74D6300A34CB6 /* CommentViewController.xib in Resources */,
 				D57C5B3E2604668500C53DE8 /* TitlePostTableViewCell.xib in Resources */,
 				D54CC6C825F87CA200CDD99C /* InfoUserCollectionViewCell.xib in Resources */,
-				D5E78FA525C7F1A50066C71B /* KeySearchTableViewCell.xib in Resources */,
 				D5D1B5C925B7E1EF0041C30C /* GoogleService-Info.plist in Resources */,
 				D54BCCCC25EF277A0025EFEA /* WeatherViewController.xib in Resources */,
 				D59ECF1825BA8A620078DC87 /* HomeViewController.xib in Resources */,
@@ -997,7 +679,6 @@
 				D565AF6B25B6C7830090FA5B /* AppDelegate.swift in Sources */,
 				D564899725E74D6300A34CB6 /* CommentViewController.swift in Sources */,
 				D54CC6C025F879EF00CDD99C /* ProfileUserViewController.swift in Sources */,
-				D5A208E225C1118300BE9473 /* SearchTableViewCell.swift in Sources */,
 				D599137F25F9BEC700D3B0E1 /* FriendCollectionViewCell.swift in Sources */,
 				D5F410FF25BAB37D007F8E03 /* User.swift in Sources */,
 				D59ECEEF25BA7B220078DC87 /* CustomBarViewController.swift in Sources */,
@@ -1005,7 +686,6 @@
 				D54BCCEC25EF2A390025EFEA /* WeatherAPI.swift in Sources */,
 				D5C34B6725EDCDA0009E4260 /* NotifyTableViewCell.swift in Sources */,
 				D53BB37625BE6C5C001BEC4C /* Post.swift in Sources */,
-				D5E78FA425C7F1A50066C71B /* KeySearchTableViewCell.swift in Sources */,
 				D5921E6E25BD24CC009F9D17 /* EditProfileViewController.swift in Sources */,
 				D5889B6F25F235F7008F1B97 /* UIViewController+hideKeyboardWhenTappedAround.swift in Sources */,
 				D59ECF1725BA8A620078DC87 /* HomeViewController.swift in Sources */,

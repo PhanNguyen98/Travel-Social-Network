@@ -27,8 +27,7 @@ class LoginViewController: UIViewController {
         setUI()
         setViewKeyboard()
         setNavigation()
-        emailTextField.text = "nguyen@gmail.com"
-        passwordTextField.text = "A123456"
+        self.view.isUserInteractionEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
