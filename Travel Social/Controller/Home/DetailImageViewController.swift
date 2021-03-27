@@ -71,8 +71,7 @@ class DetailImageViewController: UIViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let logoutAction = UIAlertAction(title: "Save Image", style: .default) { _ in
             if let image = self.imageView.image {
-                self.showAlert(message: "Save Image Successfully")
-                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
             }
         }
         alertController.addAction(logoutAction)
@@ -82,6 +81,18 @@ class DetailImageViewController: UIViewController {
     }
     
 //MARK: @objc func
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }
+    
     @objc func showOption() {
         self.navigationController?.present(setting(), animated: true, completion: nil)
     }

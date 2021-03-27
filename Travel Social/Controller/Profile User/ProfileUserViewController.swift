@@ -30,7 +30,7 @@ class ProfileUserViewController: UIViewController {
         dataUser = DataManager.shared.user
         dataFriend = [User]()
         collectionView.reloadData()
-    }
+    } 
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
